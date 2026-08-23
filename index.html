@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="auto">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Journal Picker — neuroimaging manuscripts</title>
+<meta name="description" content="Paste a title and abstract, get ranked journal recommendations with real APC costs, open-access status, and the similar papers each journal actually published.">
+<link rel="stylesheet" href="src/style.css">
+</head>
+<body>
+
+<header class="topbar">
+  <div class="wrap topbar-in">
+    <div class="brand">
+      <span class="brand-mark" aria-hidden="true"></span>
+      <span class="brand-text">Journal&nbsp;Picker<span class="brand-sub">neuroimaging</span></span>
+    </div>
+    <div class="topbar-actions">
+      <span id="quota" class="quota" hidden></span>
+      <span class="src-note">data: <a href="https://openalex.org" target="_blank" rel="noopener">OpenAlex</a> · live</span>
+      <button id="themeBtn" class="ghost-btn" type="button" title="Toggle colour scheme">◐</button>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+
+  <!-- ============ INPUT ============ -->
+  <section class="panel intro">
+    <h1>Where should this manuscript go?</h1>
+    <p class="lede">
+      Paste your title and abstract. We search ~270&nbsp;million indexed works for papers that
+      look like yours, find the journals that actually publish them, then show you what each one
+      costs and whether your institution already covers it.
+    </p>
+  </section>
+
+  <section class="panel">
+    <div class="field">
+      <label for="title">Manuscript title</label>
+      <input id="title" type="text" autocomplete="off"
+             placeholder="e.g. Cortical thickness predicts naming recovery after left-hemisphere stroke">
+    </div>
+
+    <div class="field">
+      <div class="label-row">
+        <label for="abstract">Abstract</label>
+        <span class="counter" id="absCount">0 words</span>
+      </div>
+      <textarea id="abstract" rows="9"
+                placeholder="Paste the full abstract. More text means better matching — methods and population sentences carry a lot of the signal."></textarea>
+    </div>
+
+    <div class="actions">
+      <button id="goBtn" class="primary-btn" type="button">Find journals</button>
+      <button id="demoBtn" class="ghost-btn" type="button">Load an example</button>
+      <span id="status" class="status" role="status" aria-live="polite"></span>
+    </div>
+
+    <details class="keybox" id="keyBox">
+      <summary>OpenAlex API key <span class="key-state" id="keyState">recommended</span></summary>
+      <p class="hint">
+        OpenAlex meters its API by credits, and each search spends about 80. Anonymous use runs
+        out after a few searches and then locks out for ~20&nbsp;minutes. A key raises the
+        allowance substantially — get one at
+        <a href="https://openalex.org/pricing" target="_blank" rel="noopener">openalex.org/pricing</a>.
+        It is stored only in this browser and sent only to OpenAlex.
+      </p>
+      <div class="keyrow">
+        <input id="apiKey" type="password" autocomplete="off" spellcheck="false"
+               placeholder="paste your OpenAlex API key">
+        <button id="keySave" class="ghost-btn" type="button">Save</button>
+        <button id="keyClear" class="ghost-btn" type="button">Clear</button>
+      </div>
+    </details>
+  </section>
+
+  <!-- ============ FILTERS ============ -->
+  <section class="panel" id="filterPanel" hidden>
+    <div class="panel-head">
+      <h2>What are you willing to pay, and what do you need?</h2>
+    </div>
+
+    <div class="filter-grid">
+
+      <div class="filter cost-filter">
+        <div class="label-row">
+          <label for="apcSlider">Most you'd pay to publish</label>
+          <output id="apcOut" class="apc-out">no limit</output>
+        </div>
+        <input id="apcSlider" type="range" min="0" max="13" step="1" value="13">
+        <div class="ticks"><span>$0</span><span>$3k</span><span>$6k</span><span>$9k</span><span>any</span></div>
+        <p class="hint" id="apcHint">
+          Journals above your ceiling are kept but greyed out, so you can still see what you're passing up.
+        </p>
+      </div>
+
+      <div class="filter">
+        <label>Publishing route</label>
+        <div class="radio-list" id="routeGroup">
+          <label class="radio"><input type="radio" name="route" value="any" checked>
+            <span><b>Anything</b><em>rank purely on fit</em></span></label>
+          <label class="radio"><input type="radio" name="route" value="oa">
+            <span><b>Must be open access</b><em>gold, diamond or hybrid-OA</em></span></label>
+          <label class="radio"><input type="radio" name="route" value="free">
+            <span><b>Free for me</b><em>no APC: subscription, diamond, or covered by my agreement</em></span></label>
+          <label class="radio"><input type="radio" name="route" value="freeoa">
+            <span><b>Free <i>and</i> open access</b><em>diamond OA, or agreement-covered</em></span></label>
+        </div>
+      </div>
+
+      <div class="filter">
+        <label>Quality &amp; indexing</label>
+        <label class="check"><input type="checkbox" id="doajOnly">
+          <span>In DOAJ <em>vetted open-access listing</em></span></label>
+        <label class="check"><input type="checkbox" id="coreOnly">
+          <span>Well-established venue <em>OpenAlex "core" journal</em></span></label>
+        <label class="check"><input type="checkbox" id="hidePreprint" checked>
+          <span>Hide preprint servers &amp; repositories</span></label>
+        <div class="sub-field">
+          <div class="label-row">
+            <label for="citeSlider">Min. 2-year citedness</label>
+            <output id="citeOut">any</output>
+          </div>
+          <input id="citeSlider" type="range" min="0" max="20" step="1" value="0">
+        </div>
+      </div>
+
+      <div class="filter agreement-filter">
+        <label>Your institution's agreements</label>
+        <p class="hint">
+          Upload your library's open-access agreement list (<code>.xlsx</code>, <code>.xlsm</code>,
+          <code>.csv</code>). Matching journals get flagged as already paid for. Nothing leaves your
+          browser.
+        </p>
+        <div id="dropZone" class="drop">
+          <input id="agreeFile" type="file" accept=".xlsx,.xlsm,.csv,.tsv" multiple hidden>
+          <button id="agreeBtn" class="ghost-btn" type="button">Choose file…</button>
+          <span class="drop-hint">or drop it here</span>
+        </div>
+        <div id="agreeStatus" class="agree-status"></div>
+        <label class="check" id="agreeOnlyWrap" hidden><input type="checkbox" id="agreeOnly">
+          <span>Only journals my institution covers</span></label>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============ RESULTS ============ -->
+  <section id="evidence" class="panel evidence" hidden></section>
+
+  <section id="results" class="results" hidden></section>
+
+  <section id="empty" class="panel empty-state" hidden></section>
+
+</main>
+
+<footer class="wrap foot">
+  <p>
+    Recommendations are computed live from <a href="https://openalex.org" target="_blank" rel="noopener">OpenAlex</a>
+    (works, journal metadata, APC prices, DOAJ status). APC figures are list prices and change often —
+    confirm on the publisher's site before you submit. Agreement coverage depends entirely on the file
+    you upload and on your eligibility as corresponding author.
+  </p>
+</footer>
+
+<template id="cardTpl">
+  <article class="card">
+    <div class="card-main">
+      <div class="card-head">
+        <div class="fitwrap" title="Overall fit">
+          <svg class="ring" viewBox="0 0 44 44" aria-hidden="true">
+            <circle class="ring-bg" cx="22" cy="22" r="18"></circle>
+            <circle class="ring-fg" cx="22" cy="22" r="18"></circle>
+          </svg>
+          <span class="fitnum"></span>
+        </div>
+        <div class="card-title">
+          <h3><a class="jname" target="_blank" rel="noopener"></a></h3>
+          <p class="jmeta"></p>
+        </div>
+        <div class="card-cost">
+          <span class="cost-amount"></span>
+          <span class="cost-label"></span>
+        </div>
+      </div>
+
+      <div class="badges"></div>
+
+      <div class="why">
+        <div class="why-bars"></div>
+        <p class="why-text"></p>
+      </div>
+
+      <details class="papers">
+        <summary><span class="papers-n"></span></summary>
+        <ul class="paper-list"></ul>
+        <p class="jtopics"></p>
+      </details>
+    </div>
+  </article>
+</template>
+
+<script type="module" src="src/app.js"></script>
+</body>
+</html>

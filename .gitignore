@@ -1,0 +1,6 @@
+data/.cache/
+scripts/__pycache__/
+*.pyc
+build-shard*.log
+.DS_Store
+.netlify/
