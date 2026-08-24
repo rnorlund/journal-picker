@@ -430,6 +430,7 @@ export async function recommend({ title, abstract, references }, opts = {}) {
       fieldShare: rec?.fieldShare ?? null,
       perField: rec?.perField || null,
       citedCount,
+      review: rec?.review || null,
       probesMatched: [...v.labels],
       samplePapers: papers,
       journalTopics: (rec?.topics || []).slice(0, 8).map((t) => ({

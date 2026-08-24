@@ -1,0 +1,380 @@
+[
+ {
+  "id": "T10181",
+  "display_name": "Natural Language Processing Techniques",
+  "description": "This cluster of papers focuses on statistical machine translation, neural machine translation, dependency parsing, word sense disambiguation, and part-of-speech tagging. It also covers topics such as corpus linguistics, syntax-based translation models, multilingual neural machine translation, and language modeling.",
+  "keywords": [
+   "Statistical Machine Translation",
+   "Neural Machine Translation",
+   "Dependency Parsing",
+   "Word Sense Disambiguation",
+   "Part-of-Speech Tagging",
+   "Corpus Linguistics",
+   "Syntax-based Translation Models",
+   "Multilingual Neural Machine Translation",
+   "Lexical Database",
+   "Language Modeling"
+  ],
+  "subfield": "Artificial Intelligence",
+  "field": "Computer Science",
+  "domain": "Physical Sciences",
+  "works_count": 299086
+ },
+ {
+  "id": "T12373",
+  "display_name": "Linguistic research and analysis",
+  "description": "This cluster of papers covers a wide range of topics related to language discourse and communication studies, including discourse analysis, language variation, text linguistics, sociolinguistics, communication practices, phraseology, multimodality, standardization of language, cultural semiotics, and digital communication.",
+  "keywords": [
+   "Discourse Analysis",
+   "Language Variation",
+   "Text Linguistics",
+   "Sociolinguistics",
+   "Communication Practices",
+   "Phraseology",
+   "Multimodality",
+   "Standardization of Language",
+   "Cultural Semiotics",
+   "Digital Communication"
+  ],
+  "subfield": "Language and Linguistics",
+  "field": "Arts and Humanities",
+  "domain": "Social Sciences",
+  "works_count": 245285
+ },
+ {
+  "id": "T10028",
+  "display_name": "Topic Modeling",
+  "description": "This cluster of papers covers a wide range of advancements in natural language processing, including neural network architectures, word representation models, machine translation techniques, text classification algorithms, semantic similarity measures, named entity recognition methods, pretrained language models, sequence-to-sequence learning approaches, topic modeling strategies, and information retrieval systems.",
+  "keywords": [
+   "Neural Networks",
+   "Word Representation",
+   "Machine Translation",
+   "Text Classification",
+   "Semantic Similarity",
+   "Named Entity Recognition",
+   "Pretrained Models",
+   "Sequence-to-Sequence Learning",
+   "Topic Modeling",
+   "Information Retrieval"
+  ],
+  "subfield": "Artificial Intelligence",
+  "field": "Computer Science",
+  "domain": "Physical Sciences",
+  "works_count": 175697
+ },
+ {
+  "id": "T13623",
+  "display_name": "Linguistic Studies and Language Acquisition",
+  "description": "This cluster of papers focuses on the compilation, annotation, and analysis of spoken language corpora in Italian and Portuguese, with a particular emphasis on prosody, pragmatics, and information structure. It also delves into linguistic annotation, language teaching, and cross-linguistic analysis.",
+  "keywords": [
+   "Spoken Language",
+   "Corpora",
+   "Italian",
+   "Portuguese",
+   "Prosody",
+   "Pragmatics",
+   "Information Structure",
+   "Linguistic Annotation",
+   "Language Teaching",
+   "Cross-linguistic Analysis"
+  ],
+  "subfield": "Artificial Intelligence",
+  "field": "Computer Science",
+  "domain": "Physical Sciences",
+  "works_count": 152530
+ },
+ {
+  "id": "T10403",
+  "display_name": "Phonetics and Phonology Research",
+  "description": "This cluster of papers covers a wide range of topics related to speech perception, phonetics, second language learning, prosody, perceptual learning, acoustic and articulatory phonetics, intonation, speech production, and language acquisition.",
+  "keywords": [
+   "Speech Perception",
+   "Phonetics",
+   "Second Language Learning",
+   "Prosody",
+   "Perceptual Learning",
+   "Acoustic Phonetics",
+   "Articulatory Phonetics",
+   "Intonation",
+   "Speech Production",
+   "Language Acquisition"
+  ],
+  "subfield": "Experimental and Cognitive Psychology",
+  "field": "Psychology",
+  "domain": "Social Sciences",
+  "works_count": 147112
+ },
+ {
+  "id": "T10034",
+  "display_name": "Syntax, Semantics, Linguistic Variation",
+  "description": "This cluster of papers encompasses a wide range of topics in theoretical linguistics, including syntax, semantics, pragmatics, language evolution, universal grammar, construction grammar, scalar implicature, morphology, and language typology. The papers explore fundamental principles and structures underlying human language and aim to advance our understanding of linguistic universals and diversity.",
+  "keywords": [
+   "Syntax",
+   "Semantics",
+   "Pragmatics",
+   "Grammar",
+   "Language Evolution",
+   "Universal Grammar",
+   "Construction Grammar",
+   "Scalar Implicature",
+   "Morphology",
+   "Language Typology"
+  ],
+  "subfield": "Language and Linguistics",
+  "field": "Arts and Humanities",
+  "domain": "Social Sciences",
+  "works_count": 136211
+ },
+ {
+  "id": "T14006",
+  "display_name": "Linguistics, Language Diversity, and Identity",
+  "description": "This cluster of papers explores linguistic borrowing, language contact phenomena, and the influence of one language on another. It delves into topics such as anglicisms, neologisms, pragmatic borrowing, sociolinguistics, and the cultural and semantic implications of lexical influence. The papers also discuss bilingualism and the impact of English on various European languages.",
+  "keywords": [
+   "Linguistic Borrowing",
+   "Language Contact",
+   "Anglicisms",
+   "Neologisms",
+   "Pragmatic Borrowing",
+   "Sociolinguistics",
+   "Lexical Influence",
+   "Cultural Implications",
+   "Semantic Changes",
+   "Bilingualism"
+  ],
+  "subfield": "Language and Linguistics",
+  "field": "Arts and Humanities",
+  "domain": "Social Sciences",
+  "works_count": 107391
+ },
+ {
+  "id": "T10201",
+  "display_name": "Speech Recognition and Synthesis",
+  "description": "This cluster of papers focuses on the advances in speech recognition technology, covering topics such as acoustic modeling using deep neural networks, speaker verification, convolutional neural networks for speech recognition, end-to-end speech recognition systems, hidden Markov models, sequence-to-sequence models, automatic speech recognition, speaker diarization, and statistical language modeling.",
+  "keywords": [
+   "Deep Neural Networks",
+   "Acoustic Modeling",
+   "Speaker Verification",
+   "Convolutional Neural Networks",
+   "End-to-End Speech Recognition",
+   "Hidden Markov Models",
+   "Sequence-to-Sequence Models",
+   "Automatic Speech Recognition",
+   "Speaker Diarization",
+   "Statistical Language Modeling"
+  ],
+  "subfield": "Artificial Intelligence",
+  "field": "Computer Science",
+  "domain": "Physical Sciences",
+  "works_count": 98239
+ },
+ {
+  "id": "T10465",
+  "display_name": "Neurobiology of Language and Bilingualism",
+  "description": "This cluster of papers explores the neural mechanisms underlying language processing, including semantic memory, bilingualism, cognitive control, speech comprehension, syntax, and aphasia. It investigates the brain organization and functional neuroimaging of language-related functions.",
+  "keywords": [
+   "Language Processing",
+   "Semantic Memory",
+   "Bilingualism",
+   "Neural Basis",
+   "Cognitive Control",
+   "Speech Comprehension",
+   "Syntax",
+   "Aphasia",
+   "Brain Organization",
+   "Functional Neuroimaging"
+  ],
+  "subfield": "Cognitive Neuroscience",
+  "field": "Neuroscience",
+  "domain": "Life Sciences",
+  "works_count": 88169
+ },
+ {
+  "id": "T13559",
+  "display_name": "Edcuational Technology Systems",
+  "description": "This cluster of papers focuses on the development and application of expert systems, including decision support systems, data mining, artificial intelligence, knowledge management, machine learning, information systems, natural language processing, fuzzy logic, and educational technology.",
+  "keywords": [
+   "Expert Systems",
+   "Decision Support System",
+   "Data Mining",
+   "Artificial Intelligence",
+   "Knowledge Management",
+   "Machine Learning",
+   "Information System",
+   "Natural Language Processing",
+   "Fuzzy Logic",
+   "Educational Technology"
+  ],
+  "subfield": "Artificial Intelligence",
+  "field": "Computer Science",
+  "domain": "Physical Sciences",
+  "works_count": 84058
+ },
+ {
+  "id": "T10383",
+  "display_name": "Language, Discourse, Communication Strategies",
+  "description": "This cluster of papers focuses on conversation analysis, interactional linguistic analysis, and discourse study, examining topics such as turn-taking, social interaction, identity construction, pragmatics, narrative analysis, politeness theory, and multimodal communication.",
+  "keywords": [
+   "Conversation Analysis",
+   "Interactional Linguistics",
+   "Discourse Study",
+   "Turn-Taking",
+   "Social Interaction",
+   "Identity Construction",
+   "Pragmatics",
+   "Narrative Analysis",
+   "Politeness Theory",
+   "Multimodal Communication"
+  ],
+  "subfield": "Language and Linguistics",
+  "field": "Arts and Humanities",
+  "domain": "Social Sciences",
+  "works_count": 83224
+ },
+ {
+  "id": "T12128",
+  "display_name": "AI in Service Interactions",
+  "description": "This cluster of papers explores the impact of artificial intelligence, service robots, and chatbots on the service industry, focusing on customer experience, hospitality, marketing, voice assistants, human-robot interaction, and technology adoption.",
+  "keywords": [
+   "Artificial Intelligence",
+   "Service Robots",
+   "Chatbots",
+   "Customer Experience",
+   "Hospitality",
+   "Marketing",
+   "Voice Assistants",
+   "Human-Robot Interaction",
+   "Consumer Perception",
+   "Technology Adoption"
+  ],
+  "subfield": "Artificial Intelligence",
+  "field": "Computer Science",
+  "domain": "Physical Sciences",
+  "works_count": 68377
+ },
+ {
+  "id": "T12881",
+  "display_name": "linguistics and terminology studies",
+  "description": "This cluster of papers encompasses theoretical and applied studies in terminology and specialized language, including cognitive linguistics, ontologies, corpus linguistics, semantic relations, conceptual variation, lexical semantics, knowledge representation, and multidimensionality. The papers explore the dynamics of terminological variation, the processing of terms in specialized communication, and the representation of multidimensional and multimodal information in specialized domains.",
+  "keywords": [
+   "Terminology",
+   "Specialized Language",
+   "Cognitive Linguistics",
+   "Ontologies",
+   "Corpus Linguistics",
+   "Semantic Relations",
+   "Conceptual Variation",
+   "Lexical Semantics",
+   "Knowledge Representation",
+   "Multidimensionality"
+  ],
+  "subfield": "Language and Linguistics",
+  "field": "Arts and Humanities",
+  "domain": "Social Sciences",
+  "works_count": 62400
+ },
+ {
+  "id": "T12031",
+  "display_name": "Speech and dialogue systems",
+  "description": "This cluster of papers focuses on the modeling and optimization of dialogue acts in spoken language systems, utilizing techniques such as Markov decision processes, user simulation, multimodal interaction, reinforcement learning, natural language generation, and the hidden information state model. The research also delves into semantic processing, referring expressions, and the management of dialogues in various contexts.",
+  "keywords": [
+   "Spoken Dialogue Systems",
+   "Markov Decision Processes",
+   "User Simulation",
+   "Multimodal Interaction",
+   "Reinforcement Learning",
+   "Natural Language Generation",
+   "Hidden Information State Model",
+   "Dialog Management",
+   "Semantic Processing",
+   "Referring Expressions"
+  ],
+  "subfield": "Artificial Intelligence",
+  "field": "Computer Science",
+  "domain": "Physical Sciences",
+  "works_count": 58485
+ },
+ {
+  "id": "T12262",
+  "display_name": "Hate Speech and Cyberbullying Detection",
+  "description": "This cluster of papers focuses on the automated detection of hate speech, offensive language, and cyberbullying in social media platforms such as Twitter. It explores various techniques including machine learning, natural language processing, and deep learning to identify and categorize abusive content, with a specific emphasis on mitigating online harassment and promoting online safety.",
+  "keywords": [
+   "Hate Speech",
+   "Detection",
+   "Social Media",
+   "Cyberbullying",
+   "Offensive Language",
+   "Machine Learning",
+   "Natural Language Processing",
+   "Online Harassment",
+   "Twitter",
+   "Deep Learning"
+  ],
+  "subfield": "Artificial Intelligence",
+  "field": "Computer Science",
+  "domain": "Physical Sciences",
+  "works_count": 45794
+ },
+ {
+  "id": "T13310",
+  "display_name": "Subtitles and Audiovisual Media",
+  "description": "This cluster of papers explores the impact of subtitling, captioning, and audio description on language learning and acquisition. It covers topics such as the effectiveness of different subtitling methods, the influence of audiovisual integration on bilingual language processing, and the role of multimedia learning in vocabulary acquisition for second language learners. The research also delves into accessibility studies and the use of subtitles in foreign language education.",
+  "keywords": [
+   "Subtitling",
+   "Language Learning",
+   "Captioning",
+   "Audio Description",
+   "Second Language Acquisition",
+   "Multimedia Learning",
+   "Vocabulary Learning",
+   "Eye Tracking",
+   "Accessibility Studies",
+   "Foreign Language Education"
+  ],
+  "subfield": "Language and Linguistics",
+  "field": "Arts and Humanities",
+  "domain": "Social Sciences",
+  "works_count": 37850
+ },
+ {
+  "id": "T13243",
+  "display_name": "Innovation in Digital Healthcare Systems",
+  "description": "This cluster of papers focuses on ontology-based healthcare context modeling in a ubiquitous environment. It includes topics such as dietary nutrition recommendation, emergency situation monitoring, topic modeling for medical big data mining, depression risk prediction using deep neural network model, bio-detection for smart health service, and P2P cloud network services for IoT-based disaster situations.",
+  "keywords": [
+   "Ontology-based",
+   "Healthcare",
+   "Context Information Model",
+   "Ubiquitous Environment",
+   "Dietary Nutrition Recommendation",
+   "Emergency Situation Monitoring",
+   "Topic Modeling",
+   "Depression Risk Prediction",
+   "Bio-detection for Smart Health Service",
+   "P2P Cloud Network Services"
+  ],
+  "subfield": "Health Information Management",
+  "field": "Health Professions",
+  "domain": "Health Sciences",
+  "works_count": 35835
+ },
+ {
+  "id": "T13629",
+  "display_name": "Text Readability and Simplification",
+  "description": "This cluster of papers focuses on automatic text simplification and readability assessment using machine learning, statistical language models, neural networks, and natural language processing techniques. The research covers areas such as sentence simplification, lexical simplification, complex word identification, and semantic simplification to improve the accessibility and comprehension of written text.",
+  "keywords": [
+   "Text Simplification",
+   "Readability Assessment",
+   "Machine Learning",
+   "Sentence Simplification",
+   "Statistical Language Models",
+   "Neural Networks",
+   "Lexical Simplification",
+   "Natural Language Processing",
+   "Complex Word Identification",
+   "Semantic Simplification"
+  ],
+  "subfield": "Artificial Intelligence",
+  "field": "Computer Science",
+  "domain": "Physical Sciences",
+  "works_count": 21067
+ }
+]

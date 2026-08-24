@@ -3,6 +3,7 @@
   "brain-imaging",
   "cardiovascular",
   "dental-oral",
-  "genetics"
+  "genetics",
+  "llm-language"
  ]
 }

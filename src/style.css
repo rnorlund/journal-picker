@@ -365,3 +365,10 @@ a { color: var(--accent); }
 .refbox textarea { margin-top: 9px; font-size: 13px; }
 #refStat .ok { color: var(--good); font-weight: 600; }
 .b-cite { background: var(--accent-sf); color: var(--accent); }
+
+.ev-block.ev-warn { background: var(--warn-sf); border-radius: 9px; padding: 12px 14px; }
+.ev-block.ev-warn h4 { color: var(--warn); }
+.ev-note { font-size: 12px; color: var(--ink-2); margin: 0; line-height: 1.5; }
+
+.paper-list li.review-detail { border-left-color: var(--accent); color: var(--ink); }
+.paper-list li.review-detail .src { color: var(--ink-3); }

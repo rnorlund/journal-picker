@@ -162,6 +162,11 @@ function renderEvidence(run) {
         <div class="chips">${run.probes.map((p) =>
           `<span class="chip q" title="${esc(p.total.toLocaleString())} indexed matches">${esc(p.query)}</span>`).join('')}</div>
       </div>
+      ${(run.fields?.matched || []).filter((m) => m.field.coverage_note).map((m) => `
+      <div class="ev-block ev-warn">
+        <h4>⚠ Coverage caveat — ${esc(m.field.name)}</h4>
+        <p class="ev-note">${esc(m.field.coverage_note)}</p>
+      </div>`).join('')}
       <div class="ev-block">
         <h4>Detected field</h4>
         <div class="chips">${run.topics.map((t) => `<span class="chip">${esc(t.name)}</span>`).join('')
@@ -213,6 +218,13 @@ function badgesFor(j) {
   if (j.citedCount) {
     b.push(['b-cite', `You cite this journal ${j.citedCount}×`]);
   }
+  if (j.review) {
+    const d = j.review.median;
+    // Buckets are generous: what authors care about is fast/typical/slow, and
+    // the underlying medians carry real sampling noise.
+    const cls = d <= 60 ? 'b-cover' : d <= 120 ? 'b-oa' : d <= 200 ? 'b-plain' : 'b-warn';
+    b.push([cls, `~${d}d in review (n=${j.review.n})`]);
+  }
   if (j.inDoaj) b.push(['b-doaj', 'DOAJ']);
   if (j.isCore) b.push(['b-plain', 'Core venue']);
   if (j.citedness != null) b.push(['b-plain', `${j.citedness} cites/paper (2yr)`]);
@@ -238,6 +250,9 @@ function whyText(j) {
   }
   if (j.probesMatched.length > 2) {
     bits.push(`matched <b>${j.probesMatched.length}</b> different facets of your abstract`);
+  }
+  if (j.review && j.review.median <= 60) {
+    bits.push(`fast review — median <b>${j.review.median}</b> days`);
   }
   if (j.citedCount >= 2) {
     bits.push(`you cite it <b>${j.citedCount}</b> times`);
@@ -317,6 +332,16 @@ function renderCards(list) {
           : esc(p.title);
         li.innerHTML = `${a} <span class="py">(${p.year ?? 'n.d.'}${p.cites ? `, ${p.cites} cites` : ''})</span>`;
         ul.appendChild(li);
+      }
+      if (j.review) {
+        const r = j.review;
+        const li = document.createElement('li');
+        li.className = 'review-detail';
+        li.innerHTML = `<b>Peer review:</b> median ${r.median} days from submission to acceptance ` +
+          `(middle half ${r.p25}–${r.p75} days, n=${r.n} research articles)` +
+          (r.to_pub ? `, then ~${r.to_pub} days to appear` : '') +
+          `. <span class="src">From publisher-deposited dates in PubMed.</span>`;
+        papers.querySelector('.paper-list').prepend(li);
       }
       if (j.journalTopics.length) {
         papers.querySelector('.jtopics').textContent =
@@ -438,6 +463,7 @@ function catalogToResult(rec) {
     fit: null,
     simNorm: 0,
     matchCount: 0,
+    review: rec.review || null,
     topicWorks: rec.fieldWorks ?? rec.neuro_works ?? 0,
     fieldShare: rec.fieldShare ?? rec.neuro_share ?? null,
     probesMatched: [],

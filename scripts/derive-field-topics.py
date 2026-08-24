@@ -36,6 +36,37 @@ RULES = {
                r"neurolog|\bbrain\b|cerebr|hydrocephal|\bglaucoma|retinal|\bocular",
                r"\bdental|\boral\b"],
  },
+ # LLM x human language sits across AI, linguistics and cognitive science, so
+ # loose name matching drags in history, archaeology and language pedagogy
+ # ("corpus", "discourse"). Gate hard on subfield and name the anchors.
+ "llm-language": {
+   "subfields": ["Language and Linguistics", "Linguistics and Language"],
+   "include_ids": ["T10181", "T10028", "T10403", "T10465", "T10201", "T12031",
+                   "T10034", "T10383", "T13623"],
+   "gated_subfields": ["Speech and Hearing", "Artificial Intelligence",
+                       "Experimental and Cognitive Psychology",
+                       "Cognitive Neuroscience", "Cognitive Psychology",
+                       "Computer Science Applications", "Human-Computer Interaction",
+                       "Computational Theory and Mathematics", "Developmental Neuroscience",
+                       "Neurology", "Behavioral Neuroscience"],
+   "patterns": [r"language model", r"natural language process", r"large language",
+                r"computational lingu", r"psycholingu", r"neurolingu",
+                r"machine translation", r"word embedding", r"distributional semantic",
+                r"speech recognition", r"speech perception", r"phonetics|phonolog",
+                r"\bsyntax\b|syntactic process", r"semantic process",
+                r"language acquisition", r"language comprehension",
+                r"language production", r"bilingual", r"sentence process",
+                r"discourse process", r"reading comprehension", r"topic modeling",
+                r"conversational agent|chatbot", r"transformer"],
+   "exclude": [r"histor|archaeolog|ancient|medieval|classic|egypt|polish|literary",
+               r"pedagog|curriculum|classroom|efl|esl|teaching|teacher|higher education",
+               r"translation studies and practices", r"lexicograph",
+               r"conservation|ecolog|landscape|geograph",
+               r"political|sociolog|australian|spanish lingu",
+               r"\bcrop\b|\bplant\b|agricultur",
+               r"veterinar|nursing|school health|dental|dysphagia",
+               r"noise effects|hearing loss and rehabilitation"],
+ },
  "genetics": {
    "subfields": ["Genetics", "Molecular Biology", "Genetics (clinical)", "Bioinformatics",
                  "Computational Biology", "Cancer Research"],
@@ -57,6 +88,11 @@ def main():
     print("taxonomy: %d topics\n" % len(tax))
     for fid, rule in RULES.items():
         subs = {s.lower() for s in rule["subfields"]}
+        # Broad subfields cannot be trusted wholesale. OpenAlex files
+        # "Geochemistry and Geologic Mapping" under Artificial Intelligence, so
+        # a topic from a gated subfield must also match one of the field's
+        # patterns to count.
+        gated = {s.lower() for s in rule.get("gated_subfields", [])}
         pats = [re.compile(p, re.I) for p in rule["patterns"]]
         excl = [re.compile(p, re.I) for p in rule["exclude"]]
         picked = []
@@ -68,8 +104,9 @@ def main():
             # which is how "flora and fauna" ended up matching a vascular pattern
             # and Lepidoptera taxonomy ended up in genetics.
             hay = name + " || " + kw
-            by_sub = (t.get("subfield") or "").lower() in subs
+            sub = (t.get("subfield") or "").lower()
             by_pat = any(p.search(hay) for p in pats)
+            by_sub = sub in subs or (sub in gated and by_pat)
             if not (by_sub or by_pat):
                 continue
             if any(p.search(hay + " || " + desc) for p in excl):
@@ -80,6 +117,11 @@ def main():
             if not by_sub and t.get("domain") != "Health Sciences":
                 continue
             picked.append(t)
+        # Explicit anchors always count, whatever the subfield gating decides.
+        must = set(rule.get("include_ids", []))
+        if must:
+            have = {t["id"] for t in picked}
+            picked += [t for t in tax if t["id"] in must and t["id"] not in have]
         picked.sort(key=lambda t: -(t["works_count"] or 0))
 
         path = os.path.join(ROOT, "data", "fields", "%s.json" % fid)

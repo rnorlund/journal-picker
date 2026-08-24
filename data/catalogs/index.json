@@ -1,5 +1,8 @@
 {
  "fields": [
-  "brain-imaging"
+  "brain-imaging",
+  "cardiovascular",
+  "dental-oral",
+  "genetics"
  ]
 }

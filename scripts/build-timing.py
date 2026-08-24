@@ -78,7 +78,7 @@ def parse_shard(spec):
 
 SHARD_INDEX, SHARD_COUNT = parse_shard(os.environ.get("SHARD", "").strip())
 PROGRESS = os.path.join(
-    CACHE, "timing-progress%s.jsonl" % (
+    CACHE, "timing-progress-v2%s.jsonl" % (
         "" if SHARD_COUNT == 1 else "-%dof%d" % (SHARD_INDEX, SHARD_COUNT)))
 
 
@@ -139,10 +139,21 @@ HISTORY_RE = re.compile(
     r'\s*<Month>(\d+)</Month>\s*<Day>(\d+)</Day>')
 
 
+# Invited and non-research content has no meaningful review period: an invited
+# review or an editorial is often accepted the day it arrives. Leaving those in
+# made "Seminars in Nuclear Medicine" read as a 6-day journal, which is true of
+# its commissioned reviews and useless to someone submitting a research paper.
+EXCLUDE_TYPES = ["editorial", "comment", "letter", "news", "review",
+                 "published erratum", "biography", "historical article",
+                 "practice guideline", "retraction of publication",
+                 "case reports", "congress"]
+
+
 def journal_pmids(issn):
-    """Recent research-article PMIDs for one ISSN."""
-    term = ('"%s"[Journal] AND ("%d"[PDAT] : "%d"[PDAT]) AND journal article[PT]'
-            % (issn, YEAR_FROM, YEAR_TO))
+    """Recent research-article PMIDs for one ISSN, excluding invited content."""
+    not_clause = " ".join('NOT %s[PT]' % t for t in EXCLUDE_TYPES)
+    term = ('"%s"[Journal] AND ("%d"[PDAT] : "%d"[PDAT]) AND journal article[PT] %s'
+            % (issn, YEAR_FROM, YEAR_TO, not_clause))
     body = eutils("esearch.fcgi", {
         "db": "pubmed", "retmode": "json", "retmax": RETMAX, "term": term})
     try:
@@ -235,7 +246,7 @@ def catalog_journals():
 
 def load_done():
     done = {}
-    for path in glob.glob(os.path.join(CACHE, "timing-progress*.jsonl")):
+    for path in glob.glob(os.path.join(CACHE, "timing-progress-v2*.jsonl")):
         with open(path) as fh:
             for line in fh:
                 line = line.strip()

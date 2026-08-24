@@ -1,0 +1,483 @@
+{
+ "id": "llm-language",
+ "name": "Language models and human language",
+ "description": "Comparisons between large language models and human language processing: computational linguistics, psycholinguistics, and the cognitive neuroscience of language.",
+ "coverage_note": "Europe PMC indexes biomedical literature, so the cognitive-neuroscience side of this field is well covered but ACL, TACL, EMNLP, NeurIPS and arXiv preprints are largely absent. Treat NLP-venue coverage as incomplete.",
+ "signals": [
+  "language model",
+  "large language model",
+  "llm",
+  "gpt",
+  "bert",
+  "transformer",
+  "neural network",
+  "natural language",
+  "nlp",
+  "psycholinguistic",
+  "linguistic",
+  "syntax",
+  "syntactic",
+  "semantic",
+  "semantics",
+  "lexical",
+  "phoneme",
+  "phonological",
+  "morphology",
+  "pragmatics",
+  "discourse",
+  "corpus",
+  "embedding",
+  "tokenizer",
+  "perplexity",
+  "next word prediction",
+  "surprisal",
+  "language comprehension",
+  "sentence processing",
+  "word recognition",
+  "speech",
+  "reading",
+  "bilingual",
+  "grammar",
+  "human language"
+ ],
+ "methods": [
+  [
+   "large language model",
+   "large language models"
+  ],
+  [
+   "language model",
+   "language models"
+  ],
+  [
+   "llm",
+   "large language models"
+  ],
+  [
+   "gpt",
+   "gpt language model"
+  ],
+  [
+   "chatgpt",
+   "chatgpt"
+  ],
+  [
+   "bert",
+   "bert language model"
+  ],
+  [
+   "transformer",
+   "transformer neural network"
+  ],
+  [
+   "recurrent neural network",
+   "recurrent neural network language model"
+  ],
+  [
+   "word embedding",
+   "word embeddings"
+  ],
+  [
+   "distributional semantic",
+   "distributional semantics"
+  ],
+  [
+   "word2vec",
+   "word embeddings"
+  ],
+  [
+   "glove",
+   "word embeddings"
+  ],
+  [
+   "surprisal",
+   "surprisal language model"
+  ],
+  [
+   "perplexity",
+   "language model perplexity"
+  ],
+  [
+   "next word prediction",
+   "next word prediction"
+  ],
+  [
+   "prompt",
+   "prompting language model"
+  ],
+  [
+   "fine tun",
+   "fine tuning language model"
+  ],
+  [
+   "zero shot",
+   "zero shot language model"
+  ],
+  [
+   "few shot",
+   "few shot learning"
+  ],
+  [
+   "in context learning",
+   "in context learning"
+  ],
+  [
+   "probing",
+   "probing neural language model"
+  ],
+  [
+   "attention head",
+   "attention mechanism"
+  ],
+  [
+   "representational similarity",
+   "representational similarity analysis"
+  ],
+  [
+   "encoding model",
+   "neural encoding model"
+  ],
+  [
+   "brain score",
+   "brain score language model"
+  ],
+  [
+   "fmri",
+   "functional mri language"
+  ],
+  [
+   "meg",
+   "magnetoencephalography language"
+  ],
+  [
+   "eeg",
+   "electroencephalography language"
+  ],
+  [
+   "erp",
+   "event related potentials language"
+  ],
+  [
+   "n400",
+   "n400 component"
+  ],
+  [
+   "p600",
+   "p600 component"
+  ],
+  [
+   "eye tracking",
+   "eye tracking reading"
+  ],
+  [
+   "self paced reading",
+   "self paced reading"
+  ],
+  [
+   "reaction time",
+   "reaction time lexical decision"
+  ],
+  [
+   "lexical decision",
+   "lexical decision task"
+  ],
+  [
+   "priming",
+   "semantic priming"
+  ],
+  [
+   "cloze",
+   "cloze probability"
+  ],
+  [
+   "acceptability judgment",
+   "acceptability judgments"
+  ],
+  [
+   "grammaticality",
+   "grammaticality judgments"
+  ],
+  [
+   "corpus analysis",
+   "corpus linguistics"
+  ],
+  [
+   "treebank",
+   "syntactic treebank"
+  ],
+  [
+   "dependency pars",
+   "dependency parsing"
+  ],
+  [
+   "constituency pars",
+   "syntactic parsing"
+  ],
+  [
+   "machine translation",
+   "machine translation"
+  ],
+  [
+   "speech recognition",
+   "automatic speech recognition"
+  ],
+  [
+   "text to speech",
+   "speech synthesis"
+  ],
+  [
+   "benchmark",
+   "nlp benchmark"
+  ],
+  [
+   "annotation",
+   "linguistic annotation"
+  ],
+  [
+   "inter annotator",
+   "inter annotator agreement"
+  ],
+  [
+   "mixed effects model",
+   "linear mixed effects model"
+  ],
+  [
+   "bayesian",
+   "bayesian model language"
+  ],
+  [
+   "information theor",
+   "information theory language"
+  ],
+  [
+   "entropy",
+   "entropy language"
+  ],
+  [
+   "mutual information",
+   "mutual information language"
+  ]
+ ],
+ "populations": [
+  [
+   "aphasia",
+   "aphasia language"
+  ],
+  [
+   "anomia",
+   "anomia naming"
+  ],
+  [
+   "agrammatism",
+   "agrammatism"
+  ],
+  [
+   "primary progressive aphasia",
+   "primary progressive aphasia"
+  ],
+  [
+   "dyslexia",
+   "dyslexia"
+  ],
+  [
+   "specific language impairment",
+   "developmental language disorder"
+  ],
+  [
+   "developmental language disorder",
+   "developmental language disorder"
+  ],
+  [
+   "autism",
+   "autism language"
+  ],
+  [
+   "schizophrenia",
+   "schizophrenia language"
+  ],
+  [
+   "alzheimer",
+   "alzheimer language"
+  ],
+  [
+   "dementia",
+   "dementia language"
+  ],
+  [
+   "bilingual",
+   "bilingualism"
+  ],
+  [
+   "second language",
+   "second language acquisition"
+  ],
+  [
+   "multilingual",
+   "multilingualism"
+  ],
+  [
+   "child language",
+   "child language acquisition"
+  ],
+  [
+   "infant",
+   "infant language development"
+  ],
+  [
+   "toddler",
+   "early language development"
+  ],
+  [
+   "adult",
+   "adult language processing"
+  ],
+  [
+   "native speaker",
+   "native speakers"
+  ],
+  [
+   "sign language",
+   "sign language"
+  ],
+  [
+   "deaf",
+   "deafness language"
+  ],
+  [
+   "low resource language",
+   "low resource languages"
+  ],
+  [
+   "cross lingu",
+   "cross linguistic"
+  ],
+  [
+   "typolog",
+   "linguistic typology"
+  ],
+  [
+   "morpholog",
+   "morphological processing"
+  ],
+  [
+   "semantic memory",
+   "semantic memory"
+  ],
+  [
+   "working memory",
+   "working memory language"
+  ],
+  [
+   "prediction",
+   "predictive processing language"
+  ],
+  [
+   "ambiguity",
+   "lexical ambiguity"
+  ],
+  [
+   "metaphor",
+   "figurative language"
+  ],
+  [
+   "idiom",
+   "figurative language"
+  ],
+  [
+   "irony",
+   "pragmatic inference"
+  ],
+  [
+   "pragmatic",
+   "pragmatics"
+  ],
+  [
+   "theory of mind",
+   "theory of mind language"
+  ],
+  [
+   "reasoning",
+   "language and reasoning"
+  ],
+  [
+   "world knowledge",
+   "world knowledge"
+  ],
+  [
+   "hallucination",
+   "language model hallucination"
+  ],
+  [
+   "bias",
+   "bias in language models"
+  ],
+  [
+   "fairness",
+   "fairness nlp"
+  ],
+  [
+   "alignment",
+   "language model alignment"
+  ],
+  [
+   "interpretability",
+   "model interpretability"
+  ],
+  [
+   "emergent abilit",
+   "emergent abilities"
+  ],
+  [
+   "scaling law",
+   "scaling laws"
+  ],
+  [
+   "human comparison",
+   "human model comparison"
+  ],
+  [
+   "psychometric",
+   "psychometrics language"
+  ],
+  [
+   "clinical text",
+   "clinical text nlp"
+  ],
+  [
+   "electronic health record",
+   "clinical nlp"
+  ],
+  [
+   "speech transcript",
+   "speech transcription analysis"
+  ],
+  [
+   "narrative",
+   "narrative discourse"
+  ],
+  [
+   "conversation",
+   "conversation analysis"
+  ]
+ ],
+ "topics": [
+  "T10181",
+  "T12373",
+  "T10028",
+  "T13623",
+  "T10403",
+  "T10034",
+  "T14006",
+  "T10201",
+  "T10465",
+  "T13559",
+  "T10383",
+  "T12128",
+  "T12881",
+  "T12031",
+  "T12262",
+  "T13310",
+  "T13243",
+  "T13629"
+ ]
+}

@@ -5,3 +5,4 @@ build-shard*.log
 .DS_Store
 .netlify/
 data/openalex-topics.json
+data/catalogs-full/
