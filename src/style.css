@@ -421,3 +421,7 @@ a { color: var(--accent); }
   0%   { background: var(--accent); color: var(--accent-ink); border-radius: 5px; }
   100% { background: transparent; }
 }
+
+.caveat-bad { color: var(--danger); background: color-mix(in srgb, var(--danger) 12%, transparent);
+  border-left-color: var(--danger); }
+.caveat-bad code { font-family: var(--mono); font-size: 11px; }

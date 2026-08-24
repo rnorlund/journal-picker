@@ -239,6 +239,13 @@ export async function recommend({ title, abstract, references }, opts = {}) {
   const catalog = await loadCatalogs(
     detected.matched.map((m) => m.field.id), config.dataBase);
 
+  // A total catalog failure is not the same as a journal being absent from it.
+  // Without this the app returns a full page of plausible results carrying no
+  // prices, no review times and abbreviated titles, and nothing says why.
+  if (!catalog) {
+    progress('catalogMissing', { base: config.dataBase });
+  }
+
   progress('fields', {
     matched: detected.matched.map((m) => ({ id: m.field.id, name: m.field.name, score: m.score })),
     methods: detected.methods,
@@ -451,6 +458,7 @@ export async function recommend({ title, abstract, references }, opts = {}) {
     coverageNotes: detected.matched
       .filter((m) => m.field.coverage_note)
       .map((m) => ({ field: m.field.name, note: m.field.coverage_note })),
+    catalogMissing: !catalog,
     catalogSize: catalog?.size || 0,
     catalogFields: catalog?.fields || [],
     catalogGenerated: catalog?.generated || null,

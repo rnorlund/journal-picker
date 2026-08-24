@@ -26,7 +26,7 @@ async def main():
         await pg.fill('#browseQ','dental'); await pg.wait_for_timeout(900)
         print('  search "dental":', await pg.inner_text('#browseCount'))
         await pg.fill('#browseQ',''); await pg.wait_for_timeout(900)
-        await pg.select_option('#browseSort','cheap'); await pg.wait_for_timeout(800)
+        await pg.select_option('#sort1','cheap'); await pg.wait_for_timeout(800)
         print('  sorted cheapest, first 4:')
         for i in range(4):
             c=pg.locator('.card').nth(i)

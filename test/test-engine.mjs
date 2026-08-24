@@ -1,4 +1,12 @@
-import { recommend, extractKeywords, buildProbes } from '../src/engine.js';
+import { recommend, extractKeywords, buildQueries, config } from '../src/engine.js';
+
+// Node's fetch cannot resolve a relative path and has no file:// support, so the
+// catalog silently failed to load and every journal came back with no price and
+// an abbreviated title. Point at the dev server instead.
+//   python3 -m http.server 8899
+config.dataBase = process.env.JP_DATA || 'http://localhost:8899/data';
+import { loadFields, detectFields } from '../src/fields.js';
+import { readFileSync } from 'fs';
 
 const CASES = [{
   name: 'stroke aphasia structural MRI',
@@ -25,9 +33,12 @@ for (const c of CASES) {
   console.log('\n' + '='.repeat(78));
   console.log('CASE:', c.name);
   const kw = extractKeywords(c.title, c.abstract);
-  console.log('  modalities:', kw.modalities.slice(0, 6));
-  console.log('  populations:', kw.populations.slice(0, 6));
-  console.log('  probes:', buildProbes(kw).map(p => `${p.label}[${p.weight}]="${p.query}"`));
+
+  const ids = JSON.parse(readFileSync('data/fields/index.json','utf8')).fields;
+  const fields = ids.map(id => JSON.parse(readFileSync(`data/fields/${id}.json`,'utf8')));
+  const detected = detectFields(`${c.title} ${c.abstract}`, fields);
+  console.log('  fields :', detected.matched.map(m => m.field.id).join(', ') || '(none)');
+  console.log('  queries:', buildQueries(kw, detected).map(p => `${p.label}[${p.weight}]`).join(' '));
 
   const started = Date.now();
   const out = await recommend(c, { onProgress: (s, d) => {
@@ -35,7 +46,7 @@ for (const c of CASES) {
     if (s === 'topics') console.log('  topics:', d.topics.map(t => t.name).join(' | '));
   }});
   console.log(`  elapsed ${(Date.now() - started) / 1000}s | examined ${out.worksExamined} works`);
-  console.log('  probe recall:', out.probes.map(p => `${p.label}=${p.returned}/${p.total}`).join(' '));
+  console.log('  query recall:', out.probes.map(p => `${p.label}=${p.returned}/${p.total}`).join(' '));
 
   console.log('\n  TOP 15 JOURNALS (journals only):');
   const js = out.journals.filter(j => j.isJournal).slice(0, 15);
