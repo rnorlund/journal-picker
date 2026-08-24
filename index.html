@@ -59,6 +59,20 @@
                 placeholder="Paste the full abstract. More text means better matching — methods and population sentences carry a lot of the signal."></textarea>
     </div>
 
+    <details class="refbox" id="refBox">
+      <summary>Paste your reference list <span class="ref-tag">strongest signal</span></summary>
+      <p class="hint">
+        The journals you cite are the journals whose conversation you're joining — and editors
+        check whether a submission engages with what they've published. Paste your bibliography
+        in any style; we match journal names against our catalog. Optional, but it changes the
+        ranking more than anything else you can give us.
+      </p>
+      <textarea id="refs" rows="6" placeholder="1. Smith J, et al. Cortical thickness in aphasia. NeuroImage. 2023;45:120-131.
+2. Jones A. White matter and naming. Brain and Language, 2022, 88, 45-59.
+…"></textarea>
+      <p class="hint" id="refStat"></p>
+    </details>
+
     <div class="actions">
       <button id="goBtn" class="primary-btn" type="button">Find journals</button>
       <button id="demoBtn" class="ghost-btn" type="button">Load an example</button>

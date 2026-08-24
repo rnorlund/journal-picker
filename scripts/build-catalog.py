@@ -60,8 +60,26 @@ def _parse_shard(spec):
 
 
 SHARD_INDEX, SHARD_COUNT = _parse_shard(os.environ.get("SHARD", "").strip())
-VOLUME_CACHE = ("volume-progress.json" if SHARD_COUNT == 1
-                else "volume-progress-%dof%d.json" % (SHARD_INDEX, SHARD_COUNT))
+
+# Which research field this catalog is for. Topics come from
+# data/fields/<FIELD>.json, output goes to data/catalogs/<FIELD>.json, and every
+# cache file is namespaced so fields never clobber each other.
+FIELD = os.environ.get("FIELD", "brain-imaging").strip() or "brain-imaging"
+def _ns(name):
+    """Namespace a cache filename by field, keeping the historical
+    brain-imaging filenames so its existing cache is still picked up."""
+    if FIELD == "brain-imaging":
+        return name
+    stem, _, ext = name.rpartition(".")
+    return "%s--%s.%s" % (stem, FIELD, ext)
+
+
+VOLUME_CACHE = _ns("volume-progress.json" if SHARD_COUNT == 1
+                   else "volume-progress-%dof%d.json" % (SHARD_INDEX, SHARD_COUNT))
+SOURCES_CACHE = _ns("sources-raw.jsonl")
+DOAJ_CACHE = _ns("doaj.jsonl")
+TOPICS_CACHE = _ns("topics.json")
+COUNTS_CACHE = _ns("volume-counts.json")
 USER_AGENT = "journalPicker/1.0 (mailto:%s)" % MAILTO
 THROTTLE = 2.0          # seconds between *any* two HTTP calls (shared IP)
 MAX_BACKOFF = 30.0      # cap on a single backoff sleep
@@ -336,14 +354,35 @@ def chunks(seq, size):
 
 # ------------------------------------------------------- step 1: topic details
 
+def field_topic_ids():
+    """Topic ids for FIELD, from data/fields/<FIELD>.json.
+
+    brain-imaging keeps its original hand-curated CURATED_TOPICS map (which also
+    carries group labels); other fields are derived by
+    scripts/derive-field-topics.py from the cached OpenAlex taxonomy.
+    """
+    if FIELD == "brain-imaging":
+        return list(CURATED_TOPICS)
+    path = os.path.join(DATA, "fields", "%s.json" % FIELD)
+    if not os.path.exists(path):
+        raise SystemExit("no field definition at %s -- run derive-field-topics.py" % path)
+    with open(path) as fh:
+        spec = json.load(fh)
+    ids = [t for t in (spec.get("topics") or []) if str(t).startswith("T")]
+    if not ids:
+        raise SystemExit("%s has no topics; run scripts/derive-field-topics.py" % path)
+    return ids
+
+
 def step1_topics():
-    cached = load_json("topics.json")
-    if cached and len(cached) == len(CURATED_TOPICS):
+    want_ids = field_topic_ids()
+    cached = load_json(TOPICS_CACHE)
+    if cached and len(cached) == len(want_ids):
         log("STEP 1  %d curated topics (cached)" % len(cached))
         return cached
 
-    log("STEP 1  resolving %d curated topics" % len(CURATED_TOPICS))
-    want = list(CURATED_TOPICS)
+    log("STEP 1  [%s] resolving %d topics" % (FIELD, len(want_ids)))
+    want = list(want_ids)
     found = {}
     select = "id,display_name,description,keywords,subfield,field,domain,works_count"
     for batch in chunks(want, TOPIC_BATCH):
@@ -367,12 +406,12 @@ def step1_topics():
             "subfield": (row.get("subfield") or {}).get("display_name"),
             "field": (row.get("field") or {}).get("display_name"),
             "domain": (row.get("domain") or {}).get("display_name"),
-            "group": CURATED_TOPICS[tid],
+            "group": CURATED_TOPICS.get(tid) if FIELD == "brain-imaging" else FIELD,
             "keywords": row.get("keywords") or [],
             "works_count": row.get("works_count"),
         })
     topics.sort(key=lambda t: -(t["works_count"] or 0))
-    save_json("topics.json", topics)
+    save_json(TOPICS_CACHE, topics)
     return topics
 
 
@@ -388,7 +427,7 @@ def step2_volume(topics):
     done = load_json(VOLUME_CACHE, default={}) or {}
     # Anything an earlier unsharded or merged run already fetched still counts.
     if SHARD_COUNT > 1:
-        for tid, groups in (load_json("volume-progress.json", default={}) or {}).items():
+        for tid, groups in (load_json(_ns("volume-progress.json"), default={}) or {}).items():
             done.setdefault(tid, groups)
     counts = defaultdict(int)
     names = {}
@@ -446,7 +485,7 @@ def step2_volume(topics):
         raise SystemExit("volume stage could not fetch: %s (rerun to resume)" % todo)
 
     volume = {"counts": dict(counts), "names": names}
-    save_json("volume-counts.json", volume)
+    save_json(COUNTS_CACHE, volume)
     log("  %d distinct sources seen; %d at >= %d works"
         % (len(counts), sum(1 for v in counts.values() if v >= MIN_NEURO_WORKS),
            MIN_NEURO_WORKS))
@@ -463,7 +502,7 @@ SOURCE_SELECT = ("id,display_name,alternate_titles,abbreviated_title,issn,issn_l
 
 
 def step3_sources(candidate_ids):
-    have = {bare(r["id"]): r for r in load_jsonl("sources-raw.jsonl")}
+    have = {bare(r["id"]): r for r in load_jsonl(SOURCES_CACHE)}
     todo = [s for s in candidate_ids if s not in have]
     log("STEP 3  enriching sources: %d cached, %d to fetch"
         % (len(have), len(todo)))
@@ -484,7 +523,7 @@ def step3_sources(candidate_ids):
             else:
                 raise
         rows = data["results"]
-        append_jsonl("sources-raw.jsonl", rows)       # checkpoint every batch
+        append_jsonl(SOURCES_CACHE, rows)       # checkpoint every batch
         for row in rows:
             have[bare(row["id"])] = row
         log("  [%d] +%d  total %d" % (i, len(rows), len(have)))
@@ -501,7 +540,7 @@ def doaj_lookup(issns):
     bibjson.apc.has_apc explicitly.
     """
     have = {}
-    for row in load_jsonl("doaj.jsonl"):
+    for row in load_jsonl(DOAJ_CACHE):
         have[row["issn"]] = row
     todo = [i for i in issns if i not in have]
     log("STEP 3b DOAJ APC lookup: %d ISSNs cached, %d to query"
@@ -556,7 +595,7 @@ def doaj_lookup(issns):
                        "doaj_apc_url": None}
                 rows.append(row)
                 have[issn] = row
-        append_jsonl("doaj.jsonl", rows)              # checkpoint every batch
+        append_jsonl(DOAJ_CACHE, rows)              # checkpoint every batch
         log("  [%d] queried %d, matched %d in DOAJ" % (i, len(batch), len(matched)))
     return have
 
@@ -682,6 +721,10 @@ def build_records(sources, volume, doaj_by_issn, topics_per_journal,
             "i10_index": stats.get("i10_index"),
             "two_yr_mean_citedness": round(two_yr, 2) if two_yr is not None else None,
             "topics": topic_list,
+            "field": FIELD,
+            "field_works": neuro_works,
+            "field_share": round(neuro_works / works_count, 3) if works_count else None,
+            # legacy aliases so the existing brain-imaging catalog stays readable
             "neuro_works": neuro_works,
             "neuro_share": round(neuro_works / works_count, 3) if works_count else None,
         }
@@ -730,7 +773,7 @@ def validate(payload, path):
     log("required journals:")
     log("  %-34s %-8s %-9s %-16s %s" % ("name", "neuro", "works", "oa_model", "apc"))
     missing = []
-    for name in REQUIRED_JOURNALS:
+    for name in (REQUIRED_JOURNALS if FIELD == "brain-imaging" else []):
         j = index.get(name.lower())
         if not j:
             missing.append(name)
@@ -785,7 +828,7 @@ def validate(payload, path):
 
     size = os.path.getsize(path)
     log("")
-    log("journals.json: %.2f MB (%d bytes)" % (size / 1e6, size))
+    log("%s: %.2f MB (%d bytes)" % (os.path.basename(path), size / 1e6, size))
     return missing, size
 
 
@@ -794,8 +837,8 @@ def validate(payload, path):
 def merge_shards():
     """Fold every volume-progress-*of*.json back into volume-progress.json."""
     import glob
-    merged = load_json("volume-progress.json", default={}) or {}
-    files = sorted(glob.glob(os.path.join(CACHE, "volume-progress-*of*.json")))
+    merged = load_json(_ns("volume-progress.json"), default={}) or {}
+    files = sorted(glob.glob(os.path.join(CACHE, _ns("volume-progress-*of*.json"))))
     if not files:
         raise SystemExit("no shard files found in %s" % CACHE)
     for path in files:
@@ -805,7 +848,7 @@ def merge_shards():
         merged.update(part)
         log("  %-42s %4d topics (%d new)"
             % (os.path.basename(path), len(part), len(new)))
-    save_json("volume-progress.json", merged)
+    save_json(_ns("volume-progress.json"), merged)
     log("merged -> volume-progress.json: %d topics total" % len(merged))
     return merged
 
@@ -851,7 +894,11 @@ def main():
     log("STEP 4  built %d records (%d dropped for missing display_name)"
         % (len(journals), dropped))
 
-    out_path = os.path.join(DATA, "journals.json")
+    if FIELD == "brain-imaging":
+        out_path = os.path.join(DATA, "journals.json")   # keep the served path
+    else:
+        os.makedirs(os.path.join(DATA, "catalogs"), exist_ok=True)
+        out_path = os.path.join(DATA, "catalogs", "%s.json" % FIELD)
 
     def write(js):
         payload = {"generated": GENERATED, "source": "OpenAlex",

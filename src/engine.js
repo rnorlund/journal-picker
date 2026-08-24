@@ -18,7 +18,8 @@
  */
 
 import { loadFields, detectFields } from './fields.js';
-import { loadCatalog, lookup, normIssn, normTitle } from './catalog.js';
+import { loadCatalogs, lookup, normIssn, normTitle } from './catalog.js';
+import { buildGazetteer, matchCitations, citationAffinity, estimateRefCount } from './citations.js';
 
 const EPMC = 'https://www.ebi.ac.uk/europepmc/webservices/rest/search';
 
@@ -217,31 +218,46 @@ const NON_JOURNAL = /biorxiv|medrxiv|arxiv|research square|ssrn|preprint|zenodo|
 /**
  * Recommend journals for a manuscript.
  *
- * @param {{title: string, abstract: string}} input
+ * @param {{title: string, abstract: string, references?: string}} input
  * @param {{onProgress?: (stage: string, detail: object) => void}} [opts]
  */
-export async function recommend({ title, abstract }, opts = {}) {
+export async function recommend({ title, abstract, references }, opts = {}) {
   const progress = opts.onProgress || (() => {});
   const text = `${title || ''} ${abstract || ''}`.trim();
   if (text.length < 40) {
     throw new Error('Please paste a title and abstract (at least a couple of sentences).');
   }
 
-  // --- Stage 0: field detection + reference data ------------------------
-  const [fields, catalog] = await Promise.all([
-    loadFields(`${config.dataBase}/fields`),
-    loadCatalog(`${config.dataBase}/journals.json`),
-  ]);
+  // --- Stage 0: field detection, then the catalogs those fields need -----
+  const fields = await loadFields(`${config.dataBase}/fields`);
   const detected = detectFields(text, fields);
   const kw = extractKeywords(title, abstract);
   const queries = buildQueries(kw, detected);
+
+  // Load only the detected fields' catalogs; if we recognised nothing, load
+  // everything available rather than leaving the author with no cost data.
+  const catalog = await loadCatalogs(
+    detected.matched.map((m) => m.field.id), config.dataBase);
 
   progress('fields', {
     matched: detected.matched.map((m) => ({ id: m.field.id, name: m.field.name, score: m.score })),
     methods: detected.methods,
     populations: detected.populations,
     catalog: catalog ? catalog.size : 0,
+    catalogFields: catalog ? catalog.fields : [],
   });
+  // Which journals does the author already cite? Only they can tell us this,
+  // and it is the single strongest signal of where the work belongs.
+  let cited = { byId: new Map(), total: 0, refCount: 0 };
+  let citeAff = new Map();
+  if (references && references.trim() && catalog) {
+    cited = matchCitations(references, buildGazetteer(catalog));
+    citeAff = citationAffinity(cited.byId);
+    progress('citations', {
+      matched: cited.byId.size, total: cited.total, refCount: cited.refCount,
+    });
+  }
+
   progress('probes', { probes: queries.map((q) => ({ label: q.label, query: q.query })) });
 
   // --- Stage 1: retrieval ----------------------------------------------
@@ -309,12 +325,28 @@ export async function recommend({ title, abstract }, opts = {}) {
     errors,
   });
 
+  // A journal the author cites is a candidate even if retrieval missed it.
+  // Otherwise the venue they cite most can be absent from its own results —
+  // which is exactly what happened before this was added.
+  let injected = 0;
+  for (const { journal, count } of cited.byId.values()) {
+    const issn = (journal._issns && journal._issns[0]) || null;
+    const key = issn || `t:${normTitle(journal.display_name)}`;
+    if (venues.has(key)) continue;
+    venues.set(key, {
+      key, issn, title: journal.display_name,
+      sim: 0, hits: 0, labels: new Set(), papers: new Map(), fromCitation: count,
+    });
+    injected++;
+  }
+  if (injected) progress('injected', { fromCitations: injected });
+
   // --- Stage 3: join to the catalog and score --------------------------
   const maxSim = Math.max(...[...venues.values()].map((v) => v.sim), 1);
   const maxVol = Math.max(
     ...[...venues.values()].map((v) => {
       const rec = lookup(catalog, { issns: [v.issn], title: v.title });
-      return rec?.neuro_works || 0;
+      return rec?.fieldWorks || 0;
     }), 1);
 
   const results = [];
@@ -322,7 +354,7 @@ export async function recommend({ title, abstract }, opts = {}) {
     const rec = lookup(catalog, { issns: [v.issn], title: v.title });
 
     const simN = v.sim / maxSim;
-    const volN = Math.log1p(rec?.neuro_works || 0) / Math.log1p(maxVol);
+    const volN = Math.log1p(rec?.fieldWorks || 0) / Math.log1p(maxVol);
     const breadth = Math.min(v.labels.size / Math.max(queries.length - 1, 1), 1);
 
     // Specialisation: what fraction of this journal's output is in your field.
@@ -330,10 +362,29 @@ export async function recommend({ title, abstract }, opts = {}) {
     // Cureus publishes ~6k in-field papers but they are only 5% of its output,
     // where Brain Communications is 54% in-field. Saturates at 25% so genuine
     // specialists are not penalised for also publishing adjacent work.
-    const share = rec?.neuro_share ?? 0;
+    const share = rec?.fieldShare ?? 0;
     const spec = Math.min(share / 0.25, 1);
 
-    const fit = 0.45 * simN + 0.20 * volN + 0.12 * breadth + 0.23 * spec;
+    // Citation affinity, when the author gave us a reference list.
+    const citedEntry = rec ? cited.byId.get(rec.id) : null;
+    const citedCount = citedEntry ? citedEntry.count : 0;
+    const cite = rec ? (citeAff.get(rec.id) || 0) : 0;
+
+    // With a reference list, citations are direct evidence from the person who
+    // actually knows the work, so they partly stand in for the two indirect
+    // proxies. Both proxies under-read specialist venues: relevance rank misses
+    // journals buried deep in a broad result set (Brain and Language came back
+    // at rank 72 for an aphasia paper), and field share penalises journals whose
+    // output is mostly outside the indexed topics — Brain and Language reads as
+    // 4% in-field only because most of what it publishes is not imaging.
+    let fit;
+    if (citeAff.size) {
+      const simE = Math.max(simN, 0.60 * cite);
+      const specE = Math.max(spec, 0.60 * cite);
+      fit = 0.38 * simE + 0.13 * volN + 0.06 * breadth + 0.18 * specE + 0.25 * cite;
+    } else {
+      fit = 0.45 * simN + 0.20 * volN + 0.12 * breadth + 0.23 * spec;
+    }
 
     const papers = [...v.papers.values()]
       .sort((a, b) => (b.probes.size - a.probes.size) || (b.score - a.score) ||
@@ -375,8 +426,10 @@ export async function recommend({ title, abstract }, opts = {}) {
       simScore: +v.sim.toFixed(3),
       simNorm: +simN.toFixed(3),
       matchCount: v.hits,
-      topicWorks: rec?.neuro_works || 0,
-      fieldShare: rec?.neuro_share ?? null,
+      topicWorks: rec?.fieldWorks || 0,
+      fieldShare: rec?.fieldShare ?? null,
+      perField: rec?.perField || null,
+      citedCount,
       probesMatched: [...v.labels],
       samplePapers: papers,
       journalTopics: (rec?.topics || []).slice(0, 8).map((t) => ({
@@ -392,6 +445,7 @@ export async function recommend({ title, abstract }, opts = {}) {
     keywords: kw,
     fields: detected,
     catalogSize: catalog?.size || 0,
+    catalogFields: catalog?.fields || [],
     catalogGenerated: catalog?.generated || null,
     probes: runs.map((r) => ({
       label: r.q.label, query: r.q.query,
@@ -401,6 +455,15 @@ export async function recommend({ title, abstract }, opts = {}) {
     topics: (detected.matched[0]?.field?.name
       ? detected.matched.map((m) => ({ id: m.field.id, name: m.field.name }))
       : []),
+    citations: {
+      used: citeAff.size > 0,
+      journalsMatched: cited.byId.size,
+      citationsMatched: cited.total,
+      referencesGiven: cited.refCount,
+      top: [...cited.byId.values()]
+        .sort((a, b) => b.count - a.count).slice(0, 8)
+        .map((v) => ({ name: v.journal.display_name, count: v.count })),
+    },
     worksExamined: seenWorks.size,
     venuesConsidered: venues.size,
     journals: results,

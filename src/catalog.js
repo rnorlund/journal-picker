@@ -1,17 +1,26 @@
 /**
- * catalog.js — the precomputed journal catalog.
+ * catalog.js — precomputed journal catalogs, one per research field.
  *
- * Built offline by scripts/build-catalog.py from OpenAlex + DOAJ, so the running
- * app needs no metered API call to answer "what is this journal, what does it
- * cost, and does it publish this kind of work at volume".
+ * Built offline by scripts/build-catalog.py (FIELD=<id>) from OpenAlex + DOAJ,
+ * so the running app needs no metered API call to answer "what is this journal,
+ * what does it cost, and does it publish this kind of work at volume".
  *
- * That matters for two reasons: the public site works for visitors with no API
- * key at all, and the catalog surfaces the long tail of free-to-publish
- * journals that a live relevance query never reaches (95 diamond-OA venues
- * versus the 1 a live search found).
+ * Two reasons that matters: the public site works for a visitor with no API key
+ * at all, and the catalog reaches the long tail of free-to-publish journals a
+ * live relevance query never surfaces (95 diamond-OA venues in brain imaging
+ * alone, versus the 1 a live search found).
+ *
+ * A manuscript can belong to several fields at once, so catalogs are loaded as
+ * a set and merged: in-field publication counts are summed across the loaded
+ * fields, which is what you want for a cardiac-genetics paper.
  */
 
-let catalog = null;
+/** Where each field's catalog lives. Brain imaging keeps the original path. */
+const CATALOG_PATH = (field, base) =>
+  field === 'brain-imaging' ? `${base}/journals.json` : `${base}/catalogs/${field}.json`;
+
+const rawCache = new Map();   // field -> payload | null
+const mergedCache = new Map(); // cache key -> merged index
 
 /** ISSNs come in many shapes; compare them in one. */
 export const normIssn = (s) => {
@@ -31,44 +40,102 @@ export const normTitle = (s) =>
     .replace(/[^a-z0-9]+/g, ' ')
     .trim();
 
-/**
- * Load and index the catalog. Returns null if it hasn't been built yet — the
- * engine degrades to live lookups rather than failing.
- */
-export async function loadCatalog(url = 'data/journals.json') {
-  if (catalog) return catalog;
-  let payload;
+/** Load one field's catalog. Missing catalogs are not an error — a field may
+ *  have a lexicon before anyone has built its catalog. */
+async function loadOne(field, base) {
+  if (rawCache.has(field)) return rawCache.get(field);
+  let payload = null;
   try {
-    const res = await fetch(url);
-    if (!res.ok) return null;
-    payload = await res.json();
-  } catch {
-    return null;
+    const res = await fetch(CATALOG_PATH(field, base));
+    if (res.ok) payload = await res.json();
+  } catch { /* offline, or not built yet */ }
+  rawCache.set(field, payload);
+  return payload;
+}
+
+/** Which catalogs exist. Falls back to brain imaging if there's no manifest. */
+export async function listCatalogs(base = 'data') {
+  try {
+    const res = await fetch(`${base}/catalogs/index.json`);
+    if (res.ok) {
+      const m = await res.json();
+      if (Array.isArray(m.fields) && m.fields.length) return m.fields;
+    }
+  } catch { /* no manifest */ }
+  return ['brain-imaging'];
+}
+
+/**
+ * Load and merge the catalogs for a set of fields.
+ *
+ * @param {string[]} fields  field ids; empty means every available catalog
+ * @param {string}   base    data directory, relative to the page
+ */
+export async function loadCatalogs(fields, base = 'data') {
+  const wanted = (fields && fields.length) ? [...fields] : await listCatalogs(base);
+  const key = [...wanted].sort().join('|');
+  if (mergedCache.has(key)) return mergedCache.get(key);
+
+  const payloads = await Promise.all(wanted.map((f) => loadOne(f, base)));
+  const loaded = wanted.filter((_, i) => payloads[i]);
+  if (!loaded.length) return null;
+
+  const byId = new Map();
+  for (let i = 0; i < payloads.length; i++) {
+    const payload = payloads[i];
+    if (!payload) continue;
+    const field = wanted[i];
+
+    for (const j of payload.journals || []) {
+      // Older catalogs used neuro_* names; accept both.
+      const works = j.field_works ?? j.neuro_works ?? 0;
+      const existing = byId.get(j.id);
+
+      if (!existing) {
+        byId.set(j.id, {
+          ...j,
+          fieldWorks: works,
+          perField: { [field]: works },
+        });
+      } else {
+        // Same journal seen in another field: sum in-field output so a
+        // cross-field manuscript values journals strong in both.
+        existing.fieldWorks += works;
+        existing.perField[field] = works;
+      }
+    }
   }
 
   const byIssn = new Map();
   const byTitle = new Map();
-  const journals = payload.journals || [];
+  const journals = [];
 
-  for (const j of journals) {
+  for (const j of byId.values()) {
+    j.fieldShare = j.works_count ? +(j.fieldWorks / j.works_count).toFixed(3) : null;
+    journals.push(j);
+
     const issns = [...(j.issn || []), j.issn_l].map(normIssn).filter(Boolean);
     j._issns = issns;
     for (const issn of issns) if (!byIssn.has(issn)) byIssn.set(issn, j);
 
     for (const name of [j.display_name, ...(j.alternate_titles || [])]) {
-      const key = normTitle(name);
-      if (key && !byTitle.has(key)) byTitle.set(key, j);
+      const k = normTitle(name);
+      if (k && !byTitle.has(k)) byTitle.set(k, j);
     }
   }
 
-  catalog = {
-    generated: payload.generated,
+  journals.sort((a, b) => b.fieldWorks - a.fieldWorks);
+
+  const index = {
+    fields: loaded,
+    generated: payloads.find(Boolean)?.generated || null,
     journals,
     byIssn,
     byTitle,
     size: journals.length,
   };
-  return catalog;
+  mergedCache.set(key, index);
+  return index;
 }
 
 /** Find a catalog record from whatever identifiers a search result carried. */
@@ -82,7 +149,7 @@ export function lookup(cat, { issns = [], title = '' } = {}) {
   return key ? cat.byTitle.get(key) || null : null;
 }
 
-/** Venues you cannot submit a manuscript to. */
+/** Venues you cannot submit a finished manuscript to. */
 export function isSubmittable(rec) {
   if (!rec) return true; // unknown venue: let the caller decide
   return rec.kind === 'journal' && !rec.is_preprint_repository;

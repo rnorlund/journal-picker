@@ -6,7 +6,7 @@
  */
 
 import { recommend, config } from './engine.js';
-import { loadCatalog } from './catalog.js';
+import { loadCatalogs } from './catalog.js';
 
 const $ = (id) => document.getElementById(id);
 const el = {
@@ -17,6 +17,7 @@ const el = {
   doajOnly: $('doajOnly'), coreOnly: $('coreOnly'), hidePreprint: $('hidePreprint'),
   agreeFile: $('agreeFile'), agreeBtn: $('agreeBtn'), agreeStatus: $('agreeStatus'),
   agreeOnly: $('agreeOnly'), agreeOnlyWrap: $('agreeOnlyWrap'), dropZone: $('dropZone'),
+  refs: $('refs'), refBox: $('refBox'), refStat: $('refStat'),
   themeBtn: $('themeBtn'), cardTpl: $('cardTpl'),
   modeMatch: $('modeMatch'), modeBrowse: $('modeBrowse'),
   matchPanel: $('matchPanel'), browsePanel: $('browsePanel'),
@@ -172,6 +173,12 @@ function renderEvidence(run) {
                              ...(run.fields?.populations || []).slice(0, 5)]
           .map((m) => `<span class="chip">${esc(m)}</span>`).join('') || '<span class="chip">none recognised</span>'}</div>
       </div>
+      ${run.citations?.used ? `
+      <div class="ev-block">
+        <h4>Journals you cite</h4>
+        <div class="chips">${run.citations.top.map((t) =>
+          `<span class="chip">${esc(tidyName(t.name))} ×${t.count}</span>`).join('')}</div>
+      </div>` : ''}
       <div class="ev-block">
         <h4>Evidence base</h4>
         <div class="ev-stats">
@@ -203,6 +210,9 @@ function badgesFor(j) {
       : j.oaModel === 'oa-apc-unknown' ? 'b-warn' : 'b-oa';
     b.push([cls, oaLabel]);
   }
+  if (j.citedCount) {
+    b.push(['b-cite', `You cite this journal ${j.citedCount}×`]);
+  }
   if (j.inDoaj) b.push(['b-doaj', 'DOAJ']);
   if (j.isCore) b.push(['b-plain', 'Core venue']);
   if (j.citedness != null) b.push(['b-plain', `${j.citedness} cites/paper (2yr)`]);
@@ -228,6 +238,9 @@ function whyText(j) {
   }
   if (j.probesMatched.length > 2) {
     bits.push(`matched <b>${j.probesMatched.length}</b> different facets of your abstract`);
+  }
+  if (j.citedCount >= 2) {
+    bits.push(`you cite it <b>${j.citedCount}</b> times`);
   }
   if (j.fieldShare != null && j.fieldShare >= 0.15) {
     bits.push(`<b>${Math.round(j.fieldShare * 100)}%</b> of what it publishes is in your field`);
@@ -425,8 +438,8 @@ function catalogToResult(rec) {
     fit: null,
     simNorm: 0,
     matchCount: 0,
-    topicWorks: rec.neuro_works || 0,
-    fieldShare: rec.neuro_share ?? null,
+    topicWorks: rec.fieldWorks ?? rec.neuro_works ?? 0,
+    fieldShare: rec.fieldShare ?? rec.neuro_share ?? null,
     probesMatched: [],
     samplePapers: [],
     journalTopics: (rec.topics || []).slice(0, 8).map((t) => ({
@@ -438,7 +451,7 @@ function catalogToResult(rec) {
 async function ensureBrowse() {
   if (browseAll) return browseAll;
   el.browseCount.textContent = 'Loading catalog…';
-  const cat = await loadCatalog(`${config.dataBase}/journals.json`);
+  const cat = await loadCatalogs([], config.dataBase);  // [] = every catalog
   if (!cat) {
     el.browseCount.textContent =
       'The journal catalog is not available. Run scripts/build-catalog.py to generate data/journals.json.';
@@ -584,13 +597,14 @@ async function run() {
   el.status.innerHTML = '<span class="spin"></span>Reading the literature…';
 
   try {
-    const out = await recommend({ title, abstract }, {
+    const out = await recommend({ title, abstract, references: el.refs.value }, {
       onProgress: (stage, d) => {
         const msg = {
           probes: 'Building search probes…',
           retrieved: `Found ${d.works ?? ''} similar papers…`,
           topics: 'Measuring what each journal publishes…',
           fields: 'Detecting research field…',
+          citations: 'Reading your reference list…',
         }[stage];
         if (msg) el.status.innerHTML = `<span class="spin"></span>${msg}`;
       },
@@ -620,6 +634,25 @@ el.abstract.addEventListener('input', () => {
   el.absCount.textContent = `${n} word${n === 1 ? '' : 's'}`;
 });
 el.title.addEventListener('keydown', (e) => { if (e.key === 'Enter') run(); });
+
+let refDebounce;
+el.refs.addEventListener('input', async () => {
+  clearTimeout(refDebounce);
+  refDebounce = setTimeout(async () => {
+    const text = el.refs.value;
+    if (!text.trim()) { el.refStat.textContent = ''; return; }
+    const [{ buildGazetteer, matchCitations }, { loadCatalogs }] = await Promise.all([
+      import('./citations.js'), import('./catalog.js')]);
+    const cat = await loadCatalogs([], config.dataBase);
+    if (!cat) return;
+    const m = matchCitations(text, buildGazetteer(cat));
+    el.refStat.innerHTML = m.byId.size
+      ? `<span class="ok">Recognised ${m.total} citation${m.total === 1 ? '' : 's'} across ${
+          m.byId.size} journal${m.byId.size === 1 ? '' : 's'}</span>` +
+        (m.refCount ? ` — from about ${m.refCount} references` : '')
+      : 'No journal names recognised yet — paste the full reference list, including journal names.';
+  }, 400);
+});
 
 el.apcSlider.addEventListener('input', () => {
   const v = sliderApc();

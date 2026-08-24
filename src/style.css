@@ -352,3 +352,16 @@ a { color: var(--accent); }
 .qp.is-on { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
 .qp em { font-style: italic; }
 #browseCount { margin-top: 12px; }
+
+/* ---------- reference list input ---------- */
+.refbox { margin-top: 16px; border-top: 1px solid var(--line-2); padding-top: 13px; }
+.refbox summary { cursor: pointer; font-size: 13px; font-weight: 600; color: var(--ink-2);
+  list-style: none; display: inline-flex; align-items: center; gap: 8px; }
+.refbox summary::-webkit-details-marker { display: none; }
+.refbox summary::before { content: "▸"; font-size: 10px; transition: .15s; }
+.refbox[open] summary::before { transform: rotate(90deg); }
+.ref-tag { font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .06em;
+  padding: 2px 7px; border-radius: 20px; background: var(--accent-sf); color: var(--accent); }
+.refbox textarea { margin-top: 9px; font-size: 13px; }
+#refStat .ok { color: var(--good); font-weight: 600; }
+.b-cite { background: var(--accent-sf); color: var(--accent); }
