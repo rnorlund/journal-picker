@@ -1,0 +1,456 @@
+{
+ "id": "dental-oral",
+ "name": "Dental, oral and craniofacial",
+ "description": "Dentistry, oral health, craniofacial imaging and the oral microbiome.",
+ "signals": [
+  "dental",
+  "dentistry",
+  "tooth",
+  "teeth",
+  "oral",
+  "periodontal",
+  "gingival",
+  "enamel",
+  "dentin",
+  "pulp",
+  "caries",
+  "molar",
+  "incisor",
+  "mandible",
+  "maxilla",
+  "occlusion",
+  "alveolar",
+  "orthodontic",
+  "endodontic",
+  "prosthodontic",
+  "implant",
+  "saliva",
+  "craniofacial",
+  "jaw"
+ ],
+ "methods": [
+  [
+   "cone beam",
+   "cone beam computed tomography"
+  ],
+  [
+   "cbct",
+   "cone beam computed tomography"
+  ],
+  [
+   "panoramic radiograph",
+   "panoramic radiography"
+  ],
+  [
+   "orthopantomogram",
+   "panoramic radiography"
+  ],
+  [
+   "periapical radiograph",
+   "periapical radiography"
+  ],
+  [
+   "bitewing",
+   "bitewing radiography"
+  ],
+  [
+   "intraoral scan",
+   "intraoral scanning"
+  ],
+  [
+   "digital impression",
+   "digital dental impression"
+  ],
+  [
+   "micro ct",
+   "micro computed tomography"
+  ],
+  [
+   "microtomography",
+   "micro computed tomography"
+  ],
+  [
+   "optical coherence tomography",
+   "optical coherence tomography"
+  ],
+  [
+   "cephalometric",
+   "cephalometric analysis"
+  ],
+  [
+   "photogrammetry",
+   "facial photogrammetry"
+  ],
+  [
+   "finite element",
+   "finite element analysis dental"
+  ],
+  [
+   "scanning electron microscop",
+   "scanning electron microscopy"
+  ],
+  [
+   "confocal",
+   "confocal microscopy"
+  ],
+  [
+   "histomorphometr",
+   "histomorphometry"
+  ],
+  [
+   "microhardness",
+   "microhardness testing"
+  ],
+  [
+   "shear bond strength",
+   "shear bond strength"
+  ],
+  [
+   "push out bond",
+   "bond strength"
+  ],
+  [
+   "surface roughness",
+   "surface roughness"
+  ],
+  [
+   "colour stability",
+   "colour stability"
+  ],
+  [
+   "color stability",
+   "color stability"
+  ],
+  [
+   "cytotoxicity",
+   "cytotoxicity assay"
+  ],
+  [
+   "antibacterial",
+   "antibacterial activity"
+  ],
+  [
+   "biofilm",
+   "oral biofilm"
+  ],
+  [
+   "16s rrna",
+   "16s rrna sequencing"
+  ],
+  [
+   "metagenom",
+   "metagenomic sequencing"
+  ],
+  [
+   "salivary biomarker",
+   "salivary biomarkers"
+  ],
+  [
+   "deep learning",
+   "deep learning dental imaging"
+  ],
+  [
+   "convolutional neural network",
+   "deep learning dental imaging"
+  ],
+  [
+   "machine learning",
+   "machine learning dentistry"
+  ],
+  [
+   "randomised controlled trial",
+   "randomised controlled trial"
+  ],
+  [
+   "randomized controlled trial",
+   "randomized controlled trial"
+  ],
+  [
+   "systematic review",
+   "systematic review"
+  ],
+  [
+   "cohort study",
+   "cohort study"
+  ],
+  [
+   "laser",
+   "dental laser"
+  ],
+  [
+   "ultrasonic",
+   "ultrasonic instrumentation"
+  ],
+  [
+   "cad cam",
+   "cad cam dentistry"
+  ],
+  [
+   "3d printing",
+   "3d printing dentistry"
+  ],
+  [
+   "zirconia",
+   "zirconia restoration"
+  ],
+  [
+   "composite resin",
+   "resin composite"
+  ],
+  [
+   "glass ionomer",
+   "glass ionomer cement"
+  ],
+  [
+   "adhesive",
+   "dental adhesive"
+  ],
+  [
+   "titanium",
+   "titanium implant"
+  ],
+  [
+   "osseointegration",
+   "osseointegration"
+  ]
+ ],
+ "populations": [
+  [
+   "dental caries",
+   "dental caries"
+  ],
+  [
+   "early childhood caries",
+   "early childhood caries"
+  ],
+  [
+   "periodontitis",
+   "periodontitis"
+  ],
+  [
+   "gingivitis",
+   "gingivitis"
+  ],
+  [
+   "peri implantitis",
+   "peri implantitis"
+  ],
+  [
+   "periodontal disease",
+   "periodontal disease"
+  ],
+  [
+   "pulpitis",
+   "pulpitis"
+  ],
+  [
+   "apical periodontitis",
+   "apical periodontitis"
+  ],
+  [
+   "root canal",
+   "root canal treatment"
+  ],
+  [
+   "endodontic",
+   "endodontic treatment"
+  ],
+  [
+   "tooth loss",
+   "tooth loss"
+  ],
+  [
+   "edentulous",
+   "edentulism"
+  ],
+  [
+   "dental implant",
+   "dental implants"
+  ],
+  [
+   "denture",
+   "dentures"
+  ],
+  [
+   "malocclusion",
+   "malocclusion"
+  ],
+  [
+   "orthodontic treatment",
+   "orthodontic treatment"
+  ],
+  [
+   "clear aligner",
+   "clear aligners"
+  ],
+  [
+   "cleft lip",
+   "cleft lip and palate"
+  ],
+  [
+   "cleft palate",
+   "cleft lip and palate"
+  ],
+  [
+   "temporomandibular",
+   "temporomandibular disorders"
+  ],
+  [
+   "bruxism",
+   "bruxism"
+  ],
+  [
+   "oral cancer",
+   "oral cancer"
+  ],
+  [
+   "oral squamous cell",
+   "oral squamous cell carcinoma"
+  ],
+  [
+   "leukoplakia",
+   "oral leukoplakia"
+  ],
+  [
+   "oral lichen planus",
+   "oral lichen planus"
+  ],
+  [
+   "oral mucositis",
+   "oral mucositis"
+  ],
+  [
+   "xerostomia",
+   "xerostomia"
+  ],
+  [
+   "dry mouth",
+   "xerostomia"
+  ],
+  [
+   "halitosis",
+   "halitosis"
+  ],
+  [
+   "dental anxiety",
+   "dental anxiety"
+  ],
+  [
+   "dental trauma",
+   "dental trauma"
+  ],
+  [
+   "third molar",
+   "third molar surgery"
+  ],
+  [
+   "impacted tooth",
+   "impacted teeth"
+  ],
+  [
+   "tooth wear",
+   "tooth wear"
+  ],
+  [
+   "dental erosion",
+   "dental erosion"
+  ],
+  [
+   "dentine hypersensitivity",
+   "dentine hypersensitivity"
+  ],
+  [
+   "tooth whitening",
+   "tooth bleaching"
+  ],
+  [
+   "fluoride",
+   "fluoride"
+  ],
+  [
+   "oral microbiome",
+   "oral microbiome"
+  ],
+  [
+   "oral hygiene",
+   "oral hygiene"
+  ],
+  [
+   "oral health related quality of life",
+   "oral health related quality of life"
+  ],
+  [
+   "paediatric dentistry",
+   "paediatric dentistry"
+  ],
+  [
+   "pediatric dentistry",
+   "pediatric dentistry"
+  ],
+  [
+   "geriatric",
+   "geriatric dentistry"
+  ],
+  [
+   "orofacial pain",
+   "orofacial pain"
+  ],
+  [
+   "sleep apnoea",
+   "obstructive sleep apnoea"
+  ],
+  [
+   "sleep apnea",
+   "obstructive sleep apnea"
+  ],
+  [
+   "osteonecrosis of the jaw",
+   "medication related osteonecrosis of the jaw"
+  ],
+  [
+   "orthognathic",
+   "orthognathic surgery"
+  ],
+  [
+   "maxillofacial",
+   "maxillofacial surgery"
+  ]
+ ],
+ "topics": [
+  "T10257",
+  "T13457",
+  "T10359",
+  "T10113",
+  "T10307",
+  "T10599",
+  "T10368",
+  "T10536",
+  "T10356",
+  "T11035",
+  "T11787",
+  "T11363",
+  "T11452",
+  "T10852",
+  "T11521",
+  "T12439",
+  "T11566",
+  "T11570",
+  "T11562",
+  "T12145",
+  "T11958",
+  "T11866",
+  "T13768",
+  "T12110",
+  "T13365",
+  "T13383",
+  "T12367",
+  "T11754",
+  "T12198",
+  "T12796",
+  "T13813",
+  "T13761",
+  "T13866",
+  "T13738",
+  "T13324"
+ ]
+}

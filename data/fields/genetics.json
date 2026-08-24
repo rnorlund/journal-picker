@@ -1,0 +1,828 @@
+{
+ "id": "genetics",
+ "name": "Genetics and genomics",
+ "description": "Human and molecular genetics, genomics, transcriptomics and gene regulation.",
+ "signals": [
+  "gene",
+  "genes",
+  "genetic",
+  "genome",
+  "genomic",
+  "genomics",
+  "allele",
+  "variant",
+  "mutation",
+  "locus",
+  "loci",
+  "chromosome",
+  "dna",
+  "rna",
+  "mrna",
+  "transcript",
+  "expression",
+  "sequencing",
+  "heritab",
+  "phenotype",
+  "genotype",
+  "epigenetic",
+  "methylation",
+  "haplotype",
+  "polymorphism",
+  "exon",
+  "intron",
+  "promoter",
+  "enhancer"
+ ],
+ "methods": [
+  [
+   "genome wide association",
+   "genome wide association study"
+  ],
+  [
+   "gwas",
+   "genome wide association study"
+  ],
+  [
+   "whole genome sequencing",
+   "whole genome sequencing"
+  ],
+  [
+   "whole exome sequencing",
+   "whole exome sequencing"
+  ],
+  [
+   "targeted sequencing",
+   "targeted sequencing panel"
+  ],
+  [
+   "rna sequencing",
+   "rna sequencing"
+  ],
+  [
+   "rna seq",
+   "rna sequencing"
+  ],
+  [
+   "single cell rna",
+   "single cell rna sequencing"
+  ],
+  [
+   "single nucleus",
+   "single nucleus rna sequencing"
+  ],
+  [
+   "spatial transcriptom",
+   "spatial transcriptomics"
+  ],
+  [
+   "atac seq",
+   "atac seq"
+  ],
+  [
+   "chip seq",
+   "chip seq"
+  ],
+  [
+   "cut and run",
+   "cut and run"
+  ],
+  [
+   "hi c",
+   "chromatin conformation capture"
+  ],
+  [
+   "bisulfite",
+   "bisulfite sequencing"
+  ],
+  [
+   "methylation array",
+   "dna methylation array"
+  ],
+  [
+   "epigenome wide",
+   "epigenome wide association study"
+  ],
+  [
+   "long read sequencing",
+   "long read sequencing"
+  ],
+  [
+   "nanopore",
+   "nanopore sequencing"
+  ],
+  [
+   "pacbio",
+   "long read sequencing"
+  ],
+  [
+   "crispr",
+   "crispr cas9"
+  ],
+  [
+   "cas9",
+   "crispr cas9"
+  ],
+  [
+   "base editing",
+   "base editing"
+  ],
+  [
+   "prime editing",
+   "prime editing"
+  ],
+  [
+   "knockout",
+   "gene knockout"
+  ],
+  [
+   "knockdown",
+   "gene knockdown"
+  ],
+  [
+   "rna interference",
+   "rna interference"
+  ],
+  [
+   "morpholino",
+   "morpholino knockdown"
+  ],
+  [
+   "transgenic",
+   "transgenic model"
+  ],
+  [
+   "mendelian randomi",
+   "mendelian randomisation"
+  ],
+  [
+   "polygenic risk score",
+   "polygenic risk score"
+  ],
+  [
+   "linkage analysis",
+   "linkage analysis"
+  ],
+  [
+   "fine mapping",
+   "statistical fine mapping"
+  ],
+  [
+   "colocalisation",
+   "colocalisation analysis"
+  ],
+  [
+   "colocalization",
+   "colocalization analysis"
+  ],
+  [
+   "heritability",
+   "heritability estimation"
+  ],
+  [
+   "twin study",
+   "twin study"
+  ],
+  [
+   "expression quantitative trait",
+   "expression quantitative trait loci"
+  ],
+  [
+   "eqtl",
+   "expression quantitative trait loci"
+  ],
+  [
+   "burden test",
+   "rare variant burden test"
+  ],
+  [
+   "copy number variant",
+   "copy number variation"
+  ],
+  [
+   "structural variant",
+   "structural variant"
+  ],
+  [
+   "karyotyp",
+   "karyotyping"
+  ],
+  [
+   "fluorescence in situ",
+   "fluorescence in situ hybridisation"
+  ],
+  [
+   "sanger sequencing",
+   "sanger sequencing"
+  ],
+  [
+   "pcr",
+   "quantitative pcr"
+  ],
+  [
+   "mass spectrometry",
+   "mass spectrometry proteomics"
+  ],
+  [
+   "proteomic",
+   "proteomics"
+  ],
+  [
+   "metabolomic",
+   "metabolomics"
+  ],
+  [
+   "multi omic",
+   "multi omics integration"
+  ],
+  [
+   "organoid",
+   "organoid model"
+  ],
+  [
+   "induced pluripotent",
+   "induced pluripotent stem cell"
+  ],
+  [
+   "machine learning",
+   "machine learning genomics"
+  ],
+  [
+   "deep learning",
+   "deep learning genomics"
+  ],
+  [
+   "variant effect predict",
+   "variant effect prediction"
+  ],
+  [
+   "phylogenetic",
+   "phylogenetic analysis"
+  ],
+  [
+   "population structure",
+   "population structure"
+  ],
+  [
+   "biobank",
+   "biobank cohort"
+  ]
+ ],
+ "populations": [
+  [
+   "rare disease",
+   "rare disease"
+  ],
+  [
+   "mendelian disorder",
+   "mendelian disorder"
+  ],
+  [
+   "developmental disorder",
+   "developmental disorder"
+  ],
+  [
+   "intellectual disability",
+   "intellectual disability"
+  ],
+  [
+   "congenital anomaly",
+   "congenital anomaly"
+  ],
+  [
+   "newborn screening",
+   "newborn screening"
+  ],
+  [
+   "prenatal",
+   "prenatal genetic testing"
+  ],
+  [
+   "carrier screening",
+   "carrier screening"
+  ],
+  [
+   "cancer",
+   "cancer genomics"
+  ],
+  [
+   "tumour",
+   "tumour genomics"
+  ],
+  [
+   "tumor",
+   "tumor genomics"
+  ],
+  [
+   "leukaemia",
+   "leukaemia"
+  ],
+  [
+   "leukemia",
+   "leukemia"
+  ],
+  [
+   "lymphoma",
+   "lymphoma"
+  ],
+  [
+   "breast cancer",
+   "breast cancer"
+  ],
+  [
+   "colorectal cancer",
+   "colorectal cancer"
+  ],
+  [
+   "lung cancer",
+   "lung cancer"
+  ],
+  [
+   "melanoma",
+   "melanoma"
+  ],
+  [
+   "glioma",
+   "glioma"
+  ],
+  [
+   "brca",
+   "brca1 brca2"
+  ],
+  [
+   "lynch syndrome",
+   "lynch syndrome"
+  ],
+  [
+   "hereditary cancer",
+   "hereditary cancer syndrome"
+  ],
+  [
+   "cardiomyopathy",
+   "inherited cardiomyopathy"
+  ],
+  [
+   "channelopathy",
+   "channelopathy"
+  ],
+  [
+   "cystic fibrosis",
+   "cystic fibrosis"
+  ],
+  [
+   "muscular dystrophy",
+   "muscular dystrophy"
+  ],
+  [
+   "spinal muscular atrophy",
+   "spinal muscular atrophy"
+  ],
+  [
+   "huntington",
+   "huntington disease"
+  ],
+  [
+   "alzheimer",
+   "alzheimer disease genetics"
+  ],
+  [
+   "parkinson",
+   "parkinson disease genetics"
+  ],
+  [
+   "amyotrophic lateral sclerosis",
+   "amyotrophic lateral sclerosis"
+  ],
+  [
+   "epilepsy",
+   "epilepsy genetics"
+  ],
+  [
+   "autism",
+   "autism genetics"
+  ],
+  [
+   "schizophrenia",
+   "schizophrenia genetics"
+  ],
+  [
+   "bipolar",
+   "bipolar disorder genetics"
+  ],
+  [
+   "depression",
+   "depression genetics"
+  ],
+  [
+   "diabetes",
+   "type 2 diabetes genetics"
+  ],
+  [
+   "obesity",
+   "obesity genetics"
+  ],
+  [
+   "inflammatory bowel disease",
+   "inflammatory bowel disease"
+  ],
+  [
+   "autoimmune",
+   "autoimmune disease genetics"
+  ],
+  [
+   "rheumatoid arthritis",
+   "rheumatoid arthritis"
+  ],
+  [
+   "asthma",
+   "asthma genetics"
+  ],
+  [
+   "chronic kidney disease",
+   "chronic kidney disease genetics"
+  ],
+  [
+   "retinal dystrophy",
+   "inherited retinal dystrophy"
+  ],
+  [
+   "hearing loss",
+   "hereditary hearing loss"
+  ],
+  [
+   "immunodeficiency",
+   "primary immunodeficiency"
+  ],
+  [
+   "metabolic disorder",
+   "inherited metabolic disorder"
+  ],
+  [
+   "mitochondrial disease",
+   "mitochondrial disease"
+  ],
+  [
+   "pharmacogenom",
+   "pharmacogenomics"
+  ],
+  [
+   "drug response",
+   "drug response genetics"
+  ],
+  [
+   "gene therapy",
+   "gene therapy"
+  ],
+  [
+   "antisense oligonucleotide",
+   "antisense oligonucleotide"
+  ],
+  [
+   "microbiome",
+   "microbiome"
+  ],
+  [
+   "infectious disease",
+   "pathogen genomics"
+  ],
+  [
+   "sars cov 2",
+   "sars cov 2 genomics"
+  ],
+  [
+   "antimicrobial resistance",
+   "antimicrobial resistance"
+  ],
+  [
+   "plant",
+   "plant genomics"
+  ],
+  [
+   "livestock",
+   "livestock genomics"
+  ],
+  [
+   "model organism",
+   "model organism genetics"
+  ],
+  [
+   "zebrafish",
+   "zebrafish model"
+  ],
+  [
+   "drosophila",
+   "drosophila model"
+  ],
+  [
+   "mouse model",
+   "mouse model"
+  ],
+  [
+   "ancestry",
+   "genetic ancestry"
+  ],
+  [
+   "health disparit",
+   "genomic health disparities"
+  ],
+  [
+   "ethic",
+   "ethical legal social implications genomics"
+  ]
+ ],
+ "topics": [
+  "T10978",
+  "T10015",
+  "T10252",
+  "T10885",
+  "T12552",
+  "T13937",
+  "T13275",
+  "T10012",
+  "T11841",
+  "T10038",
+  "T12254",
+  "T13656",
+  "T11289",
+  "T10051",
+  "T10521",
+  "T10094",
+  "T10301",
+  "T10303",
+  "T11710",
+  "T10129",
+  "T10066",
+  "T10217",
+  "T10432",
+  "T10602",
+  "T10911",
+  "T10231",
+  "T10207",
+  "T10268",
+  "T10062",
+  "T10158",
+  "T10631",
+  "T10023",
+  "T10167",
+  "T10613",
+  "T11629",
+  "T10151",
+  "T10044",
+  "T10543",
+  "T10120",
+  "T10269",
+  "T10185",
+  "T10417",
+  "T10554",
+  "T13984",
+  "T10118",
+  "T11316",
+  "T10407",
+  "T10537",
+  "T10085",
+  "T10200",
+  "T10124",
+  "T10515",
+  "T10253",
+  "T10134",
+  "T10195",
+  "T11970",
+  "T10756",
+  "T10308",
+  "T10123",
+  "T10086",
+  "T10183",
+  "T10309",
+  "T10760",
+  "T10550",
+  "T10394",
+  "T10878",
+  "T10932",
+  "T10137",
+  "T10493",
+  "T10725",
+  "T11482",
+  "T10497",
+  "T11786",
+  "T10604",
+  "T11178",
+  "T10887",
+  "T10329",
+  "T10392",
+  "T11515",
+  "T10836",
+  "T10498",
+  "T10890",
+  "T10404",
+  "T11287",
+  "T11157",
+  "T12647",
+  "T10499",
+  "T13759",
+  "T11171",
+  "T10261",
+  "T10728",
+  "T10222",
+  "T10649",
+  "T10441",
+  "T10754",
+  "T11330",
+  "T10433",
+  "T10691",
+  "T10449",
+  "T10176",
+  "T10882",
+  "T10583",
+  "T10665",
+  "T10505",
+  "T11353",
+  "T10350",
+  "T11029",
+  "T10773",
+  "T12379",
+  "T12388",
+  "T10422",
+  "T11586",
+  "T11041",
+  "T11369",
+  "T11385",
+  "T10620",
+  "T12257",
+  "T11764",
+  "T11026",
+  "T11374",
+  "T11035",
+  "T12465",
+  "T11213",
+  "T10294",
+  "T11214",
+  "T10950",
+  "T11069",
+  "T13199",
+  "T12232",
+  "T12047",
+  "T11072",
+  "T12029",
+  "T11359",
+  "T10593",
+  "T11154",
+  "T11207",
+  "T11215",
+  "T10751",
+  "T11642",
+  "T10621",
+  "T11561",
+  "T10983",
+  "T11310",
+  "T10934",
+  "T10854",
+  "T12561",
+  "T10582",
+  "T10872",
+  "T11297",
+  "T10769",
+  "T12068",
+  "T10945",
+  "T11559",
+  "T11054",
+  "T11956",
+  "T11064",
+  "T12827",
+  "T10855",
+  "T10169",
+  "T11067",
+  "T11968",
+  "T11077",
+  "T12421",
+  "T11339",
+  "T10980",
+  "T11305",
+  "T11919",
+  "T10724",
+  "T11485",
+  "T14285",
+  "T11772",
+  "T12107",
+  "T11328",
+  "T11251",
+  "T11677",
+  "T11868",
+  "T11199",
+  "T11845",
+  "T11533",
+  "T12140",
+  "T11173",
+  "T11078",
+  "T13736",
+  "T11348",
+  "T12226",
+  "T11581",
+  "T12587",
+  "T11412",
+  "T11628",
+  "T11679",
+  "T11922",
+  "T11280",
+  "T12030",
+  "T10952",
+  "T11219",
+  "T11818",
+  "T11480",
+  "T12441",
+  "T11402",
+  "T11335",
+  "T12749",
+  "T11638",
+  "T11917",
+  "T12919",
+  "T11991",
+  "T11571",
+  "T11616",
+  "T11332",
+  "T11827",
+  "T12400",
+  "T11124",
+  "T12610",
+  "T11928",
+  "T11149",
+  "T11899",
+  "T12566",
+  "T10960",
+  "T11501",
+  "T12287",
+  "T10929",
+  "T11834",
+  "T11914",
+  "T12924",
+  "T12150",
+  "T13326",
+  "T11848",
+  "T12576",
+  "T12412",
+  "T12104",
+  "T11736",
+  "T12688",
+  "T12867",
+  "T12600",
+  "T14078",
+  "T13157",
+  "T12355",
+  "T12025",
+  "T12620",
+  "T12334",
+  "T11765",
+  "T12009",
+  "T12187",
+  "T12763",
+  "T11591",
+  "T12534",
+  "T11308",
+  "T13454",
+  "T12604",
+  "T11908",
+  "T12789",
+  "T11889",
+  "T12946",
+  "T12199",
+  "T13221",
+  "T13187",
+  "T11015",
+  "T12049",
+  "T11909",
+  "T12237",
+  "T11884",
+  "T13354",
+  "T13526",
+  "T12212",
+  "T14415",
+  "T12989",
+  "T13047",
+  "T13971",
+  "T13725",
+  "T13779",
+  "T13313",
+  "T12434",
+  "T12654",
+  "T12820",
+  "T13328",
+  "T13648",
+  "T13426",
+  "T12835",
+  "T14333",
+  "T14065",
+  "T12951",
+  "T12569",
+  "T13012",
+  "T13437",
+  "T13097",
+  "T12731",
+  "T14015",
+  "T12747",
+  "T13738",
+  "T13664",
+  "T12960",
+  "T13363",
+  "T14057",
+  "T13188",
+  "T13834"
+ ]
+}

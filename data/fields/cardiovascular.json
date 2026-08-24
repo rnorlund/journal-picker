@@ -1,0 +1,579 @@
+{
+ "id": "cardiovascular",
+ "name": "Cardiovascular",
+ "description": "Cardiac and vascular disease, imaging, electrophysiology and intervention.",
+ "signals": [
+  "cardiac",
+  "cardiology",
+  "cardiovascular",
+  "heart",
+  "myocardial",
+  "myocardium",
+  "coronary",
+  "ventricular",
+  "atrial",
+  "aortic",
+  "valve",
+  "artery",
+  "arterial",
+  "vascular",
+  "endothelial",
+  "atherosclerosis",
+  "ischaemic",
+  "ischemic",
+  "ejection fraction",
+  "haemodynamic",
+  "hemodynamic",
+  "electrocardiogram",
+  "angina",
+  "thrombosis"
+ ],
+ "methods": [
+  [
+   "echocardiograph",
+   "echocardiography"
+  ],
+  [
+   "transthoracic echo",
+   "transthoracic echocardiography"
+  ],
+  [
+   "transoesophageal",
+   "transoesophageal echocardiography"
+  ],
+  [
+   "speckle tracking",
+   "speckle tracking echocardiography"
+  ],
+  [
+   "strain imaging",
+   "myocardial strain imaging"
+  ],
+  [
+   "cardiac magnetic resonance",
+   "cardiac magnetic resonance"
+  ],
+  [
+   "cardiac mri",
+   "cardiac magnetic resonance"
+  ],
+  [
+   "late gadolinium",
+   "late gadolinium enhancement"
+  ],
+  [
+   "t1 mapping",
+   "t1 mapping"
+  ],
+  [
+   "t2 mapping",
+   "t2 mapping"
+  ],
+  [
+   "extracellular volume",
+   "extracellular volume fraction"
+  ],
+  [
+   "computed tomography angiography",
+   "computed tomography angiography"
+  ],
+  [
+   "coronary cta",
+   "coronary computed tomography angiography"
+  ],
+  [
+   "calcium score",
+   "coronary artery calcium score"
+  ],
+  [
+   "fractional flow reserve",
+   "fractional flow reserve"
+  ],
+  [
+   "intravascular ultrasound",
+   "intravascular ultrasound"
+  ],
+  [
+   "optical coherence tomography",
+   "intravascular optical coherence tomography"
+  ],
+  [
+   "myocardial perfusion",
+   "myocardial perfusion imaging"
+  ],
+  [
+   "single photon emission",
+   "spect myocardial perfusion"
+  ],
+  [
+   "positron emission tomography",
+   "cardiac positron emission tomography"
+  ],
+  [
+   "electrocardiogram",
+   "electrocardiography"
+  ],
+  [
+   "ecg",
+   "electrocardiography"
+  ],
+  [
+   "holter",
+   "ambulatory electrocardiography"
+  ],
+  [
+   "electroanatomic mapping",
+   "electroanatomic mapping"
+  ],
+  [
+   "electrophysiology study",
+   "cardiac electrophysiology study"
+  ],
+  [
+   "cardiac catheter",
+   "cardiac catheterisation"
+  ],
+  [
+   "coronary angiograph",
+   "coronary angiography"
+  ],
+  [
+   "pulse wave velocity",
+   "pulse wave velocity"
+  ],
+  [
+   "flow mediated dilat",
+   "flow mediated dilation"
+  ],
+  [
+   "carotid intima media",
+   "carotid intima media thickness"
+  ],
+  [
+   "ankle brachial",
+   "ankle brachial index"
+  ],
+  [
+   "cardiopulmonary exercise",
+   "cardiopulmonary exercise testing"
+  ],
+  [
+   "natriuretic peptide",
+   "natriuretic peptide"
+  ],
+  [
+   "troponin",
+   "cardiac troponin"
+  ],
+  [
+   "mendelian randomi",
+   "mendelian randomisation"
+  ],
+  [
+   "polygenic risk score",
+   "polygenic risk score"
+  ],
+  [
+   "machine learning",
+   "machine learning cardiology"
+  ],
+  [
+   "deep learning",
+   "deep learning cardiac imaging"
+  ],
+  [
+   "randomised controlled trial",
+   "randomised controlled trial"
+  ],
+  [
+   "randomized controlled trial",
+   "randomized controlled trial"
+  ],
+  [
+   "registry",
+   "cardiovascular registry"
+  ],
+  [
+   "meta analysis",
+   "meta analysis"
+  ],
+  [
+   "computational fluid dynamics",
+   "computational fluid dynamics"
+  ],
+  [
+   "finite element",
+   "finite element modelling cardiac"
+  ],
+  [
+   "single cell rna",
+   "single cell rna sequencing"
+  ],
+  [
+   "organoid",
+   "cardiac organoid"
+  ],
+  [
+   "induced pluripotent",
+   "induced pluripotent stem cell"
+  ]
+ ],
+ "populations": [
+  [
+   "heart failure",
+   "heart failure"
+  ],
+  [
+   "preserved ejection fraction",
+   "heart failure with preserved ejection fraction"
+  ],
+  [
+   "reduced ejection fraction",
+   "heart failure with reduced ejection fraction"
+  ],
+  [
+   "myocardial infarction",
+   "myocardial infarction"
+  ],
+  [
+   "acute coronary syndrome",
+   "acute coronary syndrome"
+  ],
+  [
+   "coronary artery disease",
+   "coronary artery disease"
+  ],
+  [
+   "stable angina",
+   "stable angina"
+  ],
+  [
+   "atrial fibrillation",
+   "atrial fibrillation"
+  ],
+  [
+   "ventricular tachycardia",
+   "ventricular tachycardia"
+  ],
+  [
+   "ventricular arrhythmia",
+   "ventricular arrhythmia"
+  ],
+  [
+   "sudden cardiac death",
+   "sudden cardiac death"
+  ],
+  [
+   "bradycardia",
+   "bradyarrhythmia"
+  ],
+  [
+   "cardiomyopathy",
+   "cardiomyopathy"
+  ],
+  [
+   "hypertrophic cardiomyopathy",
+   "hypertrophic cardiomyopathy"
+  ],
+  [
+   "dilated cardiomyopathy",
+   "dilated cardiomyopathy"
+  ],
+  [
+   "amyloidosis",
+   "cardiac amyloidosis"
+  ],
+  [
+   "myocarditis",
+   "myocarditis"
+  ],
+  [
+   "aortic stenosis",
+   "aortic stenosis"
+  ],
+  [
+   "mitral regurgitation",
+   "mitral regurgitation"
+  ],
+  [
+   "valvular heart disease",
+   "valvular heart disease"
+  ],
+  [
+   "congenital heart disease",
+   "congenital heart disease"
+  ],
+  [
+   "tetralogy of fallot",
+   "tetralogy of fallot"
+  ],
+  [
+   "pulmonary hypertension",
+   "pulmonary hypertension"
+  ],
+  [
+   "hypertension",
+   "hypertension"
+  ],
+  [
+   "hyperlipidaemia",
+   "dyslipidaemia"
+  ],
+  [
+   "hypercholesterolaemia",
+   "hypercholesterolaemia"
+  ],
+  [
+   "statin",
+   "statin therapy"
+  ],
+  [
+   "atherosclerosis",
+   "atherosclerosis"
+  ],
+  [
+   "aortic aneurysm",
+   "aortic aneurysm"
+  ],
+  [
+   "aortic dissection",
+   "aortic dissection"
+  ],
+  [
+   "peripheral artery disease",
+   "peripheral artery disease"
+  ],
+  [
+   "venous thromboembolism",
+   "venous thromboembolism"
+  ],
+  [
+   "pulmonary embolism",
+   "pulmonary embolism"
+  ],
+  [
+   "deep vein thrombosis",
+   "deep vein thrombosis"
+  ],
+  [
+   "stroke",
+   "stroke"
+  ],
+  [
+   "cardiac arrest",
+   "cardiac arrest"
+  ],
+  [
+   "cardiogenic shock",
+   "cardiogenic shock"
+  ],
+  [
+   "percutaneous coronary intervention",
+   "percutaneous coronary intervention"
+  ],
+  [
+   "coronary artery bypass",
+   "coronary artery bypass grafting"
+  ],
+  [
+   "transcatheter aortic valve",
+   "transcatheter aortic valve implantation"
+  ],
+  [
+   "catheter ablation",
+   "catheter ablation"
+  ],
+  [
+   "implantable cardioverter",
+   "implantable cardioverter defibrillator"
+  ],
+  [
+   "cardiac resynchron",
+   "cardiac resynchronisation therapy"
+  ],
+  [
+   "left ventricular assist",
+   "left ventricular assist device"
+  ],
+  [
+   "heart transplant",
+   "heart transplantation"
+  ],
+  [
+   "cardiac rehabilitation",
+   "cardiac rehabilitation"
+  ],
+  [
+   "diabetes",
+   "diabetes mellitus"
+  ],
+  [
+   "obesity",
+   "obesity"
+  ],
+  [
+   "chronic kidney disease",
+   "chronic kidney disease"
+  ],
+  [
+   "cardio oncology",
+   "cardio oncology"
+  ],
+  [
+   "cardiotoxicity",
+   "cardiotoxicity"
+  ],
+  [
+   "covid",
+   "covid 19"
+  ],
+  [
+   "sport",
+   "athlete cardiovascular"
+  ]
+ ],
+ "topics": [
+  "T10290",
+  "T11930",
+  "T10172",
+  "T10285",
+  "T10372",
+  "T10217",
+  "T10065",
+  "T10549",
+  "T11629",
+  "T10300",
+  "T10227",
+  "T10144",
+  "T10554",
+  "T10200",
+  "T10293",
+  "T10308",
+  "T10821",
+  "T10745",
+  "T10155",
+  "T10234",
+  "T10394",
+  "T10401",
+  "T10337",
+  "T10560",
+  "T10291",
+  "T10518",
+  "T10193",
+  "T12935",
+  "T10041",
+  "T10926",
+  "T11260",
+  "T11217",
+  "T10027",
+  "T10198",
+  "T11153",
+  "T10890",
+  "T10866",
+  "T10277",
+  "T10499",
+  "T10728",
+  "T10678",
+  "T10390",
+  "T10598",
+  "T10352",
+  "T11692",
+  "T11146",
+  "T11209",
+  "T10641",
+  "T11112",
+  "T11658",
+  "T10176",
+  "T10882",
+  "T10292",
+  "T10459",
+  "T11189",
+  "T10387",
+  "T11839",
+  "T11029",
+  "T11083",
+  "T11396",
+  "T10746",
+  "T10528",
+  "T10445",
+  "T11700",
+  "T10618",
+  "T11709",
+  "T12840",
+  "T10989",
+  "T10569",
+  "T10924",
+  "T11084",
+  "T11207",
+  "T10408",
+  "T12964",
+  "T11021",
+  "T10983",
+  "T12067",
+  "T11950",
+  "T10872",
+  "T10881",
+  "T12979",
+  "T11064",
+  "T12264",
+  "T11057",
+  "T11355",
+  "T11139",
+  "T11453",
+  "T11264",
+  "T11116",
+  "T14212",
+  "T12314",
+  "T11628",
+  "T10693",
+  "T11922",
+  "T10694",
+  "T12230",
+  "T11318",
+  "T11411",
+  "T11638",
+  "T11917",
+  "T11571",
+  "T11655",
+  "T11738",
+  "T11620",
+  "T11618",
+  "T11554",
+  "T13522",
+  "T11625",
+  "T11001",
+  "T13252",
+  "T12598",
+  "T12291",
+  "T12600",
+  "T13822",
+  "T13001",
+  "T12059",
+  "T11580",
+  "T11535",
+  "T12333",
+  "T11962",
+  "T12745",
+  "T11534",
+  "T12018",
+  "T12342",
+  "T12075",
+  "T13430",
+  "T12352",
+  "T12419",
+  "T12876",
+  "T11892",
+  "T13828",
+  "T14093",
+  "T12272",
+  "T13775",
+  "T12638",
+  "T12453",
+  "T13505",
+  "T13452",
+  "T13543",
+  "T12830",
+  "T13381",
+  "T14486"
+ ]
+}

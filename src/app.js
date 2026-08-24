@@ -6,6 +6,7 @@
  */
 
 import { recommend, config } from './engine.js';
+import { loadCatalog } from './catalog.js';
 
 const $ = (id) => document.getElementById(id);
 const el = {
@@ -17,8 +18,13 @@ const el = {
   agreeFile: $('agreeFile'), agreeBtn: $('agreeBtn'), agreeStatus: $('agreeStatus'),
   agreeOnly: $('agreeOnly'), agreeOnlyWrap: $('agreeOnlyWrap'), dropZone: $('dropZone'),
   themeBtn: $('themeBtn'), cardTpl: $('cardTpl'),
+  modeMatch: $('modeMatch'), modeBrowse: $('modeBrowse'),
+  matchPanel: $('matchPanel'), browsePanel: $('browsePanel'),
+  browseQ: $('browseQ'), browseSort: $('browseSort'), browseCount: $('browseCount'),
 };
 
+let mode = 'match';        // 'match' | 'browse'
+let browseAll = null;      // catalog journals mapped into result shape
 let lastRun = null;        // full engine output
 let agreementIndex = null; // parsed institutional agreements
 let agreementsMod = null;  // lazily-imported parser module
@@ -207,6 +213,13 @@ function badgesFor(j) {
 
 function whyText(j) {
   const bits = [];
+  if (j.fit == null) {
+    // Browse mode: describe the journal, don't imply a match we never computed.
+    if (j.topicWorks) bits.push(`<b>${j.topicWorks.toLocaleString()}</b> papers in this field`);
+    if (j.fieldShare != null) bits.push(`<b>${Math.round(j.fieldShare * 100)}%</b> of its output`);
+    if (j.worksCount) bits.push(`${j.worksCount.toLocaleString()} papers total`);
+    return bits.join(' · ') || 'In the catalog.';
+  }
   if (j.matchCount) {
     bits.push(`published <b>${j.matchCount}</b> paper${j.matchCount === 1 ? '' : 's'} closely matching yours`);
   }
@@ -233,13 +246,17 @@ function renderCards(list) {
     if (j._over) card.classList.add('over-budget');
     if (j._agreement) card.classList.add('covered');
 
-    // fit ring
-    const pct = Math.round(j.fit * 100);
-    const ring = node.querySelector('.ring-fg');
-    const circ = 2 * Math.PI * 18;
-    ring.style.strokeDasharray = `${circ}`;
-    ring.style.strokeDashoffset = `${circ * (1 - Math.min(pct, 100) / 100)}`;
-    node.querySelector('.fitnum').textContent = pct;
+    // Fit ring — only meaningful when we matched against a manuscript.
+    if (j.fit == null) {
+      node.querySelector('.fitwrap').remove();
+    } else {
+      const pct = Math.round(j.fit * 100);
+      const ring = node.querySelector('.ring-fg');
+      const circ = 2 * Math.PI * 18;
+      ring.style.strokeDasharray = `${circ}`;
+      ring.style.strokeDashoffset = `${circ * (1 - Math.min(pct, 100) / 100)}`;
+      node.querySelector('.fitnum').textContent = pct;
+    }
 
     // title + meta
     const link = node.querySelector('.jname');
@@ -267,7 +284,8 @@ function renderCards(list) {
 
     // why
     node.querySelector('.why-bars').innerHTML = `
-      <span class="wb">similarity <i><b style="width:${Math.round(j.simNorm * 100)}%"></b></i></span>
+      ${j.fit == null ? '' : `<span class="wb">similarity <i><b style="width:${
+        Math.round(j.simNorm * 100)}%"></b></i></span>`}
       <span class="wb">topic volume <i><b style="width:${Math.round(Math.min(j.topicWorks / 2500, 1) * 100)}%"></b></i></span>
       ${j.fieldShare != null ? `<span class="wb">specialisation <i><b style="width:${
         Math.round(Math.min(j.fieldShare / 0.25, 1) * 100)}%"></b></i></span>` : ''}`;
@@ -301,6 +319,7 @@ function renderCards(list) {
 }
 
 function render() {
+  if (mode === 'browse') { renderBrowse(); return; }
   if (!lastRun) return;
   attachAgreements(lastRun.journals);
   const list = applyFilters(lastRun.journals);
@@ -366,6 +385,187 @@ async function loadAgreementFiles(files) {
     el.agreeStatus.innerHTML = `<span class="bad">Could not read that file: ${esc(err.message)}</span>`;
   }
 }
+
+/* ================================================================== *
+ * Browse mode
+ *
+ * The whole catalog, no abstract required. Same cards and same cost model as
+ * the match view, minus the per-manuscript similarity evidence — so "show me
+ * everything I can publish in for free" is one click rather than a search.
+ * ================================================================== */
+
+/** Map a raw catalog record into the shape the card renderer expects. */
+function catalogToResult(rec) {
+  return {
+    id: rec.id,
+    name: rec.display_name,
+    altNames: rec.alternate_titles || [],
+    publisher: rec.publisher || null,
+    homepage: rec.homepage_url || null,
+    issns: rec.issn || (rec.issn_l ? [rec.issn_l] : []),
+    issn_l: rec.issn_l || null,
+    type: rec.type || null,
+    inCatalog: true,
+    isJournal: rec.kind === 'journal' && !rec.is_preprint_repository,
+    isPreprint: !!rec.is_preprint_repository,
+    isOa: !!rec.is_oa,
+    inDoaj: !!rec.is_in_doaj,
+    isCore: !!rec.is_core,
+    apcUsd: rec.apc_usd ?? null,
+    apcKnown: rec.apc_known ?? false,
+    apcSource: rec.apc_source ? rec.apc_source.toUpperCase() : null,
+    apcUrl: rec.doaj_apc_url || null,
+    apcNative: rec.apc_amount != null && rec.apc_currency
+      ? { price: rec.apc_amount, currency: rec.apc_currency } : null,
+    oaModel: rec.oa_model || 'unknown',
+    worksCount: rec.works_count || 0,
+    hIndex: rec.h_index ?? null,
+    citedness: rec.two_yr_mean_citedness ?? null,
+    // no manuscript to compare against in browse mode
+    fit: null,
+    simNorm: 0,
+    matchCount: 0,
+    topicWorks: rec.neuro_works || 0,
+    fieldShare: rec.neuro_share ?? null,
+    probesMatched: [],
+    samplePapers: [],
+    journalTopics: (rec.topics || []).slice(0, 8).map((t) => ({
+      id: t.id, name: t.name, count: t.count,
+    })),
+  };
+}
+
+async function ensureBrowse() {
+  if (browseAll) return browseAll;
+  el.browseCount.textContent = 'Loading catalog…';
+  const cat = await loadCatalog(`${config.dataBase}/journals.json`);
+  if (!cat) {
+    el.browseCount.textContent =
+      'The journal catalog is not available. Run scripts/build-catalog.py to generate data/journals.json.';
+    return null;
+  }
+  browseAll = cat.journals.map(catalogToResult);
+  return browseAll;
+}
+
+/** Quick-pick presets drive the existing filter controls, so one code path. */
+function applyPreset(preset) {
+  const setRoute = (v) => {
+    const r = document.querySelector(`input[name="route"][value="${v}"]`);
+    if (r) r.checked = true;
+  };
+  const setApc = (v) => {
+    el.apcSlider.value = String(v);
+    el.apcOut.textContent = v >= 13 ? 'no limit' : `$${(v * 1000).toLocaleString()}`;
+  };
+  el.agreeOnly.checked = false;
+
+  switch (preset) {
+    case 'diamond': setRoute('freeoa'); setApc(13); break;
+    case 'free':    setRoute('free');   setApc(13); break;
+    case 'cheap':   setRoute('oa');     setApc(2); break;   // <= $2k band
+    case 'covered': setRoute('any');    setApc(13); el.agreeOnly.checked = true; break;
+    default:        setRoute('any');    setApc(13); break;
+  }
+  document.querySelectorAll('.qp').forEach((b) =>
+    b.classList.toggle('is-on', b.dataset.preset === preset));
+}
+
+function sortBrowse(list) {
+  const key = el.browseSort.value;
+  // "Cheapest" needs two keys. Plenty of journals cost nothing to publish in
+  // because you accept a paywall, so minCost alone ties every hybrid and
+  // subscription venue at $0 — and then shows a $4,200 OA fee on the card,
+  // which reads as a bug. Break the tie on the open-access price so genuinely
+  // free-and-open journals sort above "free only if you stay paywalled".
+  const num = (v) => (v == null ? Infinity : v);
+  const minCost = (j) => (j._cost ? num(j._cost.minCost) : Infinity);
+  const oaCost = (j) => (j._cost ? num(j._cost.oaCost) : Infinity);
+  const cmp = {
+    field: (a, b) => b.topicWorks - a.topicWorks,
+    cheap: (a, b) => minCost(a) - minCost(b) || oaCost(a) - oaCost(b)
+                     || b.topicWorks - a.topicWorks,
+    share: (a, b) => (b.fieldShare ?? 0) - (a.fieldShare ?? 0),
+    cites: (a, b) => (b.citedness ?? 0) - (a.citedness ?? 0),
+    name:  (a, b) => a.name.localeCompare(b.name),
+  }[key] || (() => 0);
+  return list.sort(cmp);
+}
+
+async function renderBrowse() {
+  const all = await ensureBrowse();
+  if (!all) return;
+
+  const q = el.browseQ.value.trim().toLowerCase();
+  let list = all;
+  if (q) {
+    list = list.filter((j) =>
+      j.name.toLowerCase().includes(q) ||
+      (j.publisher || '').toLowerCase().includes(q) ||
+      j.altNames.some((n) => n.toLowerCase().includes(q)) ||
+      j.journalTopics.some((t) => t.name.toLowerCase().includes(q)));
+  }
+
+  attachAgreements(list);
+  list = sortBrowse(applyFilters(list));
+
+  const inBudget = list.filter((j) => !j._over);
+  el.browseCount.textContent =
+    `${inBudget.length.toLocaleString()} of ${all.length.toLocaleString()} journals match` +
+    (list.length - inBudget.length ? ` · ${list.length - inBudget.length} over your cap` : '');
+
+  el.results.hidden = false;
+  el.results.innerHTML = '';
+  const head = document.createElement('div');
+  head.className = 'res-head';
+  head.innerHTML = `<h2>Journals</h2><span class="res-count">showing ${
+    Math.min(inBudget.length, 100).toLocaleString()} of ${inBudget.length.toLocaleString()}</span>`;
+  el.results.appendChild(head);
+
+  if (!list.length) {
+    el.empty.hidden = false;
+    el.empty.innerHTML = `<h2>Nothing matches those constraints</h2>
+      <p>Try "Show everything", or raise the price ceiling.</p>`;
+    return;
+  }
+  el.empty.hidden = true;
+  el.results.appendChild(renderCards(inBudget.slice(0, 100)));
+}
+
+function setMode(next) {
+  mode = next;
+  const browsing = next === 'browse';
+  el.modeBrowse.classList.toggle('is-on', browsing);
+  el.modeMatch.classList.toggle('is-on', !browsing);
+  el.modeBrowse.setAttribute('aria-selected', String(browsing));
+  el.modeMatch.setAttribute('aria-selected', String(!browsing));
+  el.browsePanel.hidden = !browsing;
+  el.matchPanel.hidden = browsing;
+  el.evidence.hidden = browsing || !lastRun;
+  el.filterPanel.hidden = browsing ? false : !lastRun;
+
+  if (browsing) {
+    renderBrowse();
+  } else if (lastRun) {
+    render();
+  } else {
+    el.results.hidden = true;
+    el.empty.hidden = true;
+  }
+}
+
+el.modeMatch.addEventListener('click', () => setMode('match'));
+el.modeBrowse.addEventListener('click', () => setMode('browse'));
+el.browseSort.addEventListener('change', () => renderBrowse());
+let browseDebounce;
+el.browseQ.addEventListener('input', () => {
+  clearTimeout(browseDebounce);
+  browseDebounce = setTimeout(() => renderBrowse(), 180);
+});
+document.querySelectorAll('.qp').forEach((b) => b.addEventListener('click', () => {
+  applyPreset(b.dataset.preset);
+  renderBrowse();
+}));
 
 /* ================================================================== *
  * Run

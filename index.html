@@ -34,7 +34,16 @@
     </p>
   </section>
 
-  <section class="panel">
+  <nav class="modes" role="tablist">
+    <button id="modeMatch" class="mode is-on" role="tab" aria-selected="true" type="button">
+      Match my manuscript
+    </button>
+    <button id="modeBrowse" class="mode" role="tab" aria-selected="false" type="button">
+      Browse journals
+    </button>
+  </nav>
+
+  <section class="panel" id="matchPanel">
     <div class="field">
       <label for="title">Manuscript title</label>
       <input id="title" type="text" autocomplete="off"
@@ -56,6 +65,40 @@
       <span id="status" class="status" role="status" aria-live="polite"></span>
     </div>
 
+  </section>
+
+  <section class="panel" id="browsePanel" hidden>
+    <div class="panel-head"><h2>Every journal in the catalog</h2></div>
+    <p class="lede browse-lede">
+      No abstract needed. This is the whole catalog, so you can go straight to the
+      question most authors actually have: <em>what can I publish in for free?</em>
+    </p>
+
+    <div class="browse-controls">
+      <div class="field browse-search">
+        <label for="browseQ">Filter by name or publisher</label>
+        <input id="browseQ" type="text" autocomplete="off" placeholder="e.g. neuro, Elsevier, stroke">
+      </div>
+      <div class="field browse-sort">
+        <label for="browseSort">Sort by</label>
+        <select id="browseSort">
+          <option value="field">Most published in this field</option>
+          <option value="cheap">Cheapest to publish</option>
+          <option value="share">Most specialised</option>
+          <option value="cites">Most cited per paper</option>
+          <option value="name">Name (A–Z)</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="quickpicks">
+      <button class="qp" data-preset="diamond" type="button">Free <em>and</em> open access</button>
+      <button class="qp" data-preset="free" type="button">Free to publish</button>
+      <button class="qp" data-preset="cheap" type="button">Under $1,500</button>
+      <button class="qp" data-preset="covered" type="button">Covered by my agreement</button>
+      <button class="qp" data-preset="all" type="button">Show everything</button>
+    </div>
+    <p class="hint" id="browseCount"></p>
   </section>
 
   <!-- ============ FILTERS ============ -->

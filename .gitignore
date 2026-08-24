@@ -4,3 +4,4 @@ scripts/__pycache__/
 build-shard*.log
 .DS_Store
 .netlify/
+data/openalex-topics.json

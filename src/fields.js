@@ -98,7 +98,11 @@ export function detectFields(text, fields) {
   }
 
   scored.sort((a, b) => b.score - a.score);
-  if (!scored.length) return { matched: [], primary: null, methods: [], populations: [] };
+  // Always return the same shape, including when nothing matched — callers
+  // read `all` for diagnostics and should not have to guard against it.
+  if (!scored.length) {
+    return { matched: [], all: [], primary: null, methods: [], populations: [] };
+  }
 
   // Keep fields within reach of the leader; drop incidental single-word matches.
   const top = scored[0].score;
