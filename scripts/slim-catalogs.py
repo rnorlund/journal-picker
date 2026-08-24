@@ -158,6 +158,20 @@ def main():
     if not paths:
         raise SystemExit("no catalogs in %s" % FULL)
 
+    # Field display names, so the browse selector can label itself without
+    # fetching all sixteen catalogs just to read their titles.
+    names = {}
+    for fp in glob.glob(os.path.join(DATA, "fields", "*.json")):
+        base = os.path.basename(fp)
+        if base == "index.json" or base.endswith(".topics.json"):
+            continue
+        try:
+            with open(fp) as fh:
+                spec = json.load(fh)
+            names[spec.get("id") or base[:-5]] = spec.get("name")
+        except Exception:
+            pass
+
     fields, total_before, total_after = [], 0, 0
 
     for path in paths:
@@ -185,19 +199,34 @@ def main():
         after = os.path.getsize(dest)
         total_before += before
         total_after += after
-        fields.append(field)
+        fields.append({
+            "id": field,
+            "name": names.get(field) or field.replace("-", " ").title(),
+            "journals": len(journals),
+            "submittable": sum(1 for j in journals if j.get("kind") == "journal"),
+            "with_review": with_review,
+            "bytes": after,
+            "path": ("journals.json" if field == "brain-imaging"
+                     else "catalogs/%s.json" % field),
+        })
         print("  %-16s %5d journals  %5.1f MB -> %4.1f MB  (%d with review times)"
               % (field, len(journals), before / 1048576, after / 1048576, with_review))
 
     # brain-imaging is served from journals.json, so it is not in this manifest's
-    # directory, but the app still needs to know it exists.
+    # directory, but the app still needs to know it exists. Each entry carries
+    # its own path, so the browse selector can load exactly one catalog.
+    # Brain imaging first (the most developed field, and the smallest of the
+    # large catalogs), then alphabetically. Sorting by size would make the
+    # biggest catalog the default download, which is backwards.
+    fields.sort(key=lambda f: (f["id"] != "brain-imaging", f["name"]))
     with open(os.path.join(OUT, "index.json"), "w") as fh:
         json.dump({"fields": fields}, fh, indent=1)
 
     print("\n  total %.1f MB -> %.1f MB (%.0f%% smaller)"
           % (total_before / 1048576, total_after / 1048576,
              100 * (1 - total_after / total_before)))
-    print("  manifest: %s" % ", ".join(fields))
+    print("  manifest: %d fields, largest %s (%d submittable journals)"
+          % (len(fields), fields[0]["id"], fields[0]["submittable"]))
 
 
 if __name__ == "__main__":

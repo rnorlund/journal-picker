@@ -214,7 +214,25 @@ def summarise(histories):
 
 # ------------------------------------------------------------- catalog + resume
 
+TARGETS = os.path.join(CACHE, "timing-targets.json")
+
+
 def catalog_journals():
+    """(issn, name) for every journal to check, deduped and ordered.
+
+    A shared target list takes precedence: shards must partition an *identical*
+    list, and each machine holds a different subset of the built catalogs, so
+    deriving the list locally would give the shards different work.
+    """
+    if os.path.exists(TARGETS):
+        with open(TARGETS) as fh:
+            rows = json.load(fh)
+        log("using shared target list: %d journals" % len(rows))
+        return [(r[0], r[1]) for r in rows]
+    return _catalog_journals_local()
+
+
+def _catalog_journals_local():
     """(issn, name) for every journal in the requested catalogs, deduped."""
     paths = []
     if FIELD in (None, "brain-imaging"):

@@ -29,8 +29,15 @@ async def main():
         await pg.click('#refBox summary'); await pg.fill('#refs', REFS)
         await pg.wait_for_timeout(1400)
         print('\nlive feedback:', await pg.inner_text('#refStat'))
-        await pg.click('#goBtn'); await pg.wait_for_timeout(1000)
-        await pg.wait_for_selector('.card',timeout=90000); await pg.wait_for_timeout(900)
+        # Wait for THIS run to finish, not for the stale cards from the demo run
+        # to still be present -- matching '.card' immediately succeeds against
+        # the previous results and reads them instead.
+        await pg.evaluate("document.getElementById('status').textContent = 'PENDING'")
+        await pg.click('#goBtn')
+        await pg.wait_for_function(
+            "() => document.getElementById('status').textContent.startsWith('Done')",
+            timeout=120000)
+        await pg.wait_for_timeout(700)
         print('\nWITH references:')
         for i in range(8):
             c=pg.locator('.card').nth(i)

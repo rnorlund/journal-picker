@@ -53,16 +53,32 @@ async function loadOne(field, base) {
   return payload;
 }
 
-/** Which catalogs exist. Falls back to brain imaging if there's no manifest. */
-export async function listCatalogs(base = 'data') {
+/**
+ * The catalog manifest: one entry per built field, with its journal count and
+ * size. Lets the browse selector label itself and load exactly one catalog
+ * instead of all of them -- at sixteen fields the full set is ~40 MB.
+ *
+ * Tolerates the older manifest shape, which was a plain array of field ids.
+ */
+export async function catalogManifest(base = 'data') {
   try {
     const res = await fetch(`${base}/catalogs/index.json`);
     if (res.ok) {
       const m = await res.json();
-      if (Array.isArray(m.fields) && m.fields.length) return m.fields;
+      const fields = m.fields;
+      if (Array.isArray(fields) && fields.length) {
+        return fields.map((f) => (typeof f === 'string'
+          ? { id: f, name: f.replace(/-/g, ' '), journals: null }
+          : f));
+      }
     }
-  } catch { /* no manifest */ }
-  return ['brain-imaging'];
+  } catch { /* not built yet */ }
+  return [{ id: 'brain-imaging', name: 'Brain imaging', journals: null }];
+}
+
+/** Just the field ids that have a catalog. */
+export async function listCatalogs(base = 'data') {
+  return (await catalogManifest(base)).map((f) => f.id);
 }
 
 /**

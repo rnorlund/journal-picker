@@ -6,7 +6,7 @@
  */
 
 import { recommend, config } from './engine.js';
-import { loadCatalogs } from './catalog.js';
+import { loadCatalogs, catalogManifest } from './catalog.js';
 
 const $ = (id) => document.getElementById(id);
 const el = {
@@ -22,10 +22,12 @@ const el = {
   modeMatch: $('modeMatch'), modeBrowse: $('modeBrowse'),
   matchPanel: $('matchPanel'), browsePanel: $('browsePanel'),
   browseQ: $('browseQ'), browseSort: $('browseSort'), browseCount: $('browseCount'),
+  browseField: $('browseField'),
 };
 
 let mode = 'match';        // 'match' | 'browse'
 let browseAll = null;      // catalog journals mapped into result shape
+let browseFieldId = null;  // which field's catalog browse is showing
 let lastRun = null;        // full engine output
 let agreementIndex = null; // parsed institutional agreements
 let agreementsMod = null;  // lazily-imported parser module
@@ -485,15 +487,41 @@ function catalogToResult(rec) {
   };
 }
 
+/**
+ * Populate the field selector from the manifest. One catalog is loaded at a
+ * time on purpose: across every field the catalogs come to tens of megabytes,
+ * and nobody browsing "free dental journals" needs the genetics catalog.
+ */
+async function ensureFieldOptions() {
+  if (el.browseField.options.length) return;
+  const manifest = await catalogManifest(config.dataBase);
+  el.browseField.innerHTML = manifest.map((f) => {
+    const n = f.submittable ?? f.journals;
+    return `<option value="${esc(f.id)}">${esc(f.name)}${
+      n ? ` — ${n.toLocaleString()} journals` : ''}</option>`;
+  }).join('');
+  // Prefer the field the author last looked at.
+  let want = null;
+  try { want = localStorage.getItem('jp-browse-field'); } catch {}
+  if (want && manifest.some((f) => f.id === want)) el.browseField.value = want;
+  browseFieldId = el.browseField.value || manifest[0]?.id || null;
+}
+
 async function ensureBrowse() {
-  if (browseAll) return browseAll;
+  await ensureFieldOptions();
+  const want = el.browseField.value || browseFieldId;
+  if (browseAll && browseFieldId === want) return browseAll;
+
   el.browseCount.textContent = 'Loading catalog…';
-  const cat = await loadCatalogs([], config.dataBase);  // [] = every catalog
+  const cat = await loadCatalogs([want], config.dataBase);
   if (!cat) {
     el.browseCount.textContent =
-      'The journal catalog is not available. Run scripts/build-catalog.py to generate data/journals.json.';
+      `No catalog for that field yet. Run FIELD=${want} python3 scripts/build-catalog.py to build it.`;
+    browseAll = null;
     return null;
   }
+  browseFieldId = want;
+  try { localStorage.setItem('jp-browse-field', want); } catch {}
   browseAll = cat.journals.map(catalogToResult);
   return browseAll;
 }
@@ -560,8 +588,9 @@ async function renderBrowse() {
   list = sortBrowse(applyFilters(list));
 
   const inBudget = list.filter((j) => !j._over);
+  const fieldLabel = el.browseField.selectedOptions[0]?.textContent?.split(' — ')[0] || '';
   el.browseCount.textContent =
-    `${inBudget.length.toLocaleString()} of ${all.length.toLocaleString()} journals match` +
+    `${inBudget.length.toLocaleString()} of ${all.length.toLocaleString()} ${fieldLabel} journals match` +
     (list.length - inBudget.length ? ` · ${list.length - inBudget.length} over your cap` : '');
 
   el.results.hidden = false;
@@ -607,6 +636,10 @@ function setMode(next) {
 el.modeMatch.addEventListener('click', () => setMode('match'));
 el.modeBrowse.addEventListener('click', () => setMode('browse'));
 el.browseSort.addEventListener('change', () => renderBrowse());
+el.browseField.addEventListener('change', () => {
+  browseAll = null;          // different field, different catalog
+  renderBrowse();
+});
 let browseDebounce;
 el.browseQ.addEventListener('input', () => {
   clearTimeout(browseDebounce);

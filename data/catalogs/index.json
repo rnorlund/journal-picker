@@ -1,8 +1,67 @@
 {
  "fields": [
-  "brain-imaging",
-  "cardiovascular",
-  "dental-oral",
-  "genetics"
+  {
+   "id": "brain-imaging",
+   "name": "Brain imaging / neuroimaging",
+   "journals": 2384,
+   "submittable": 2320,
+   "with_review": 1161,
+   "bytes": 2342392,
+   "path": "journals.json"
+  },
+  {
+   "id": "aging",
+   "name": "Aging and the aging brain",
+   "journals": 3669,
+   "submittable": 3566,
+   "with_review": 729,
+   "bytes": 3669943,
+   "path": "catalogs/aging.json"
+  },
+  {
+   "id": "cardiovascular",
+   "name": "Cardiovascular",
+   "journals": 3762,
+   "submittable": 3705,
+   "with_review": 589,
+   "bytes": 3857167,
+   "path": "catalogs/cardiovascular.json"
+  },
+  {
+   "id": "dental-oral",
+   "name": "Dental, oral and craniofacial",
+   "journals": 1146,
+   "submittable": 1122,
+   "with_review": 200,
+   "bytes": 1156665,
+   "path": "catalogs/dental-oral.json"
+  },
+  {
+   "id": "genetics",
+   "name": "Genetics and genomics",
+   "journals": 5489,
+   "submittable": 5400,
+   "with_review": 862,
+   "bytes": 5594115,
+   "path": "catalogs/genetics.json"
+  },
+  {
+   "id": "llm-language",
+   "name": "Language models and human language",
+   "journals": 1164,
+   "submittable": 1062,
+   "with_review": 75,
+   "bytes": 1131793,
+   "path": "catalogs/llm-language.json"
+  },
+  {
+   "id": "oncology",
+   "name": "Oncology and cancer research",
+   "journals": 5583,
+   "submittable": 5510,
+   "with_review": 809,
+   "bytes": 5636269,
+   "path": "catalogs/oncology.json"
+  }
  ]
 }

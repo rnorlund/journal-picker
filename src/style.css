@@ -372,3 +372,8 @@ a { color: var(--accent); }
 
 .paper-list li.review-detail { border-left-color: var(--accent); color: var(--ink); }
 .paper-list li.review-detail .src { color: var(--ink-3); }
+
+.browse-field { flex: 0 0 260px; margin-bottom: 0; }
+.browse-field select { width: 100%; padding: 10px 12px; font: inherit;
+  background: var(--panel-2); color: var(--ink); border: 1px solid var(--line); border-radius: 9px; }
+.browse-field select:focus { outline: none; border-color: var(--accent); }
