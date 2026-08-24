@@ -21,7 +21,7 @@ const el = {
   themeBtn: $('themeBtn'), cardTpl: $('cardTpl'),
   modeMatch: $('modeMatch'), modeBrowse: $('modeBrowse'),
   matchPanel: $('matchPanel'), browsePanel: $('browsePanel'),
-  browseQ: $('browseQ'), browseSort: $('browseSort'), browseCount: $('browseCount'),
+  browseQ: $('browseQ'), browseCount: $('browseCount'),
   browseField: $('browseField'),
 };
 
@@ -240,8 +240,6 @@ function badgesFor(j) {
   }
   if (j.inDoaj) b.push(['b-plain', 'DOAJ']);
   if (j.isCore) b.push(['b-plain', 'Core venue']);
-  if (j.citedness != null) b.push(['b-plain', `${j.citedness} cites/paper (2yr)`]);
-  if (j.hIndex != null) b.push(['b-plain', `h-index ${j.hIndex}`]);
   if (!j.isJournal) b.push(['b-warn', j.isPreprint ? 'Preprint server' : 'Repository — not a journal']);
   return b;
 }
@@ -303,9 +301,15 @@ function renderCards(list) {
     const link = node.querySelector('.jname');
     link.textContent = tidyName(j.name);
     link.href = j.homepage || `https://openalex.org/${j.id}`;
-    const metaBits = [j.publisher, j.issn_l, j.worksCount ? `${j.worksCount.toLocaleString()} papers total` : null]
-      .filter(Boolean);
-    node.querySelector('.jmeta').textContent = metaBits.join(' · ');
+    const metaBits = [j.publisher, j.issn_l].filter(Boolean);
+    node.querySelector('.jmeta').innerHTML = esc(metaBits.join(' · ')) +
+      (j.citedness != null
+        ? ` · <b class="metric" title="Mean citations to the previous two years' articles, from OpenAlex. Comparable to a Journal Impact Factor but computed on open data — it is not Clarivate's JIF.">impact ${j.citedness}</b>`
+        : '') +
+      (j.hIndex != null
+        ? ` · <span class="metric-dim" title="h-index: the journal has ${j.hIndex} papers cited at least ${j.hIndex} times each, over its whole lifetime. It rewards age and size, so it is not an impact factor and is a poor way to compare a new journal with an old one.">h-index ${j.hIndex}</span>`
+        : '') +
+      (j.worksCount ? ` · ${j.worksCount.toLocaleString()} papers` : '');
 
     // cost
     const amt = node.querySelector('.cost-amount');
@@ -378,7 +382,7 @@ function render() {
   if (mode === 'browse') { renderBrowse(); return; }
   if (!lastRun) return;
   attachAgreements(lastRun.journals);
-  const list = applyFilters(lastRun.journals);
+  const list = sortResults(applyFilters(lastRun.journals), sortPrimary, sortSecondary);
 
   el.results.hidden = false;
   el.results.innerHTML = '';
@@ -387,10 +391,14 @@ function render() {
   const head = document.createElement('div');
   head.className = 'res-head';
   head.innerHTML = `
-    <h2>Recommended journals</h2>
-    <span class="res-count">${inBudget} match your criteria${
-      list.length - inBudget ? ` · ${list.length - inBudget} shown but over your cap` : ''}</span>`;
+    <div class="res-head-left">
+      <h2>Recommended journals</h2>
+      <span class="res-count">${inBudget} match your criteria${
+        list.length - inBudget ? ` · ${list.length - inBudget} shown but over your cap` : ''}</span>
+    </div>
+    ${sortBarHtml()}`;
   el.results.appendChild(head);
+  wireSortBar(render);
 
   if (!list.length) {
     el.empty.hidden = false;
@@ -554,26 +562,101 @@ function applyPreset(preset) {
     b.classList.toggle('is-on', b.dataset.preset === preset));
 }
 
-function sortBrowse(list) {
-  const key = el.browseSort.value;
-  // "Cheapest" needs two keys. Plenty of journals cost nothing to publish in
-  // because you accept a paywall, so minCost alone ties every hybrid and
-  // subscription venue at $0 — and then shows a $4,200 OA fee on the card,
-  // which reads as a bug. Break the tie on the open-access price so genuinely
-  // free-and-open journals sort above "free only if you stay paywalled".
-  const num = (v) => (v == null ? Infinity : v);
-  const minCost = (j) => (j._cost ? num(j._cost.minCost) : Infinity);
-  const oaCost = (j) => (j._cost ? num(j._cost.oaCost) : Infinity);
-  const cmp = {
-    field: (a, b) => b.topicWorks - a.topicWorks,
-    cheap: (a, b) => minCost(a) - minCost(b) || oaCost(a) - oaCost(b)
-                     || b.topicWorks - a.topicWorks,
-    share: (a, b) => (b.fieldShare ?? 0) - (a.fieldShare ?? 0),
-    cites: (a, b) => (b.citedness ?? 0) - (a.citedness ?? 0),
-    name:  (a, b) => a.name.localeCompare(b.name),
-  }[key] || (() => 0);
-  return list.sort(cmp);
+/**
+ * Sort options shared by both modes.
+ *
+ * "Impact" is OpenAlex's 2-year mean citedness — citations received by the
+ * previous two years' articles. That is the same calculation as the Journal
+ * Impact Factor, but computed on open data. It is deliberately NOT called a
+ * Journal Impact Factor: JIF is Clarivate's trademarked metric computed on Web
+ * of Science, the numbers differ, and claiming otherwise would be wrong.
+ */
+export const SORTS = {
+  fit:     { label: 'Best match',              cmp: (a, b) => (b.fit ?? -1) - (a.fit ?? -1) },
+  cheap:   { label: 'Cheapest to publish',     cmp: (a, b) => costKey(a) - costKey(b) },
+  apc:     { label: 'Lowest open-access fee',  cmp: (a, b) => oaKey(a) - oaKey(b) },
+  fast:    { label: 'Fastest review',          cmp: (a, b) => reviewKey(a) - reviewKey(b) },
+  impact:  { label: 'Highest impact (2yr)',    cmp: (a, b) => (b.citedness ?? -1) - (a.citedness ?? -1) },
+  hindex:  { label: 'Highest h-index (lifetime)', cmp: (a, b) => (b.hIndex ?? -1) - (a.hIndex ?? -1) },
+  share:   { label: 'Most specialised',        cmp: (a, b) => (b.fieldShare ?? -1) - (a.fieldShare ?? -1) },
+  volume:  { label: 'Most papers in my field', cmp: (a, b) => (b.topicWorks ?? 0) - (a.topicWorks ?? 0) },
+  cited:   { label: 'Journals I cite most',    cmp: (a, b) => (b.citedCount ?? 0) - (a.citedCount ?? 0) },
+  covered: { label: 'My university covers it', cmp: (a, b) => (b._agreement ? 1 : 0) - (a._agreement ? 1 : 0) },
+  name:    { label: 'Name (A\u2013Z)',           cmp: (a, b) => a.name.localeCompare(b.name) },
+};
+
+const num = (v) => (v == null ? Infinity : v);
+
+/**
+ * "Cheapest" must sort by the number printed on the card.
+ *
+ * Sorting on minCost is defensible — a hybrid journal costs nothing if you
+ * accept a paywall — but the card shows that journal's open-access fee, so the
+ * list rendered $4,200 above $0 and read as broken. Sorting on a figure the
+ * reader cannot see is a bug whatever the logic behind it. Use the displayed
+ * amount here; "Lowest open-access fee" covers the other question.
+ */
+const costKey = (j) => {
+  const c = j._cost;
+  if (!c) return Infinity;
+  if (c.minCost === 0 && (c.oaCost === 0 || c.oaCost == null)) return 0;  // free / covered
+  if (c.oaCost != null) return c.oaCost;                                   // gold or hybrid: shown fee
+  return num(c.minCost);
+};
+const oaKey = (j) => (j._cost ? num(j._cost.oaCost) : Infinity);
+// Unreliable medians must not win a "fastest review" sort.
+const reviewKey = (j) => (j.review && !j.review.suspect ? j.review.median : Infinity);
+
+/** Sort by a primary key, breaking ties with a secondary one. */
+export function sortResults(list, primary, secondary) {
+  const p = SORTS[primary] || SORTS.fit;
+  const sec = secondary && secondary !== primary ? SORTS[secondary] : null;
+  return list.sort((a, b) => {
+    const r = p.cmp(a, b);
+    if (r !== 0) return r;
+    return sec ? sec.cmp(a, b) : (b.fit ?? 0) - (a.fit ?? 0);
+  });
 }
+
+let sortPrimary = 'fit';
+let sortSecondary = '';
+try {
+  sortPrimary = localStorage.getItem('jp-sort1') || 'fit';
+  sortSecondary = localStorage.getItem('jp-sort2') || '';
+} catch {}
+
+/** The sort bar shown above results in both modes. */
+function sortBarHtml() {
+  const opts = (sel) => Object.entries(SORTS)
+    .map(([k, v]) => `<option value="${k}"${k === sel ? ' selected' : ''}>${v.label}</option>`)
+    .join('');
+  return `<div class="sortbar">
+    <label>Sort <select id="sort1">${opts(sortPrimary)}</select></label>
+    <label>then by <select id="sort2">
+      <option value=""${sortSecondary ? '' : ' selected'}>\u2014</option>
+      ${opts(sortSecondary)}</select></label>
+  </div>`;
+}
+
+function wireSortBar(rerender) {
+  const s1 = $('sort1'); const s2 = $('sort2');
+  if (!s1) return;
+  s1.addEventListener('change', () => {
+    sortPrimary = s1.value;
+    try { localStorage.setItem('jp-sort1', sortPrimary); } catch {}
+    rerender();
+  });
+  s2.addEventListener('change', () => {
+    sortSecondary = s2.value;
+    try { localStorage.setItem('jp-sort2', sortSecondary); } catch {}
+    rerender();
+  });
+}
+
+function sortBrowse(list) {
+  return sortResults(list, sortPrimary === 'fit' ? 'volume' : sortPrimary, sortSecondary);
+}
+
 
 async function renderBrowse() {
   const all = await ensureBrowse();
@@ -602,9 +685,15 @@ async function renderBrowse() {
   el.results.innerHTML = '';
   const head = document.createElement('div');
   head.className = 'res-head';
-  head.innerHTML = `<h2>Journals</h2><span class="res-count">showing ${
-    Math.min(inBudget.length, 100).toLocaleString()} of ${inBudget.length.toLocaleString()}</span>`;
+  head.innerHTML = `
+    <div class="res-head-left">
+      <h2>Journals</h2>
+      <span class="res-count">showing ${Math.min(inBudget.length, 100).toLocaleString()} of ${
+        inBudget.length.toLocaleString()}</span>
+    </div>
+    ${sortBarHtml()}`;
   el.results.appendChild(head);
+  wireSortBar(renderBrowse);
 
   if (!list.length) {
     el.empty.hidden = false;
@@ -640,7 +729,6 @@ function setMode(next) {
 
 el.modeMatch.addEventListener('click', () => setMode('match'));
 el.modeBrowse.addEventListener('click', () => setMode('browse'));
-el.browseSort.addEventListener('change', () => renderBrowse());
 el.browseField.addEventListener('change', () => {
   browseAll = null;          // different field, different catalog
   renderBrowse();

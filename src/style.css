@@ -393,3 +393,17 @@ a { color: var(--accent); }
 .agreement-panel summary::before { content: "▸"; font-size: 10px; transition: .15s; color: var(--ink-3); }
 .agreement-panel details[open] summary::before { transform: rotate(90deg); }
 .agreement-panel .drop { margin-top: 11px; }
+
+/* ---------- sort bar ---------- */
+.res-head { align-items: flex-end; }
+.res-head-left { display: flex; flex-direction: column; gap: 2px; }
+.sortbar { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; }
+.sortbar label { font-size: 11.5px; color: var(--ink-3); font-weight: 500;
+  display: inline-flex; align-items: center; gap: 6px; margin: 0; }
+.sortbar select { font: inherit; font-size: 12.5px; padding: 5px 8px;
+  background: var(--panel); color: var(--ink);
+  border: 1px solid var(--line); border-radius: 7px; }
+.sortbar select:focus { outline: none; border-color: var(--accent); }
+.metric { color: var(--ink); font-weight: 650; cursor: help;
+  border-bottom: 1px dotted var(--ink-3); }
+.metric-dim { color: var(--ink-3); }
