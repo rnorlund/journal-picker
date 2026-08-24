@@ -122,13 +122,21 @@ def field_query(spec):
             terms.add(sig.lower())
 
     quoted = ['"%s"' % t if " " in t else t for t in sorted(terms)]
-    return "(%s) AND (FIRST_PDATE:[%d TO %d])" % (
-        " OR ".join(quoted), YEAR_FROM, YEAR_TO)
+    return " OR ".join(quoted)
 
 
 def norm_issn(s):
-    m = "".join(c for c in str(s or "").upper() if c.isdigit() or c == "X")
-    return "%s-%s" % (m[:4], m[4:]) if len(m) == 8 else None
+    """First real ISSN from a possibly multi-valued field.
+
+    Europe PMC packs several into one string ("0976-4879; 0975-7406; "), which
+    stripped down to 16 digits and failed an 8-character check, silently
+    dropping 58% of journals from the dental sweep.
+    """
+    for part in str(s or "").replace("|", ";").replace("/", ";").split(";"):
+        m = "".join(c for c in part.upper() if c.isdigit() or c == "X")
+        if len(m) == 8:
+            return "%s-%s" % (m[:4], m[4:])
+    return None
 
 
 def main():
@@ -140,7 +148,8 @@ def main():
     with open(spec_path) as fh:
         spec = json.load(fh)
 
-    query = field_query(spec)
+    base_terms = field_query(spec)
+    query = "(%s) AND (FIRST_PDATE:[%d TO %d])" % (base_terms, YEAR_FROM, YEAR_TO)
     log("FIELD %s" % FIELD)
     log("  query is %d chars, %d OR-terms" % (len(query), query.count(" OR ") + 1))
 
@@ -157,33 +166,56 @@ def main():
     log("  %s articles match this field in Europe PMC" % f"{total:,}")
     log("  sampling up to %s of them" % f"{SAMPLE_TARGET:,}")
 
+    # Slice by publication year rather than paging one query deep.
+    #
+    # cursorMark pages indefinitely in principle, but Europe PMC starts
+    # returning 504s and 502s around page 20-30 because a deep cursor is
+    # expensive server-side. Splitting the same span into one query per year
+    # keeps every cursor shallow — six pages instead of forty — for identical
+    # coverage, and a failure now costs one year rather than the whole sweep.
+    years = list(range(YEAR_TO, YEAR_FROM - 1, -1))
+    per_year = max(PAGE_SIZE, SAMPLE_TARGET // len(years))
+    log("  slicing by year: %d years, up to %s articles each"
+        % (len(years), f"{per_year:,}"))
+
     t0 = time.time()
-    while seen_articles < min(SAMPLE_TARGET, total):
-        data = fetch({"query": query, "format": "json", "pageSize": PAGE_SIZE,
-                      "resultType": "lite", "cursorMark": cursor})
-        rows = data.get("resultList", {}).get("result", [])
-        if not rows:
+    for yr in years:
+        if seen_articles >= SAMPLE_TARGET:
             break
-        for r in rows:
-            title = r.get("journalTitle")
-            if not title:
-                continue
-            issn = norm_issn(r.get("journalIssn"))
-            key = issn or "t:" + title.lower()
-            counts[key] += 1
-            names.setdefault(key, title)
-            if issn:
-                issn_of[key] = issn
-        seen_articles += len(rows)
-        page += 1
-        nxt = data.get("nextCursorMark")
-        if not nxt or nxt == cursor:
-            break
-        cursor = nxt
-        if page % 5 == 0:
-            rate = seen_articles / max(time.time() - t0, 1)
-            log("    page %3d  %7s articles  %5d journals  %.0f art/s"
-                % (page, f"{seen_articles:,}", len(counts), rate))
+        yq = "(%s) AND (FIRST_PDATE:[%d TO %d])" % (base_terms, yr, yr)
+        cursor = "*"
+        got_year = 0
+        while got_year < per_year and seen_articles < SAMPLE_TARGET:
+            try:
+                data = fetch({"query": yq, "format": "json", "pageSize": PAGE_SIZE,
+                              "resultType": "lite", "cursorMark": cursor})
+            except Exception as err:
+                log("    %d: giving up after %s articles (%s)"
+                    % (yr, f"{got_year:,}", type(err).__name__))
+                break
+            rows = data.get("resultList", {}).get("result", [])
+            if not rows:
+                break
+            for r in rows:
+                title = r.get("journalTitle")
+                if not title:
+                    continue
+                issn = norm_issn(r.get("journalIssn"))
+                key = issn or "t:" + title.lower()
+                counts[key] += 1
+                names.setdefault(key, title)
+                if issn:
+                    issn_of[key] = issn
+            got_year += len(rows)
+            seen_articles += len(rows)
+            page += 1
+            nxt = data.get("nextCursorMark")
+            if not nxt or nxt == cursor:
+                break
+            cursor = nxt
+        rate = seen_articles / max(time.time() - t0, 1)
+        log("    %d  %7s articles  %5d journals  %.0f art/s"
+            % (yr, f"{seen_articles:,}", len(counts), rate))
 
     kept = {k: c for k, c in counts.items() if c >= MIN_ARTICLES}
     elapsed = time.time() - t0

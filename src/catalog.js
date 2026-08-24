@@ -22,10 +22,21 @@ const CATALOG_PATH = (field, base) =>
 const rawCache = new Map();   // field -> payload | null
 const mergedCache = new Map(); // cache key -> merged index
 
-/** ISSNs come in many shapes; compare them in one. */
+/**
+ * ISSNs come in many shapes; compare them in one.
+ *
+ * Europe PMC returns several ISSNs in a single field, semicolon-separated
+ * ("0976-4879; 0975-7406; "). Stripping non-digits from the whole string
+ * yielded 16 characters, failed the 8-character check and returned null, so
+ * those journals silently failed to match the catalog and rendered as "not in
+ * our catalog". Take the first value that is actually an ISSN.
+ */
 export const normIssn = (s) => {
-  const m = String(s || '').toUpperCase().replace(/[^0-9X]/g, '');
-  return m.length === 8 ? `${m.slice(0, 4)}-${m.slice(4)}` : null;
+  for (const part of String(s || '').split(/[;,|/]+/)) {
+    const m = part.toUpperCase().replace(/[^0-9X]/g, '');
+    if (m.length === 8) return `${m.slice(0, 4)}-${m.slice(4)}`;
+  }
+  return null;
 };
 
 /** Journal titles vary by punctuation, case, and the leading article. */

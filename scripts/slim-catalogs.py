@@ -41,8 +41,17 @@ MAX_TOPICS = 5          # shown as "journal's main topics"
 
 
 def norm_issn(s):
-    m = "".join(c for c in str(s or "").upper() if c.isdigit() or c == "X")
-    return "%s-%s" % (m[:4], m[4:]) if len(m) == 8 else None
+    """First real ISSN from a possibly multi-valued field.
+
+    Europe PMC packs several into one string ("0976-4879; 0975-7406; "), which
+    stripped down to 16 digits and failed an 8-character check, silently
+    dropping 58% of journals from the dental sweep.
+    """
+    for part in str(s or "").replace("|", ";").replace("/", ";").split(";"):
+        m = "".join(c for c in part.upper() if c.isdigit() or c == "X")
+        if len(m) == 8:
+            return "%s-%s" % (m[:4], m[4:])
+    return None
 
 
 def load_timing():
