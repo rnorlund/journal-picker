@@ -1,3 +1,17 @@
+"""Smoke-test the DEPLOYED site. Opt-in only.
+
+Every run pulls multi-megabyte catalogs over the production CDN, and doing it
+routinely is what exhausted the free tier's bandwidth and left Netlify refusing
+production deploys (drafts still worked, which is the tell). Test against
+localhost during development; run this only to confirm a release.
+
+    JP_PROD=1 python3 test/ui-prod.py
+"""
+import os, sys
+if not os.environ.get('JP_PROD'):
+    print('skipped: set JP_PROD=1 to test against production (uses CDN bandwidth)')
+    sys.exit(0)
+
 import asyncio
 from playwright.async_api import async_playwright
 async def main():

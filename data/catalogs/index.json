@@ -14,8 +14,8 @@
    "name": "Aging and the aging brain",
    "journals": 3669,
    "submittable": 3566,
-   "with_review": 729,
-   "bytes": 3669943,
+   "with_review": 1552,
+   "bytes": 3721600,
    "path": "catalogs/aging.json"
   },
   {
@@ -23,8 +23,8 @@
    "name": "Cardiovascular",
    "journals": 3762,
    "submittable": 3705,
-   "with_review": 589,
-   "bytes": 3857167,
+   "with_review": 1812,
+   "bytes": 3933761,
    "path": "catalogs/cardiovascular.json"
   },
   {
@@ -32,8 +32,8 @@
    "name": "Dental, oral and craniofacial",
    "journals": 1146,
    "submittable": 1122,
-   "with_review": 200,
-   "bytes": 1156665,
+   "with_review": 498,
+   "bytes": 1175306,
    "path": "catalogs/dental-oral.json"
   },
   {
@@ -41,8 +41,8 @@
    "name": "Genetics and genomics",
    "journals": 5489,
    "submittable": 5400,
-   "with_review": 862,
-   "bytes": 5594115,
+   "with_review": 2762,
+   "bytes": 5713128,
    "path": "catalogs/genetics.json"
   },
   {
@@ -50,8 +50,8 @@
    "name": "Language models and human language",
    "journals": 1164,
    "submittable": 1062,
-   "with_review": 75,
-   "bytes": 1131793,
+   "with_review": 107,
+   "bytes": 1133804,
    "path": "catalogs/llm-language.json"
   },
   {
@@ -59,8 +59,8 @@
    "name": "Oncology and cancer research",
    "journals": 5583,
    "submittable": 5510,
-   "with_review": 809,
-   "bytes": 5636269,
+   "with_review": 2590,
+   "bytes": 5747891,
    "path": "catalogs/oncology.json"
   }
  ]
