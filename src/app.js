@@ -156,8 +156,11 @@ const esc = (s) => String(s ?? '').replace(/[&<>"']/g,
 
 function renderEvidence(run) {
     el.evidence.hidden = false;
+  const caveats = (run.coverageNotes || []).map((c) =>
+    `<p class="caveat"><b>${esc(c.field)}:</b> ${esc(c.note)}</p>`).join('');
   el.evidence.innerHTML = `
     <div class="panel-head"><h2>How these were found</h2></div>
+    ${caveats}
     <div class="ev-grid">
       <div class="ev-block">
         <h4>Search probes</h4>

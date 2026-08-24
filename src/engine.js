@@ -445,6 +445,12 @@ export async function recommend({ title, abstract, references }, opts = {}) {
     query: { title, abstract, sinceYear: config.sinceYear },
     keywords: kw,
     fields: detected,
+    // Honest limits: a field can declare that our retrieval source under-covers
+    // it. llm-language does, because Europe PMC indexes biomedical literature
+    // and most NLP work appears at ACL, EMNLP and on arXiv.
+    coverageNotes: detected.matched
+      .filter((m) => m.field.coverage_note)
+      .map((m) => ({ field: m.field.name, note: m.field.coverage_note })),
     catalogSize: catalog?.size || 0,
     catalogFields: catalog?.fields || [],
     catalogGenerated: catalog?.generated || null,
