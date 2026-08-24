@@ -395,10 +395,13 @@ function render() {
       <h2>Recommended journals</h2>
       <span class="res-count">${inBudget} match your criteria${
         list.length - inBudget ? ` · ${list.length - inBudget} shown but over your cap` : ''}</span>
+      <div class="fchips">${activeFilterChips()}</div>
     </div>
     ${sortBarHtml()}`;
   el.results.appendChild(head);
   wireSortBar(render);
+  wireFilterChips(render);
+  flashCount();
 
   if (!list.length) {
     el.empty.hidden = false;
@@ -625,6 +628,64 @@ try {
   sortSecondary = localStorage.getItem('jp-sort2') || '';
 } catch {}
 
+/**
+ * A chip per active constraint, above the results.
+ *
+ * Without this the only feedback was a count, so a filter that legitimately
+ * changes nothing — an APC cap when every remaining journal is already covered
+ * at $0 — was indistinguishable from a filter that did not work. Showing what
+ * is applied, and letting each chip be clicked off, makes the state legible.
+ */
+function activeFilterChips() {
+  const chips = [];
+  const cap = sliderApc();
+  if (cap !== Infinity) chips.push(['apc', `under $${cap.toLocaleString()}`]);
+
+  const route = currentRoute();
+  const routeLabel = { oa: 'open access only', free: 'free for me',
+                       freeoa: 'free and open access' }[route];
+  if (routeLabel) chips.push(['route', routeLabel]);
+
+  if (el.agreeOnly.checked) chips.push(['agree', 'my institution covers it']);
+  if (el.doajOnly.checked) chips.push(['doaj', 'in DOAJ']);
+  if (el.coreOnly.checked) chips.push(['core', 'well-established venue']);
+  const mc = +el.citeSlider.value;
+  if (mc > 0) chips.push(['cite', `impact \u2265 ${mc}`]);
+  if (!el.hidePreprint.checked) chips.push(['pre', 'including preprint servers']);
+
+  if (!chips.length) return '<span class="chip-none">no filters applied</span>';
+  return chips.map(([k, label]) =>
+    `<button class="fchip" data-clear="${k}" title="Click to remove">${esc(label)} <b>\u00d7</b></button>`
+  ).join('');
+}
+
+/** Let a chip switch its own filter back off. */
+function wireFilterChips(rerender) {
+  document.querySelectorAll('.fchip').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      switch (btn.dataset.clear) {
+        case 'apc':   el.apcSlider.value = '13'; el.apcOut.textContent = 'no limit'; break;
+        case 'route': document.querySelector('input[name="route"][value="any"]').checked = true; break;
+        case 'agree': el.agreeOnly.checked = false; break;
+        case 'doaj':  el.doajOnly.checked = false; break;
+        case 'core':  el.coreOnly.checked = false; break;
+        case 'cite':  el.citeSlider.value = '0'; el.citeOut.textContent = 'any'; break;
+        case 'pre':   el.hidePreprint.checked = true; break;
+      }
+      rerender();
+    });
+  });
+}
+
+/** Briefly highlight the count so a change registers even when it is a no-op. */
+function flashCount() {
+  const n = el.results.querySelector('.res-count');
+  if (!n) return;
+  n.classList.remove('flash');
+  void n.offsetWidth;          // restart the animation
+  n.classList.add('flash');
+}
+
 /** The sort bar shown above results in both modes. */
 function sortBarHtml() {
   const opts = (sel) => Object.entries(SORTS)
@@ -690,10 +751,13 @@ async function renderBrowse() {
       <h2>Journals</h2>
       <span class="res-count">showing ${Math.min(inBudget.length, 100).toLocaleString()} of ${
         inBudget.length.toLocaleString()}</span>
+      <div class="fchips">${activeFilterChips()}</div>
     </div>
     ${sortBarHtml()}`;
   el.results.appendChild(head);
   wireSortBar(renderBrowse);
+  wireFilterChips(renderBrowse);
+  flashCount();
 
   if (!list.length) {
     el.empty.hidden = false;
