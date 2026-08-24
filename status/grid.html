@@ -1,0 +1,127 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><style>
+:root{
+ --bg:#0f1116;--card:#171a21;--card2:#1c2029;--ink:#e9edf3;--ink2:#a8b2c1;--ink3:#79839400;
+ --dim:#7c8698;--line:#2a2f3a;--acc:#5b9bff;
+ --ok:#4fd39a;--okbg:#14312a;--wip:#e8b060;--wipbg:#33270f;
+ --todo:#8b95a6;--todobg:#22262f;--blocked:#ff8a80;--blockedbg:#331a18;
+ --skip:#9a86c9;--skipbg:#241d33;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--ink);font:13px/1.45 -apple-system,BlinkMacSystemFont,"Segoe UI",Inter,sans-serif;padding:26px 30px;width:1560px}
+.head{display:flex;justify-content:space-between;align-items:flex-start;border-bottom:1px solid var(--line);padding-bottom:16px;margin-bottom:20px}
+h1{font-size:24px;letter-spacing:-.02em;display:flex;align-items:center;gap:11px}
+.mark{width:22px;height:22px;border-radius:6px;background:linear-gradient(135deg,#5b9bff,#c39cf0)}
+.sub{color:var(--dim);font-size:12.5px;margin-top:7px}
+.sub a{color:var(--acc);text-decoration:none}
+.tally{display:flex;gap:9px}
+.t{background:var(--card);border:1px solid var(--line);border-radius:9px;padding:9px 14px;text-align:center;min-width:74px}
+.t b{display:block;font-size:21px;letter-spacing:-.02em}
+.t span{font-size:10px;text-transform:uppercase;letter-spacing:.07em;color:var(--dim)}
+.t.ok b{color:var(--ok)} .t.wip b{color:var(--wip)} .t.blk b{color:var(--blocked)}
+.cols{column-count:2;column-gap:22px}
+.sec{background:var(--card);border:1px solid var(--line);border-radius:11px;padding:15px 17px;margin-bottom:16px;break-inside:avoid}
+.sec h2{font-size:11px;text-transform:uppercase;letter-spacing:.09em;color:var(--dim);padding-bottom:9px;border-bottom:1px solid var(--line);margin-bottom:10px;display:flex;justify-content:space-between}
+.sec h2 em{font-style:normal;color:var(--ink2);letter-spacing:0;text-transform:none;font-size:11px}
+.row{display:flex;gap:10px;padding:5px 0;align-items:flex-start}
+.row+.row{border-top:1px solid #21252e}
+.pill{flex:none;font-size:9.5px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;padding:2.5px 7px;border-radius:20px;margin-top:1px;min-width:60px;text-align:center}
+.p-ok{background:var(--okbg);color:var(--ok)} .p-wip{background:var(--wipbg);color:var(--wip)}
+.p-todo{background:var(--todobg);color:var(--todo)} .p-blk{background:var(--blockedbg);color:var(--blocked)}
+.p-skip{background:var(--skipbg);color:var(--skip)}
+.txt{flex:1;min-width:0}
+.txt b{font-weight:600;font-size:12.5px}
+.txt i{font-style:normal;display:block;color:var(--dim);font-size:11px;margin-top:1px}
+.note{background:var(--card2);border-left:2px solid var(--acc);border-radius:0 8px 8px 0;padding:11px 13px;margin-top:11px;font-size:11.5px;color:var(--ink2)}
+.note b{color:var(--ink)}
+.foot{margin-top:6px;color:var(--dim);font-size:11px;display:flex;gap:18px;flex-wrap:wrap}
+.k{display:inline-flex;align-items:center;gap:5px}
+.dot{width:8px;height:8px;border-radius:3px;display:inline-block}
+</style></head><body>
+
+<div class="head">
+ <div>
+  <h1><span class="mark"></span>Journal Picker — status</h1>
+  <div class="sub">LIVE → <a>journal-picker.netlify.app</a> · no sign-up, no API key · 2,384-journal catalog · <b>no blockers</b></div>
+ </div>
+ <div class="tally">
+  <div class="t ok"><b>24</b><span>done</span></div>
+  <div class="t wip"><b>2</b><span>in progress</span></div>
+  <div class="t"><b>12</b><span>to do</span></div>
+  <div class="t blk"><b>2</b><span>blocked</span></div>
+ </div>
+</div>
+
+<div class="cols">
+
+<div class="sec"><h2>1 · Core application <em>12/12</em></h2>
+<div class="row"><span class="pill p-ok">done</span><div class="txt"><b>Retrieval engine — Europe PMC, unmetered</b><i>boolean queries · 1,000 results/call · ~2,000 papers, 628 venues</i></div></div>
+<div class="row"><span class="pill p-ok">done</span><div class="txt"><b>Scoring: similarity + volume + breadth + specialisation</b><i>verified on stroke/aphasia: Front. Neurology, Brain Comms, NeuroImage:Clinical</i></div></div>
+<div class="row"><span class="pill p-ok">done</span><div class="txt"><b>"Similar papers they published" evidence</b><i>ranked by cross-query agreement, not one query's top hit</i></div></div>
+<div class="row"><span class="pill p-ok">done</span><div class="txt"><b>DOAJ-verified APC prices</b><i>precomputed; price source labelled on every card</i></div></div>
+<div class="row"><span class="pill p-ok">done</span><div class="txt"><b>Specialisation signal</b><i>demoted Cureus off page 1 (5% in-field vs Brain Comms 54%)</i></div></div>
+<div class="row"><span class="pill p-ok">done</span><div class="txt"><b>Four publishing routes</b><i>"free" ≠ "open access", modelled properly</i></div></div>
+<div class="row"><span class="pill p-ok">done</span><div class="txt"><b>Cost ceiling slider</b><i>over-budget greyed, not hidden</i></div></div>
+<div class="row"><span class="pill p-ok">done</span><div class="txt"><b>Quality filters</b><i>DOAJ · core venue · citedness · hide preprints</i></div></div>
+<div class="row"><span class="pill p-ok">done</span><div class="txt"><b>Institutional agreement upload</b><i>8,588 journals from uscoo.xlsm in ~130 ms, zero dependencies</i></div></div>
+<div class="row"><span class="pill p-ok">done</span><div class="txt"><b>Rate limiting + backoff</b></div></div>
+<div class="row"><span class="pill p-ok">done</span><div class="txt"><b>Light/dark theme, responsive</b></div></div>
+<div class="row"><span class="pill p-ok">done</span><div class="txt"><b>Test suite</b><i>125 agreement assertions + 4 engine/UI suites, all passing</i></div></div>
+<div class="row"><span class="pill p-skip">n/a</span><div class="txt"><b>API keys</b><i>no longer needed — nothing in the request path is metered</i></div></div>
+</div>
+
+<div class="sec"><h2>2 · Getting it in front of people</h2>
+<div class="row"><span class="pill p-ok">done</span><div class="txt"><b>Deployed public URL</b><i>journal-picker.netlify.app</i></div></div>
+<div class="row"><span class="pill p-ok">done</span><div class="txt"><b>Git repo + MIT licence</b><i>4 commits</i></div></div>
+<div class="row"><span class="pill p-todo">to do</span><div class="txt"><b>Push to public GitHub</b><i>one command — say the word</i></div></div>
+<div class="row"><span class="pill p-todo">to do</span><div class="txt"><b>Landing copy: what it does &amp; doesn't do</b></div></div>
+<div class="row"><span class="pill p-skip">n/a</span><div class="txt"><b>Backend proxy</b><i>not needed — retrieval is unmetered</i></div></div>
+</div>
+
+<div class="sec"><h2>3 · Precomputed catalog</h2>
+<div class="row"><span class="pill p-ok">done</span><div class="txt"><b>Curated brain-imaging topic set</b><i>78 topics</i></div></div>
+<div class="row"><span class="pill p-ok">done</span><div class="txt"><b>Builder: throttled, checkpointed, resumable, shardable</b></div></div>
+<div class="row"><span class="pill p-ok">done</span><div class="txt"><b>Topic-volume sweep</b><i>sharded 3× across axon-server01/02/03</i></div></div>
+<div class="row"><span class="pill p-ok">done</span><div class="txt"><b>Journal metadata + DOAJ APC sweep</b><i>2,384 journals · 1,467 known APC · 95 diamond OA</i></div></div>
+<div class="row"><span class="pill p-ok">done</span><div class="txt"><b>Catalog wired into app</b><i>3.4 MB → 602 KB gzipped</i></div></div>
+<div class="row"><span class="pill p-todo">to do</span><div class="txt"><b>Fix 2 journals whose DOAJ price didn't join</b><i>Imaging Neuroscience, Aperture Neuro show gold with no price</i></div></div>
+<div class="row"><span class="pill p-todo">to do</span><div class="txt"><b>"Browse all free journals in my field" view</b><i>95 diamond venues to show — catalog makes it trivial</i></div></div>
+</div>
+
+<div class="sec"><h2>4 · Field expansion <em>your priority order</em></h2>
+<div class="row"><span class="pill p-ok">done</span><div class="txt"><b>Brain imaging</b><i>72 methods · 50 populations · 78 topics</i></div></div>
+<div class="row"><span class="pill p-ok">done</span><div class="txt"><b>Multi-field refactor + auto-detection</b><i>adding a field is now a JSON drop-in, not a code change</i></div></div>
+<div class="row"><span class="pill p-wip">partial</span><div class="txt"><b>Aphasia / stroke</b><i>already well covered by brain-imaging lexicons; own file only widens non-imaging work</i></div></div>
+<div class="row"><span class="pill p-todo">next</span><div class="txt"><b>Dental imaging / tooth &amp; oral health</b><i>genuinely new territory — CBCT, panoramic, intraoral</i></div></div>
+<div class="row"><span class="pill p-todo">to do</span><div class="txt"><b>Cardiovascular</b><i>cardiac MRI, echo, CT angiography</i></div></div>
+<div class="row"><span class="pill p-todo">to do</span><div class="txt"><b>Genetics</b><i>stress-tests the method-lexicon approach most</i></div></div>
+</div>
+
+<div class="sec"><h2>5 · Known gaps</h2>
+<div class="row"><span class="pill p-blk">blocked</span><div class="txt"><b>Acceptance rates</b><i>no open dataset exists — checking what USC licenses</i></div></div>
+<div class="row"><span class="pill p-blk">blocked</span><div class="txt"><b>Time-to-first-decision / review speed</b><i>same problem</i></div></div>
+<div class="row"><span class="pill p-todo">to do</span><div class="txt"><b>Author ratings of journals</b><i>needs first backend + moderation policy · decide ORCID vs open</i></div></div>
+<div class="row"><span class="pill p-todo">to do</span><div class="txt"><b>Aims &amp; scope text per journal</b><i>~500 pages to scrape · 1–2 weeks</i></div></div>
+<div class="row"><span class="pill p-todo">to do</span><div class="txt"><b>Embedding-based semantic matching</b><i>3× L40S sitting idle</i></div></div>
+<div class="row"><span class="pill p-todo">to do</span><div class="txt"><b>Predatory-journal screening</b><i>DOAJ + Scopus + PubMed indexing as proxy</i></div></div>
+<div class="row"><span class="pill p-todo">to do</span><div class="txt"><b>Institution presets</b><i>pick your university instead of uploading</i></div></div>
+<div class="row"><span class="pill p-skip">never</span><div class="txt"><b>Fabricated metrics</b><i>no invented acceptance rates — deliberately excluded</i></div></div>
+</div>
+
+<div class="sec"><h2>Waiting on you</h2>
+<div class="row"><span class="pill p-wip">decide</span><div class="txt"><b>Ratings sign-in: ORCID or open?</b><i>ORCID proves a real publication record; open needs heavy moderation</i></div></div>
+<div class="row"><span class="pill p-wip">mine</span><div class="txt"><b>I owe you the USC licence check</b><i>JCR / Cabell's terms before anything goes into a public tool</i></div></div>
+<div class="row"><span class="pill p-wip">say go</span><div class="txt"><b>Push the repo public</b></div></div>
+<div class="note"><b>Biggest open risk:</b> acceptance rates are the most-requested feature and the least available. Realistic path is hand-curating the top ~200 journals and labelling them with check dates — everything else here is engineering, that one is data.</div>
+</div>
+
+</div>
+
+<div class="foot">
+ <span class="k"><i class="dot" style="background:#4fd39a"></i>done &amp; verified</span>
+ <span class="k"><i class="dot" style="background:#e8b060"></i>in progress / needs a decision</span>
+ <span class="k"><i class="dot" style="background:#8b95a6"></i>not started</span>
+ <span class="k"><i class="dot" style="background:#ff8a80"></i>blocked by missing data</span>
+ <span class="k"><i class="dot" style="background:#9a86c9"></i>deliberately not doing</span>
+ <span>· axon-server01/02/03 idle and available · 2026-08-23</span>
+</div>
+</body></html>
