@@ -1,0 +1,604 @@
+{
+ "name": "Global and planetary health",
+ "description": "Health in low- and middle-income settings, global disease burden, and climate and environmental determinants of health.",
+ "signals": [
+  "global health",
+  "low and middle income",
+  "lmic",
+  "sub saharan",
+  "planetary health",
+  "climate change",
+  "tropical",
+  "neglected tropical",
+  "development assistance",
+  "who",
+  "universal health coverage",
+  "health system strengthening",
+  "humanitarian",
+  "displacement",
+  "equity",
+  "burden of disease",
+  "one health",
+  "environmental health",
+  "heat",
+  "vector borne"
+ ],
+ "methods": [
+  [
+   "demographic and health survey",
+   "demographic and health surveys"
+  ],
+  [
+   "dhs",
+   "demographic and health surveys"
+  ],
+  [
+   "mics",
+   "multiple indicator cluster survey"
+  ],
+  [
+   "cluster randomi",
+   "cluster randomised trial"
+  ],
+  [
+   "stepped wedge",
+   "stepped wedge trial"
+  ],
+  [
+   "pragmatic trial",
+   "pragmatic trial"
+  ],
+  [
+   "randomised controlled trial",
+   "randomised controlled trial"
+  ],
+  [
+   "cost effectiveness",
+   "cost effectiveness analysis"
+  ],
+  [
+   "disability adjusted",
+   "disability adjusted life years"
+  ],
+  [
+   "burden of disease",
+   "global burden of disease"
+  ],
+  [
+   "geospatial",
+   "geospatial modelling"
+  ],
+  [
+   "small area estimation",
+   "small area estimation"
+  ],
+  [
+   "remote sensing",
+   "remote sensing exposure"
+  ],
+  [
+   "satellite",
+   "satellite derived exposure"
+  ],
+  [
+   "compartmental model",
+   "compartmental transmission model"
+  ],
+  [
+   "agent based model",
+   "agent based model"
+  ],
+  [
+   "microsimulation",
+   "microsimulation"
+  ],
+  [
+   "difference in differences",
+   "difference in differences"
+  ],
+  [
+   "interrupted time series",
+   "interrupted time series"
+  ],
+  [
+   "instrumental variable",
+   "instrumental variable"
+  ],
+  [
+   "distributed lag",
+   "distributed lag non linear model"
+  ],
+  [
+   "time series regression",
+   "time series regression"
+  ],
+  [
+   "case crossover",
+   "case crossover design"
+  ],
+  [
+   "exposure assessment",
+   "exposure assessment"
+  ],
+  [
+   "land use regression",
+   "land use regression"
+  ],
+  [
+   "life cycle assessment",
+   "life cycle assessment"
+  ],
+  [
+   "scenario projection",
+   "climate scenario projection"
+  ],
+  [
+   "attributable fraction",
+   "attributable burden"
+  ],
+  [
+   "systematic review",
+   "systematic review"
+  ],
+  [
+   "meta analysis",
+   "meta analysis"
+  ],
+  [
+   "qualitative interview",
+   "qualitative interviews"
+  ],
+  [
+   "participatory",
+   "participatory research"
+  ],
+  [
+   "health facility survey",
+   "health facility assessment"
+  ],
+  [
+   "verbal autopsy",
+   "verbal autopsy"
+  ],
+  [
+   "surveillance",
+   "disease surveillance"
+  ],
+  [
+   "genomic surveillance",
+   "genomic surveillance"
+  ],
+  [
+   "point of care",
+   "point of care diagnostics"
+  ],
+  [
+   "task shifting",
+   "task shifting"
+  ],
+  [
+   "community health worker",
+   "community health worker programme"
+  ],
+  [
+   "mobile health",
+   "mhealth intervention"
+  ],
+  [
+   "implementation",
+   "implementation research"
+  ]
+ ],
+ "populations": [
+  [
+   "malaria",
+   "malaria"
+  ],
+  [
+   "tuberculosis",
+   "tuberculosis"
+  ],
+  [
+   "hiv",
+   "hiv aids"
+  ],
+  [
+   "neglected tropical disease",
+   "neglected tropical diseases"
+  ],
+  [
+   "schistosomiasis",
+   "schistosomiasis"
+  ],
+  [
+   "dengue",
+   "dengue"
+  ],
+  [
+   "cholera",
+   "cholera"
+  ],
+  [
+   "measles",
+   "measles"
+  ],
+  [
+   "polio",
+   "poliomyelitis"
+  ],
+  [
+   "covid",
+   "covid 19"
+  ],
+  [
+   "antimicrobial resistance",
+   "antimicrobial resistance"
+  ],
+  [
+   "maternal mortality",
+   "maternal mortality"
+  ],
+  [
+   "neonatal mortality",
+   "neonatal mortality"
+  ],
+  [
+   "child mortality",
+   "under five mortality"
+  ],
+  [
+   "stillbirth",
+   "stillbirth"
+  ],
+  [
+   "preterm birth",
+   "preterm birth"
+  ],
+  [
+   "family planning",
+   "family planning"
+  ],
+  [
+   "immunisation",
+   "immunisation coverage"
+  ],
+  [
+   "vaccine",
+   "vaccine delivery"
+  ],
+  [
+   "water sanitation",
+   "water sanitation and hygiene"
+  ],
+  [
+   "diarrhoea",
+   "diarrhoeal disease"
+  ],
+  [
+   "pneumonia",
+   "childhood pneumonia"
+  ],
+  [
+   "malnutrition",
+   "malnutrition"
+  ],
+  [
+   "stunting",
+   "child stunting"
+  ],
+  [
+   "anaemia",
+   "anaemia"
+  ],
+  [
+   "non communicable disease",
+   "non communicable diseases"
+  ],
+  [
+   "diabetes",
+   "diabetes in lmics"
+  ],
+  [
+   "hypertension",
+   "hypertension in lmics"
+  ],
+  [
+   "cancer",
+   "cancer in lmics"
+  ],
+  [
+   "mental health",
+   "global mental health"
+  ],
+  [
+   "injury",
+   "road traffic injury"
+  ],
+  [
+   "surgery",
+   "global surgery"
+  ],
+  [
+   "universal health coverage",
+   "universal health coverage"
+  ],
+  [
+   "out of pocket",
+   "catastrophic health expenditure"
+  ],
+  [
+   "health workforce",
+   "health workforce"
+  ],
+  [
+   "health financing",
+   "health financing"
+  ],
+  [
+   "humanitarian",
+   "humanitarian crisis"
+  ],
+  [
+   "refugee",
+   "refugee health"
+  ],
+  [
+   "conflict",
+   "armed conflict and health"
+  ],
+  [
+   "displacement",
+   "forced displacement"
+  ],
+  [
+   "urban slum",
+   "informal settlements"
+  ],
+  [
+   "indigenous",
+   "indigenous health"
+  ],
+  [
+   "gender",
+   "gender and health"
+  ],
+  [
+   "adolescent",
+   "adolescent health lmic"
+  ],
+  [
+   "air pollution",
+   "household and ambient air pollution"
+  ],
+  [
+   "heat",
+   "heat and health"
+  ],
+  [
+   "extreme weather",
+   "extreme weather events"
+  ],
+  [
+   "flood",
+   "flooding and health"
+  ],
+  [
+   "drought",
+   "drought and food insecurity"
+  ],
+  [
+   "climate change",
+   "climate change and health"
+  ],
+  [
+   "vector borne",
+   "vector borne disease"
+  ],
+  [
+   "zoonotic",
+   "zoonotic spillover"
+  ],
+  [
+   "one health",
+   "one health"
+  ],
+  [
+   "biodiversity",
+   "biodiversity and health"
+  ],
+  [
+   "food system",
+   "food systems"
+  ]
+ ],
+ "topic_rules": {
+  "subfields": [
+   "Public Health, Environmental and Occupational Health",
+   "Infectious Diseases",
+   "Health Policy"
+  ],
+  "gated_subfields": [
+   "Epidemiology",
+   "Parasitology",
+   "Immunology",
+   "Microbiology",
+   "Internal Medicine",
+   "Pediatrics, Perinatology and Child Health",
+   "Obstetrics and Gynecology",
+   "Nursing",
+   "Sociology and Political Science",
+   "Economics and Econometrics",
+   "Development",
+   "Environmental Science",
+   "Atmospheric Science",
+   "Geography, Planning and Development",
+   "Nutrition and Dietetics",
+   "Psychiatry and Mental health"
+  ],
+  "patterns": [
+   "global health|planetary health",
+   "low.{0,3}and middle.income|\\blmics?\\b",
+   "sub.saharan|tropical (disease|medicine)|neglected tropical",
+   "malaria|tuberculosis|\\bhiv\\b|schistosom|dengue|cholera",
+   "maternal (and child )?(health|mortality)|neonatal mortality|under.five",
+   "water sanitation|\\bwash\\b hygiene",
+   "immuni[sz]ation coverage|vaccine delivery",
+   "universal health coverage|health financing|health system",
+   "climate change and health|heat.related|extreme weather",
+   "air pollution",
+   "one health|zoonotic|vector.borne",
+   "humanitarian|refugee|conflict.{0,15}health"
+  ],
+  "exclude": [
+   "\\bcrop yield\\b|agronom|\\bsoil\\b (chemistry|physics)",
+   "veterinar.{0,20}(production|breeding)",
+   "tourism|marketing"
+  ]
+ },
+ "id": "global-health",
+ "topics": [
+  "T10290",
+  "T13275",
+  "T10038",
+  "T14495",
+  "T13656",
+  "T10166",
+  "T14293",
+  "T14186",
+  "T11290",
+  "T10804",
+  "T10091",
+  "T10209",
+  "T13456",
+  "T11590",
+  "T10596",
+  "T10177",
+  "T10254",
+  "T10082",
+  "T10364",
+  "T10312",
+  "T13212",
+  "T10010",
+  "T12229",
+  "T13147",
+  "T10118",
+  "T13751",
+  "T12168",
+  "T10195",
+  "T10150",
+  "T10625",
+  "T12693",
+  "T11464",
+  "T10296",
+  "T12413",
+  "T12664",
+  "T10428",
+  "T10695",
+  "T11990",
+  "T10041",
+  "T10071",
+  "T12781",
+  "T11153",
+  "T10866",
+  "T12741",
+  "T12811",
+  "T10976",
+  "T10979",
+  "T10823",
+  "T10327",
+  "T13337",
+  "T11155",
+  "T11350",
+  "T14090",
+  "T11221",
+  "T10786",
+  "T10600",
+  "T11135",
+  "T13123",
+  "T12041",
+  "T11163",
+  "T11381",
+  "T14334",
+  "T11288",
+  "T10997",
+  "T12492",
+  "T10526",
+  "T12840",
+  "T11086",
+  "T10950",
+  "T10482",
+  "T12047",
+  "T11934",
+  "T10576",
+  "T10685",
+  "T11713",
+  "T11824",
+  "T10216",
+  "T10582",
+  "T13915",
+  "T13103",
+  "T11964",
+  "T10912",
+  "T13112",
+  "T11389",
+  "T12107",
+  "T12578",
+  "T11702",
+  "T14212",
+  "T11987",
+  "T12602",
+  "T13953",
+  "T11581",
+  "T12587",
+  "T11731",
+  "T11722",
+  "T12057",
+  "T12656",
+  "T12369",
+  "T11860",
+  "T12402",
+  "T12096",
+  "T12463",
+  "T11655",
+  "T13340",
+  "T12920",
+  "T11961",
+  "T11000",
+  "T12116",
+  "T13544",
+  "T12178",
+  "T12263",
+  "T13252",
+  "T12849",
+  "T12054",
+  "T12223",
+  "T12025",
+  "T12715",
+  "T14062",
+  "T12208",
+  "T11833",
+  "T11754",
+  "T12297",
+  "T13110",
+  "T13055",
+  "T11015",
+  "T14053",
+  "T12655",
+  "T14512",
+  "T14093",
+  "T13048",
+  "T13004",
+  "T13201",
+  "T12878",
+  "T14043",
+  "T13761",
+  "T12914",
+  "T12833",
+  "T13791",
+  "T13097",
+  "T14440",
+  "T14478",
+  "T13945",
+  "T14447"
+ ]
+}

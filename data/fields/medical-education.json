@@ -1,0 +1,571 @@
+{
+ "name": "Health professions education",
+ "description": "Training, assessment and curriculum in medicine, nursing and the allied health professions.",
+ "signals": [
+  "medical education",
+  "medical student",
+  "resident",
+  "residency",
+  "trainee",
+  "curriculum",
+  "assessment",
+  "competency",
+  "simulation",
+  "clerkship",
+  "faculty development",
+  "learner",
+  "teaching",
+  "clinical skills",
+  "osce",
+  "postgraduate training",
+  "continuing professional development",
+  "nursing education",
+  "interprofessional",
+  "mentorship",
+  "feedback"
+ ],
+ "methods": [
+  [
+   "randomised controlled trial",
+   "randomised controlled trial education"
+  ],
+  [
+   "randomized controlled trial",
+   "randomized controlled trial education"
+  ],
+  [
+   "pre post design",
+   "pre post study"
+  ],
+  [
+   "quasi experimental",
+   "quasi experimental design"
+  ],
+  [
+   "crossover",
+   "crossover educational trial"
+  ],
+  [
+   "objective structured clinical examination",
+   "objective structured clinical examination"
+  ],
+  [
+   "osce",
+   "objective structured clinical examination"
+  ],
+  [
+   "multiple choice",
+   "multiple choice examination"
+  ],
+  [
+   "workplace based assessment",
+   "workplace based assessment"
+  ],
+  [
+   "entrustable professional activit",
+   "entrustable professional activities"
+  ],
+  [
+   "competency based",
+   "competency based medical education"
+  ],
+  [
+   "milestones",
+   "competency milestones"
+  ],
+  [
+   "programmatic assessment",
+   "programmatic assessment"
+  ],
+  [
+   "standardised patient",
+   "standardised patients"
+  ],
+  [
+   "high fidelity simulation",
+   "high fidelity simulation"
+  ],
+  [
+   "virtual reality",
+   "virtual reality simulation"
+  ],
+  [
+   "deliberate practice",
+   "deliberate practice"
+  ],
+  [
+   "mastery learning",
+   "mastery learning"
+  ],
+  [
+   "flipped classroom",
+   "flipped classroom"
+  ],
+  [
+   "problem based learning",
+   "problem based learning"
+  ],
+  [
+   "team based learning",
+   "team based learning"
+  ],
+  [
+   "e learning",
+   "e learning"
+  ],
+  [
+   "online module",
+   "online learning module"
+  ],
+  [
+   "spaced repetition",
+   "spaced retrieval practice"
+  ],
+  [
+   "cognitive load",
+   "cognitive load theory"
+  ],
+  [
+   "self determination theory",
+   "self determination theory"
+  ],
+  [
+   "kirkpatrick",
+   "kirkpatrick evaluation"
+  ],
+  [
+   "thematic analysis",
+   "thematic analysis"
+  ],
+  [
+   "grounded theory",
+   "grounded theory"
+  ],
+  [
+   "phenomenolog",
+   "phenomenological analysis"
+  ],
+  [
+   "focus group",
+   "focus groups"
+  ],
+  [
+   "semi structured interview",
+   "semi structured interviews"
+  ],
+  [
+   "mixed methods",
+   "mixed methods study"
+  ],
+  [
+   "delphi",
+   "delphi consensus"
+  ],
+  [
+   "nominal group",
+   "nominal group technique"
+  ],
+  [
+   "survey validation",
+   "survey instrument validation"
+  ],
+  [
+   "psychometric",
+   "psychometric analysis"
+  ],
+  [
+   "generalisability theory",
+   "generalisability theory"
+  ],
+  [
+   "item response theory",
+   "item response theory"
+  ],
+  [
+   "rasch",
+   "rasch analysis"
+  ],
+  [
+   "inter rater reliability",
+   "inter rater reliability"
+  ],
+  [
+   "systematic review",
+   "systematic review education"
+  ],
+  [
+   "scoping review",
+   "scoping review"
+  ],
+  [
+   "realist review",
+   "realist review"
+  ],
+  [
+   "meta analysis",
+   "meta analysis education"
+  ],
+  [
+   "longitudinal cohort",
+   "longitudinal cohort of trainees"
+  ],
+  [
+   "programme evaluation",
+   "programme evaluation"
+  ],
+  [
+   "large language model",
+   "large language models in education"
+  ]
+ ],
+ "populations": [
+  [
+   "medical student",
+   "medical students"
+  ],
+  [
+   "undergraduate",
+   "undergraduate medical education"
+  ],
+  [
+   "resident",
+   "residents"
+  ],
+  [
+   "registrar",
+   "registrars"
+  ],
+  [
+   "fellow",
+   "clinical fellows"
+  ],
+  [
+   "postgraduate trainee",
+   "postgraduate trainees"
+  ],
+  [
+   "attending",
+   "attending physicians"
+  ],
+  [
+   "faculty",
+   "clinical faculty"
+  ],
+  [
+   "preceptor",
+   "preceptors"
+  ],
+  [
+   "nursing student",
+   "nursing students"
+  ],
+  [
+   "nurse practitioner",
+   "advanced practice nurses"
+  ],
+  [
+   "pharmacy student",
+   "pharmacy students"
+  ],
+  [
+   "dental student",
+   "dental students"
+  ],
+  [
+   "physiotherapy student",
+   "physiotherapy students"
+  ],
+  [
+   "allied health",
+   "allied health professionals"
+  ],
+  [
+   "interprofessional",
+   "interprofessional education"
+  ],
+  [
+   "continuing medical education",
+   "continuing medical education"
+  ],
+  [
+   "selection",
+   "admissions and selection"
+  ],
+  [
+   "widening participation",
+   "widening participation"
+  ],
+  [
+   "underrepresented",
+   "underrepresented in medicine"
+  ],
+  [
+   "diversity",
+   "diversity equity inclusion"
+  ],
+  [
+   "gender",
+   "gender in medical education"
+  ],
+  [
+   "international medical graduate",
+   "international medical graduates"
+  ],
+  [
+   "burnout",
+   "trainee burnout"
+  ],
+  [
+   "wellbeing",
+   "trainee wellbeing"
+  ],
+  [
+   "mistreatment",
+   "mistreatment and harassment"
+  ],
+  [
+   "professional identity",
+   "professional identity formation"
+  ],
+  [
+   "professionalism",
+   "professionalism"
+  ],
+  [
+   "ethics",
+   "ethics education"
+  ],
+  [
+   "communication skills",
+   "communication skills training"
+  ],
+  [
+   "clinical reasoning",
+   "clinical reasoning"
+  ],
+  [
+   "diagnostic error",
+   "diagnostic error"
+  ],
+  [
+   "patient safety",
+   "patient safety education"
+  ],
+  [
+   "quality improvement",
+   "quality improvement curriculum"
+  ],
+  [
+   "procedural skills",
+   "procedural skills training"
+  ],
+  [
+   "surgical training",
+   "surgical training"
+  ],
+  [
+   "anaesthesia training",
+   "anaesthesia training"
+  ],
+  [
+   "emergency medicine training",
+   "emergency medicine training"
+  ],
+  [
+   "primary care training",
+   "primary care training"
+  ],
+  [
+   "rural training",
+   "rural training pathways"
+  ],
+  [
+   "global health education",
+   "global health education"
+  ],
+  [
+   "low and middle income",
+   "health professions education in lmics"
+  ],
+  [
+   "simulation centre",
+   "simulation based education"
+  ],
+  [
+   "remediation",
+   "learner remediation"
+  ],
+  [
+   "attrition",
+   "trainee attrition"
+  ],
+  [
+   "career choice",
+   "specialty career choice"
+  ],
+  [
+   "mentorship",
+   "mentorship"
+  ],
+  [
+   "feedback",
+   "feedback and coaching"
+  ],
+  [
+   "assessment burden",
+   "assessment burden"
+  ],
+  [
+   "artificial intelligence",
+   "ai in health professions education"
+  ]
+ ],
+ "topic_rules": {
+  "subfields": [
+   "General Health Professions",
+   "Medical Education"
+  ],
+  "gated_subfields": [
+   "Education",
+   "Public Health, Environmental and Occupational Health",
+   "Nursing",
+   "Health Policy",
+   "Internal Medicine",
+   "Surgery",
+   "Psychiatry and Mental health",
+   "Anesthesiology and Pain Medicine",
+   "Emergency Medicine",
+   "Pharmacy",
+   "Developmental and Educational Psychology",
+   "Sociology and Political Science",
+   "Artificial Intelligence"
+  ],
+  "patterns": [
+   "medical education|health professions education|nursing education",
+   "medical student|resident(cy)? training|postgraduate training|trainee",
+   "curriculum|clerkship|residency",
+   "simulation.based (education|training|learning)",
+   "competency.based|entrustable",
+   "objective structured clinical",
+   "clinical (skills|reasoning) (training|education|teaching)",
+   "faculty development",
+   "interprofessional education",
+   "continuing (medical|professional) (education|development)",
+   "assessment.{0,20}(learner|student|trainee|competenc)",
+   "teaching (methods|strategies|hospital)"
+  ],
+  "exclude": [
+   "\\bprimary school|secondary school|k.12|kindergarten",
+   "engineering education|computer science education|mathematics education",
+   "physical education.{0,10}(school|sport)",
+   "language teaching|\\befl\\b|\\besl\\b",
+   "forest|soil|plant ecolog|agricultur|ecolog",
+   "medical tourism",
+   "\\bchina\\b.{0,20}(ecolog|forest)"
+  ]
+ },
+ "id": "medical-education",
+ "topics": [
+  "T13085",
+  "T12826",
+  "T13099",
+  "T13022",
+  "T11715",
+  "T10457",
+  "T14186",
+  "T13883",
+  "T11590",
+  "T10254",
+  "T13735",
+  "T12998",
+  "T13695",
+  "T11537",
+  "T10312",
+  "T13861",
+  "T13457",
+  "T11959",
+  "T14316",
+  "T13830",
+  "T11464",
+  "T11744",
+  "T12413",
+  "T14483",
+  "T11610",
+  "T14118",
+  "T12781",
+  "T12831",
+  "T14376",
+  "T11376",
+  "T12741",
+  "T10327",
+  "T11999",
+  "T14090",
+  "T12480",
+  "T13123",
+  "T12041",
+  "T12545",
+  "T11446",
+  "T13844",
+  "T12847",
+  "T13946",
+  "T14358",
+  "T10561",
+  "T10795",
+  "T11497",
+  "T11084",
+  "T10437",
+  "T11816",
+  "T11779",
+  "T10186",
+  "T10959",
+  "T10916",
+  "T11639",
+  "T14037",
+  "T12151",
+  "T10629",
+  "T11526",
+  "T12602",
+  "T10737",
+  "T14463",
+  "T12947",
+  "T11238",
+  "T11731",
+  "T10827",
+  "T11722",
+  "T12196",
+  "T12204",
+  "T14301",
+  "T11738",
+  "T13555",
+  "T13896",
+  "T11835",
+  "T14384",
+  "T12354",
+  "T11039",
+  "T13117",
+  "T13822",
+  "T12884",
+  "T13872",
+  "T12595",
+  "T13319",
+  "T14508",
+  "T13423",
+  "T12531",
+  "T13847",
+  "T11832",
+  "T13242",
+  "T14007",
+  "T11820",
+  "T13299",
+  "T13348",
+  "T14207",
+  "T13416",
+  "T13805",
+  "T12978",
+  "T13981",
+  "T13273",
+  "T14271",
+  "T14161",
+  "T14130"
+ ]
+}

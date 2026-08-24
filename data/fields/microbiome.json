@@ -1,0 +1,470 @@
+{
+ "name": "Microbiome and host-microbe interaction",
+ "description": "Host-associated microbial communities, their measurement and their effects on health.",
+ "signals": [
+  "microbiome",
+  "microbiota",
+  "microbial community",
+  "gut bacteria",
+  "dysbiosis",
+  "commensal",
+  "probiotic",
+  "prebiotic",
+  "short chain fatty acid",
+  "germ free",
+  "gnotobiotic",
+  "faecal",
+  "fecal",
+  "16s",
+  "shotgun metagenom",
+  "taxa",
+  "phylum",
+  "firmicutes",
+  "bacteroidetes",
+  "colonisation",
+  "host microbe",
+  "microbial diversity"
+ ],
+ "methods": [
+  [
+   "16s rrna",
+   "16s rrna amplicon sequencing"
+  ],
+  [
+   "amplicon sequencing",
+   "amplicon sequencing"
+  ],
+  [
+   "shotgun metagenom",
+   "shotgun metagenomics"
+  ],
+  [
+   "metatranscriptom",
+   "metatranscriptomics"
+  ],
+  [
+   "metabolom",
+   "metabolomics"
+  ],
+  [
+   "metaproteom",
+   "metaproteomics"
+  ],
+  [
+   "whole genome shotgun",
+   "whole genome shotgun sequencing"
+  ],
+  [
+   "long read sequencing",
+   "long read sequencing"
+  ],
+  [
+   "alpha diversity",
+   "alpha diversity"
+  ],
+  [
+   "beta diversity",
+   "beta diversity"
+  ],
+  [
+   "shannon",
+   "shannon diversity index"
+  ],
+  [
+   "bray curtis",
+   "bray curtis dissimilarity"
+  ],
+  [
+   "permanova",
+   "permanova"
+  ],
+  [
+   "differential abundance",
+   "differential abundance analysis"
+  ],
+  [
+   "ancom",
+   "differential abundance analysis"
+  ],
+  [
+   "deseq",
+   "differential abundance analysis"
+  ],
+  [
+   "compositional data",
+   "compositional data analysis"
+  ],
+  [
+   "mgx assembly",
+   "metagenome assembled genome"
+  ],
+  [
+   "metagenome assembled genome",
+   "metagenome assembled genomes"
+  ],
+  [
+   "strain level",
+   "strain level resolution"
+  ],
+  [
+   "qpcr",
+   "quantitative pcr"
+  ],
+  [
+   "flow cytometry",
+   "flow cytometry"
+  ],
+  [
+   "germ free",
+   "germ free mice"
+  ],
+  [
+   "gnotobiotic",
+   "gnotobiotic model"
+  ],
+  [
+   "faecal microbiota transplant",
+   "faecal microbiota transplantation"
+  ],
+  [
+   "fecal microbiota transplant",
+   "fecal microbiota transplantation"
+  ],
+  [
+   "antibiotic",
+   "antibiotic perturbation"
+  ],
+  [
+   "probiotic",
+   "probiotic intervention"
+  ],
+  [
+   "prebiotic",
+   "prebiotic intervention"
+  ],
+  [
+   "synbiotic",
+   "synbiotic"
+  ],
+  [
+   "dietary intervention",
+   "dietary intervention"
+  ],
+  [
+   "randomised controlled trial",
+   "randomised controlled trial microbiome"
+  ],
+  [
+   "longitudinal sampling",
+   "longitudinal sampling"
+  ],
+  [
+   "organoid",
+   "intestinal organoid"
+  ],
+  [
+   "co culture",
+   "microbial co culture"
+  ],
+  [
+   "in vitro fermentation",
+   "in vitro fermentation"
+  ],
+  [
+   "short chain fatty acid",
+   "short chain fatty acids"
+  ],
+  [
+   "bile acid",
+   "bile acid metabolism"
+  ],
+  [
+   "tryptophan",
+   "tryptophan metabolism"
+  ],
+  [
+   "mendelian randomi",
+   "mendelian randomisation microbiome"
+  ],
+  [
+   "machine learning",
+   "machine learning microbiome"
+  ],
+  [
+   "network inference",
+   "microbial network inference"
+  ],
+  [
+   "mediation analysis",
+   "mediation analysis"
+  ],
+  [
+   "germ line colonisation",
+   "microbial colonisation"
+  ]
+ ],
+ "populations": [
+  [
+   "inflammatory bowel disease",
+   "inflammatory bowel disease"
+  ],
+  [
+   "crohn",
+   "crohns disease"
+  ],
+  [
+   "ulcerative colitis",
+   "ulcerative colitis"
+  ],
+  [
+   "irritable bowel",
+   "irritable bowel syndrome"
+  ],
+  [
+   "colorectal cancer",
+   "colorectal cancer microbiome"
+  ],
+  [
+   "clostridioides",
+   "clostridioides difficile"
+  ],
+  [
+   "obesity",
+   "obesity microbiome"
+  ],
+  [
+   "type 2 diabetes",
+   "type 2 diabetes microbiome"
+  ],
+  [
+   "metabolic syndrome",
+   "metabolic syndrome"
+  ],
+  [
+   "non alcoholic fatty liver",
+   "fatty liver disease"
+  ],
+  [
+   "cirrhosis",
+   "liver cirrhosis"
+  ],
+  [
+   "cardiovascular",
+   "cardiovascular disease microbiome"
+  ],
+  [
+   "gut brain",
+   "gut brain axis"
+  ],
+  [
+   "depression",
+   "depression microbiome"
+  ],
+  [
+   "autism",
+   "autism microbiome"
+  ],
+  [
+   "parkinson",
+   "parkinsons disease microbiome"
+  ],
+  [
+   "alzheimer",
+   "alzheimers disease microbiome"
+  ],
+  [
+   "multiple sclerosis",
+   "multiple sclerosis microbiome"
+  ],
+  [
+   "asthma",
+   "asthma microbiome"
+  ],
+  [
+   "allerg",
+   "allergy microbiome"
+  ],
+  [
+   "atopic",
+   "atopic dermatitis"
+  ],
+  [
+   "eczema",
+   "eczema"
+  ],
+  [
+   "respiratory",
+   "airway microbiome"
+  ],
+  [
+   "cystic fibrosis",
+   "cystic fibrosis airway microbiome"
+  ],
+  [
+   "periodontitis",
+   "oral microbiome periodontitis"
+  ],
+  [
+   "dental caries",
+   "oral microbiome caries"
+  ],
+  [
+   "vaginal",
+   "vaginal microbiome"
+  ],
+  [
+   "preterm birth",
+   "preterm birth microbiome"
+  ],
+  [
+   "infant",
+   "infant gut microbiome"
+  ],
+  [
+   "breast milk",
+   "human milk microbiome"
+  ],
+  [
+   "caesarean",
+   "mode of delivery microbiome"
+  ],
+  [
+   "weaning",
+   "weaning microbiome"
+  ],
+  [
+   "older adults",
+   "ageing microbiome"
+  ],
+  [
+   "frailty",
+   "frailty microbiome"
+  ],
+  [
+   "malnutrition",
+   "malnutrition microbiome"
+  ],
+  [
+   "stunting",
+   "child stunting"
+  ],
+  [
+   "immunotherapy response",
+   "microbiome and immunotherapy response"
+  ],
+  [
+   "graft versus host",
+   "graft versus host disease"
+  ],
+  [
+   "sepsis",
+   "sepsis microbiome"
+  ],
+  [
+   "antimicrobial resistance",
+   "antimicrobial resistance genes"
+  ],
+  [
+   "resistome",
+   "resistome"
+  ],
+  [
+   "skin",
+   "skin microbiome"
+  ],
+  [
+   "urinary",
+   "urinary microbiome"
+  ],
+  [
+   "low and middle income",
+   "microbiome low resource settings"
+  ],
+  [
+   "diet",
+   "diet microbiome interaction"
+  ],
+  [
+   "fibre",
+   "dietary fibre"
+  ],
+  [
+   "exercise",
+   "exercise microbiome"
+  ],
+  [
+   "smoking",
+   "smoking microbiome"
+  ]
+ ],
+ "topic_rules": {
+  "subfields": [
+   "Microbiology",
+   "Applied Microbiology and Biotechnology"
+  ],
+  "gated_subfields": [
+   "Gastroenterology",
+   "Immunology",
+   "Molecular Biology",
+   "Nutrition and Dietetics",
+   "Infectious Diseases",
+   "Cell Biology",
+   "Genetics",
+   "Public Health, Environmental and Occupational Health",
+   "Endocrinology",
+   "Pediatrics, Perinatology and Child Health",
+   "Bioinformatics",
+   "Ecology",
+   "Dermatology"
+  ],
+  "patterns": [
+   "microbiom|microbiot",
+   "gut.brain",
+   "probiotic|prebiotic|synbiotic",
+   "metagenom|16s rrna|amplicon sequencing",
+   "dysbiosis",
+   "host.microbe|host.pathogen interaction",
+   "short chain fatty acid",
+   "faecal microbiota|fecal microbiota",
+   "commensal",
+   "resistome"
+  ],
+  "exclude": [
+   "\\bsoil\\b|rhizospher|marine sediment|wastewater treatment|bioreactor",
+   "\\bcrop\\b|agricultur|rumen|poultry|aquacultur|fermented food industry",
+   "biofuel|bioremediation"
+  ]
+ },
+ "id": "microbiome",
+ "topics": [
+  "T10015",
+  "T10038",
+  "T10702",
+  "T11791",
+  "T10066",
+  "T11048",
+  "T10257",
+  "T10428",
+  "T11688",
+  "T10341",
+  "T10873",
+  "T10837",
+  "T10365",
+  "T10665",
+  "T11232",
+  "T10897",
+  "T10984",
+  "T11288",
+  "T11294",
+  "T11584",
+  "T12489",
+  "T12317",
+  "T11103",
+  "T13736",
+  "T13289",
+  "T12744",
+  "T13767",
+  "T12638",
+  "T13817"
+ ]
+}

@@ -6,7 +6,7 @@ keywords / description match the field's patterns. Subfield alone is too
 coarse (oral cancer lives under Oncology) and name matching alone is too noisy,
 so we use both and print the result for review.
 """
-import json, os, re, sys
+import glob, json, os, re, sys
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 TAX = os.path.join(ROOT, "data", "openalex-topics.json")
@@ -22,6 +22,32 @@ RULES = {
                 r"\bsaliva", r"\bmandib", r"\bmaxilla", r"head and neck (cancer|carcinoma|squamous)"],
    "exclude": [r"oral (administration|delivery|drug|bioavailab|insulin|vaccine|contracept)",
                r"oral history", r"orality", r"oral tradition"],
+ },
+ "aging": {
+   "subfields": ["Geriatrics and Gerontology", "Aging"],
+   "gated_subfields": ["Neurology", "Cognitive Neuroscience", "Psychiatry and Mental health",
+                       "Epidemiology", "Internal Medicine", "Public Health, Environmental and Occupational Health",
+                       "Molecular Biology", "Cell Biology", "Endocrinology",
+                       "Physiology", "Rehabilitation", "Nursing", "Health Policy",
+                       "Experimental and Cognitive Psychology", "Radiology, Nuclear Medicine and Imaging",
+                       "Genetics", "Immunology", "Nutrition and Dietetics", "Orthopedics and Sports Medicine"],
+   # A bare "age" matches maternal age, gestational age and bone age, which
+   # dragged in reproductive biology. Require the ageing sense explicitly.
+   "patterns": [r"\bageing\b|\baging\b|age.related|age.associated", r"older adult|elderly|oldest old",
+                r"geriatric|gerontolog", r"senescen", r"longevity|lifespan|healthspan",
+                r"\bfrailty\b|sarcopenia", r"dementia|alzheimer", r"neurodegener",
+                r"cognitive decline|cognitive ageing|cognitive aging",
+                r"mild cognitive impairment", r"parkinson", r"telomere",
+                r"\bfalls\b", r"osteoporosis", r"menopause",
+                r"long term care|nursing home|palliative|end of life",
+                r"macular degeneration", r"multimorbidit|polypharmac",
+                r"life expectancy|mortality trends"],
+   "exclude": [r"\bplant|\bcrop\b|agricultur|livestock|\bsoil\b|fisher",
+               r"concrete|asphalt|material.{0,12}ag(e)?ing|corrosion|weathering",
+               r"wine|cheese|food ag(e)?ing",
+               r"archaeolog|radiocarbon|geochronolog|fossil",
+               r"maternal age|gestational age|bone age|paternal age",
+               r"reproductive biology|fertility"],
  },
  "cardiovascular": {
    "subfields": ["Cardiology and Cardiovascular Medicine"],
@@ -83,18 +109,40 @@ RULES = {
  },
 }
 
+def all_rules():
+    """Built-in rules, plus any a field file carries in its own `topic_rules`.
+
+    Keeping rules beside the lexicon they belong to means adding a discipline
+    stays a single-file job.
+    """
+    rules = dict(RULES)
+    for path in sorted(glob.glob(os.path.join(ROOT, "data", "fields", "*.json"))):
+        base = os.path.basename(path)
+        if base == "index.json" or base.endswith(".topics.json"):
+            continue
+        try:
+            with open(path) as fh:
+                spec = json.load(fh)
+        except Exception:
+            continue
+        rule = spec.get("topic_rules")
+        if rule:
+            rules[spec.get("id") or base[:-5]] = rule
+    return rules
+
+
 def main():
     tax = json.load(open(TAX))["topics"]
     print("taxonomy: %d topics\n" % len(tax))
-    for fid, rule in RULES.items():
-        subs = {s.lower() for s in rule["subfields"]}
+    for fid, rule in all_rules().items():
+        subs = {s.lower() for s in rule.get("subfields", [])}
         # Broad subfields cannot be trusted wholesale. OpenAlex files
         # "Geochemistry and Geologic Mapping" under Artificial Intelligence, so
         # a topic from a gated subfield must also match one of the field's
         # patterns to count.
         gated = {s.lower() for s in rule.get("gated_subfields", [])}
-        pats = [re.compile(p, re.I) for p in rule["patterns"]]
-        excl = [re.compile(p, re.I) for p in rule["exclude"]]
+        pats = [re.compile(p, re.I) for p in rule.get("patterns", [])]
+        excl = [re.compile(p, re.I) for p in rule.get("exclude", [])]
         picked = []
         for t in tax:
             name = t.get("display_name") or ""

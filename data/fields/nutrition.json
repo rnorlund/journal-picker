@@ -1,0 +1,586 @@
+{
+ "name": "Nutrition and metabolism",
+ "description": "Dietary intake, nutritional epidemiology, metabolic health and nutrition interventions.",
+ "signals": [
+  "nutrition",
+  "diet",
+  "dietary",
+  "nutrient",
+  "food intake",
+  "calorie",
+  "energy intake",
+  "obesity",
+  "body composition",
+  "metabolic",
+  "insulin resistance",
+  "glycaemic",
+  "glycemic",
+  "supplement",
+  "vitamin",
+  "micronutrient",
+  "macronutrient",
+  "weight loss",
+  "adiposity",
+  "bmi",
+  "food security",
+  "eating behaviour",
+  "malnutrition"
+ ],
+ "methods": [
+  [
+   "food frequency questionnaire",
+   "food frequency questionnaire"
+  ],
+  [
+   "24 hour recall",
+   "24 hour dietary recall"
+  ],
+  [
+   "dietary record",
+   "weighed dietary record"
+  ],
+  [
+   "doubly labelled water",
+   "doubly labelled water"
+  ],
+  [
+   "dietary biomarker",
+   "dietary biomarkers"
+  ],
+  [
+   "urinary nitrogen",
+   "urinary biomarkers"
+  ],
+  [
+   "randomised controlled trial",
+   "randomised controlled trial nutrition"
+  ],
+  [
+   "randomized controlled trial",
+   "randomized controlled trial nutrition"
+  ],
+  [
+   "crossover trial",
+   "crossover feeding trial"
+  ],
+  [
+   "controlled feeding",
+   "controlled feeding study"
+  ],
+  [
+   "isocaloric",
+   "isocaloric diet"
+  ],
+  [
+   "energy restriction",
+   "energy restriction"
+  ],
+  [
+   "intermittent fasting",
+   "intermittent fasting"
+  ],
+  [
+   "time restricted eating",
+   "time restricted eating"
+  ],
+  [
+   "ketogenic",
+   "ketogenic diet"
+  ],
+  [
+   "mediterranean diet",
+   "mediterranean diet"
+  ],
+  [
+   "plant based",
+   "plant based diet"
+  ],
+  [
+   "ultra processed",
+   "ultra processed food"
+  ],
+  [
+   "dual energy x ray",
+   "dual energy x ray absorptiometry"
+  ],
+  [
+   "bioimpedance",
+   "bioelectrical impedance"
+  ],
+  [
+   "indirect calorimetry",
+   "indirect calorimetry"
+  ],
+  [
+   "oral glucose tolerance",
+   "oral glucose tolerance test"
+  ],
+  [
+   "hyperinsulinaemic clamp",
+   "hyperinsulinaemic euglycaemic clamp"
+  ],
+  [
+   "continuous glucose",
+   "continuous glucose monitoring"
+  ],
+  [
+   "hba1c",
+   "glycated haemoglobin"
+  ],
+  [
+   "lipid profile",
+   "lipid profile"
+  ],
+  [
+   "metabolom",
+   "metabolomics"
+  ],
+  [
+   "lipidom",
+   "lipidomics"
+  ],
+  [
+   "stable isotope",
+   "stable isotope tracer"
+  ],
+  [
+   "mendelian randomi",
+   "mendelian randomisation nutrition"
+  ],
+  [
+   "prospective cohort",
+   "prospective cohort study"
+  ],
+  [
+   "nhanes",
+   "nhanes"
+  ],
+  [
+   "uk biobank",
+   "uk biobank"
+  ],
+  [
+   "systematic review",
+   "systematic review nutrition"
+  ],
+  [
+   "meta analysis",
+   "meta analysis nutrition"
+  ],
+  [
+   "dose response meta",
+   "dose response meta analysis"
+  ],
+  [
+   "nutri score",
+   "front of pack labelling"
+  ],
+  [
+   "food environment",
+   "food environment assessment"
+  ],
+  [
+   "cost effectiveness",
+   "cost effectiveness nutrition"
+  ],
+  [
+   "behaviour change",
+   "dietary behaviour change"
+  ],
+  [
+   "machine learning",
+   "machine learning nutrition"
+  ],
+  [
+   "microbiome",
+   "diet microbiome interaction"
+  ],
+  [
+   "epigenetic",
+   "nutritional epigenetics"
+  ],
+  [
+   "gene diet interaction",
+   "gene diet interaction"
+  ]
+ ],
+ "populations": [
+  [
+   "obesity",
+   "obesity"
+  ],
+  [
+   "overweight",
+   "overweight"
+  ],
+  [
+   "childhood obesity",
+   "childhood obesity"
+  ],
+  [
+   "type 2 diabetes",
+   "type 2 diabetes"
+  ],
+  [
+   "prediabetes",
+   "prediabetes"
+  ],
+  [
+   "metabolic syndrome",
+   "metabolic syndrome"
+  ],
+  [
+   "insulin resistance",
+   "insulin resistance"
+  ],
+  [
+   "non alcoholic fatty liver",
+   "metabolic dysfunction associated fatty liver disease"
+  ],
+  [
+   "cardiovascular disease",
+   "cardiovascular disease prevention"
+  ],
+  [
+   "hypertension",
+   "hypertension diet"
+  ],
+  [
+   "dyslipidaemia",
+   "dyslipidaemia"
+  ],
+  [
+   "sarcopenia",
+   "sarcopenia"
+  ],
+  [
+   "frailty",
+   "frailty nutrition"
+  ],
+  [
+   "malnutrition",
+   "malnutrition"
+  ],
+  [
+   "stunting",
+   "child stunting"
+  ],
+  [
+   "wasting",
+   "child wasting"
+  ],
+  [
+   "micronutrient deficiency",
+   "micronutrient deficiency"
+  ],
+  [
+   "anaemia",
+   "iron deficiency anaemia"
+  ],
+  [
+   "vitamin d",
+   "vitamin d"
+  ],
+  [
+   "folate",
+   "folate"
+  ],
+  [
+   "iodine",
+   "iodine"
+  ],
+  [
+   "zinc",
+   "zinc"
+  ],
+  [
+   "omega 3",
+   "omega 3 fatty acids"
+  ],
+  [
+   "protein intake",
+   "protein intake"
+  ],
+  [
+   "fibre",
+   "dietary fibre"
+  ],
+  [
+   "sodium",
+   "sodium intake"
+  ],
+  [
+   "sugar",
+   "added sugar"
+  ],
+  [
+   "sweetened beverage",
+   "sugar sweetened beverages"
+  ],
+  [
+   "food insecurity",
+   "food insecurity"
+  ],
+  [
+   "food desert",
+   "food access"
+  ],
+  [
+   "eating disorder",
+   "disordered eating"
+  ],
+  [
+   "appetite",
+   "appetite regulation"
+  ],
+  [
+   "satiety",
+   "satiety"
+  ],
+  [
+   "food reward",
+   "food reward"
+  ],
+  [
+   "pregnancy",
+   "maternal nutrition"
+  ],
+  [
+   "lactation",
+   "lactation"
+  ],
+  [
+   "infant feeding",
+   "infant feeding"
+  ],
+  [
+   "breastfeeding",
+   "breastfeeding"
+  ],
+  [
+   "complementary feeding",
+   "complementary feeding"
+  ],
+  [
+   "adolescent",
+   "adolescent nutrition"
+  ],
+  [
+   "older adults",
+   "nutrition in older adults"
+  ],
+  [
+   "athlete",
+   "sports nutrition"
+  ],
+  [
+   "vegetarian",
+   "vegetarian diet"
+  ],
+  [
+   "vegan",
+   "vegan diet"
+  ],
+  [
+   "cancer",
+   "nutrition and cancer"
+  ],
+  [
+   "chronic kidney disease",
+   "renal nutrition"
+  ],
+  [
+   "inflammatory bowel disease",
+   "nutrition in inflammatory bowel disease"
+  ],
+  [
+   "critical illness",
+   "critical care nutrition"
+  ],
+  [
+   "enteral",
+   "enteral nutrition"
+  ],
+  [
+   "parenteral",
+   "parenteral nutrition"
+  ],
+  [
+   "bariatric",
+   "bariatric surgery"
+  ],
+  [
+   "low and middle income",
+   "nutrition low resource settings"
+  ],
+  [
+   "sustainability",
+   "sustainable diets"
+  ]
+ ],
+ "topic_rules": {
+  "subfields": [
+   "Nutrition and Dietetics",
+   "Endocrinology, Diabetes and Metabolism"
+  ],
+  "gated_subfields": [
+   "Food Science",
+   "Public Health, Environmental and Occupational Health",
+   "Epidemiology",
+   "Internal Medicine",
+   "Pediatrics, Perinatology and Child Health",
+   "Physiology",
+   "Molecular Biology",
+   "Cell Biology",
+   "Gastroenterology",
+   "Sports Science",
+   "Orthopedics and Sports Medicine",
+   "Psychiatry and Mental health",
+   "Cardiology and Cardiovascular Medicine"
+  ],
+  "patterns": [
+   "nutrition|dietary|\\bdiet\\b",
+   "obesity|adiposity|overweight",
+   "metabolic syndrome|insulin resistance|glyc(a)?emic",
+   "micronutrient|vitamin|mineral supplement",
+   "malnutrition|stunting|wasting",
+   "food (security|insecurity|environment|policy)",
+   "eating behaviou?r|appetite|satiety",
+   "body composition",
+   "energy (intake|expenditure|balance)",
+   "bariatric",
+   "breastfeeding|infant feeding",
+   "sports nutrition"
+  ],
+  "exclude": [
+   "\\bcrop\\b|agronom|soil fertil|livestock feed|animal nutrition.{0,15}(cattle|poultry|swine|fish)",
+   "food packaging|food processing engineering|shelf life",
+   "aquacultur|veterinar",
+   "\\bpotato\\b|\\bseed\\b|\\btuber\\b|plant biochem|horticultur|\\bgrain\\b",
+   "culinary culture|tourism|gastronomy",
+   "food chemistry|flavou?r compound|antioxidant activity of extract"
+  ]
+ },
+ "id": "nutrition",
+ "topics": [
+  "T10351",
+  "T14495",
+  "T12267",
+  "T10596",
+  "T10066",
+  "T13597",
+  "T10141",
+  "T10023",
+  "T11629",
+  "T13861",
+  "T10010",
+  "T10397",
+  "T11457",
+  "T10293",
+  "T10821",
+  "T10760",
+  "T11085",
+  "T10234",
+  "T10401",
+  "T10560",
+  "T10291",
+  "T10858",
+  "T13091",
+  "T10748",
+  "T11610",
+  "T10830",
+  "T10027",
+  "T10329",
+  "T10832",
+  "T10866",
+  "T14010",
+  "T10277",
+  "T10499",
+  "T12614",
+  "T10035",
+  "T10979",
+  "T12330",
+  "T10390",
+  "T10915",
+  "T10673",
+  "T11146",
+  "T10665",
+  "T10606",
+  "T14272",
+  "T10387",
+  "T11839",
+  "T11399",
+  "T11227",
+  "T14020",
+  "T10528",
+  "T10445",
+  "T12840",
+  "T10793",
+  "T10569",
+  "T11072",
+  "T11140",
+  "T11561",
+  "T10408",
+  "T12964",
+  "T11294",
+  "T11584",
+  "T12979",
+  "T11559",
+  "T13393",
+  "T12489",
+  "T11358",
+  "T12421",
+  "T13112",
+  "T11107",
+  "T12279",
+  "T12539",
+  "T14242",
+  "T12554",
+  "T11139",
+  "T14124",
+  "T12066",
+  "T12103",
+  "T12314",
+  "T11348",
+  "T11623",
+  "T10694",
+  "T12441",
+  "T11318",
+  "T12494",
+  "T11411",
+  "T11555",
+  "T12057",
+  "T12873",
+  "T12538",
+  "T11655",
+  "T13960",
+  "T13966",
+  "T13540",
+  "T11487",
+  "T12287",
+  "T11670",
+  "T13822",
+  "T13243",
+  "T11308",
+  "T12745",
+  "T12075",
+  "T13430",
+  "T12433",
+  "T12280",
+  "T13453",
+  "T13828",
+  "T14438",
+  "T13004",
+  "T13479",
+  "T13813",
+  "T12181",
+  "T13775",
+  "T12638",
+  "T14065",
+  "T13670",
+  "T13505",
+  "T13452",
+  "T12731",
+  "T13846"
+ ]
+}

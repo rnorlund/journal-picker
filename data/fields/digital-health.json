@@ -1,0 +1,546 @@
+{
+ "name": "Digital health and clinical AI",
+ "description": "Digital therapeutics, mHealth, wearables, telemedicine and machine learning applied to clinical care.",
+ "signals": [
+  "digital health",
+  "mhealth",
+  "ehealth",
+  "telemedicine",
+  "telehealth",
+  "wearable",
+  "smartphone app",
+  "mobile app",
+  "remote monitoring",
+  "machine learning",
+  "deep learning",
+  "artificial intelligence",
+  "clinical decision support",
+  "algorithm",
+  "chatbot",
+  "digital therapeutic",
+  "sensor",
+  "electronic health record",
+  "predictive model",
+  "validation cohort",
+  "auc",
+  "clinical ai"
+ ],
+ "methods": [
+  [
+   "convolutional neural network",
+   "convolutional neural network"
+  ],
+  [
+   "deep learning",
+   "deep learning clinical"
+  ],
+  [
+   "machine learning",
+   "machine learning clinical prediction"
+  ],
+  [
+   "random forest",
+   "random forest"
+  ],
+  [
+   "gradient boosting",
+   "gradient boosting"
+  ],
+  [
+   "logistic regression",
+   "logistic regression prediction model"
+  ],
+  [
+   "large language model",
+   "large language models clinical"
+  ],
+  [
+   "llm",
+   "large language models clinical"
+  ],
+  [
+   "natural language processing",
+   "clinical natural language processing"
+  ],
+  [
+   "transformer",
+   "transformer model clinical"
+  ],
+  [
+   "foundation model",
+   "medical foundation model"
+  ],
+  [
+   "federated learning",
+   "federated learning"
+  ],
+  [
+   "transfer learning",
+   "transfer learning"
+  ],
+  [
+   "explainab",
+   "explainable ai"
+  ],
+  [
+   "interpretab",
+   "model interpretability"
+  ],
+  [
+   "external validation",
+   "external validation prediction model"
+  ],
+  [
+   "calibration",
+   "model calibration"
+  ],
+  [
+   "discrimination",
+   "discrimination auc"
+  ],
+  [
+   "area under the curve",
+   "area under the receiver operating characteristic"
+  ],
+  [
+   "decision curve",
+   "decision curve analysis"
+  ],
+  [
+   "tripod",
+   "tripod reporting prediction model"
+  ],
+  [
+   "prospective validation",
+   "prospective validation"
+  ],
+  [
+   "silent trial",
+   "silent trial ai"
+  ],
+  [
+   "human ai",
+   "human ai collaboration"
+  ],
+  [
+   "reader study",
+   "reader study"
+  ],
+  [
+   "algorithmic bias",
+   "algorithmic bias"
+  ],
+  [
+   "fairness",
+   "algorithmic fairness"
+  ],
+  [
+   "dataset shift",
+   "dataset shift"
+  ],
+  [
+   "wearable sensor",
+   "wearable sensors"
+  ],
+  [
+   "accelerometer",
+   "accelerometry"
+  ],
+  [
+   "photoplethysmograph",
+   "photoplethysmography"
+  ],
+  [
+   "smartwatch",
+   "smartwatch"
+  ],
+  [
+   "continuous glucose",
+   "continuous glucose monitoring"
+  ],
+  [
+   "digital biomarker",
+   "digital biomarkers"
+  ],
+  [
+   "passive sensing",
+   "passive sensing"
+  ],
+  [
+   "ecological momentary",
+   "ecological momentary assessment"
+  ],
+  [
+   "just in time adaptive",
+   "just in time adaptive intervention"
+  ],
+  [
+   "micro randomi",
+   "micro randomised trial"
+  ],
+  [
+   "randomised controlled trial",
+   "randomised controlled trial digital"
+  ],
+  [
+   "usability",
+   "usability testing"
+  ],
+  [
+   "user centred design",
+   "user centred design"
+  ],
+  [
+   "human factors",
+   "human factors"
+  ],
+  [
+   "engagement",
+   "user engagement analytics"
+  ],
+  [
+   "cost effectiveness",
+   "cost effectiveness analysis"
+  ],
+  [
+   "privacy",
+   "data privacy"
+  ],
+  [
+   "regulatory",
+   "software as a medical device"
+  ]
+ ],
+ "populations": [
+  [
+   "chronic disease",
+   "chronic disease management"
+  ],
+  [
+   "diabetes",
+   "diabetes digital care"
+  ],
+  [
+   "hypertension",
+   "hypertension remote monitoring"
+  ],
+  [
+   "heart failure",
+   "heart failure remote monitoring"
+  ],
+  [
+   "mental health",
+   "digital mental health"
+  ],
+  [
+   "depression",
+   "digital depression intervention"
+  ],
+  [
+   "anxiety",
+   "digital anxiety intervention"
+  ],
+  [
+   "smoking cessation",
+   "smoking cessation app"
+  ],
+  [
+   "weight loss",
+   "digital weight management"
+  ],
+  [
+   "physical activity",
+   "physical activity intervention"
+  ],
+  [
+   "medication adherence",
+   "medication adherence"
+  ],
+  [
+   "sepsis",
+   "sepsis prediction"
+  ],
+  [
+   "deterioration",
+   "clinical deterioration prediction"
+  ],
+  [
+   "readmission",
+   "readmission prediction"
+  ],
+  [
+   "mortality prediction",
+   "mortality prediction"
+  ],
+  [
+   "triage",
+   "triage"
+  ],
+  [
+   "radiology",
+   "radiology ai"
+  ],
+  [
+   "pathology",
+   "computational pathology"
+  ],
+  [
+   "dermatolog",
+   "dermatology ai"
+  ],
+  [
+   "ophthalmolog",
+   "retinal screening ai"
+  ],
+  [
+   "diabetic retinopathy",
+   "diabetic retinopathy screening"
+  ],
+  [
+   "cancer detection",
+   "cancer detection ai"
+  ],
+  [
+   "mammograph",
+   "mammography screening ai"
+  ],
+  [
+   "chest radiograph",
+   "chest radiograph ai"
+  ],
+  [
+   "ecg",
+   "ecg deep learning"
+  ],
+  [
+   "intensive care",
+   "intensive care ai"
+  ],
+  [
+   "primary care",
+   "primary care digital"
+  ],
+  [
+   "older adults",
+   "digital health older adults"
+  ],
+  [
+   "paediatric",
+   "paediatric digital health"
+  ],
+  [
+   "pediatric",
+   "pediatric digital health"
+  ],
+  [
+   "low and middle income",
+   "digital health low resource settings"
+  ],
+  [
+   "rural",
+   "rural telehealth"
+  ],
+  [
+   "digital divide",
+   "digital divide"
+  ],
+  [
+   "health equity",
+   "digital health equity"
+  ],
+  [
+   "digital literacy",
+   "digital literacy"
+  ],
+  [
+   "clinician",
+   "clinician workflow"
+  ],
+  [
+   "documentation burden",
+   "documentation burden"
+  ],
+  [
+   "ambient",
+   "ambient clinical documentation"
+  ],
+  [
+   "triage chatbot",
+   "conversational agent health"
+  ],
+  [
+   "symptom checker",
+   "symptom checker"
+  ],
+  [
+   "patient portal",
+   "patient portal"
+  ],
+  [
+   "wearable adherence",
+   "wearable adherence"
+  ],
+  [
+   "covid",
+   "covid 19 digital"
+  ],
+  [
+   "surveillance",
+   "digital disease surveillance"
+  ],
+  [
+   "rehabilitation",
+   "digital rehabilitation"
+  ],
+  [
+   "surgery",
+   "surgical ai"
+  ]
+ ],
+ "topic_rules": {
+  "subfields": [
+   "Health Informatics"
+  ],
+  "gated_subfields": [
+   "Artificial Intelligence",
+   "Computer Science Applications",
+   "Health Policy",
+   "Public Health, Environmental and Occupational Health",
+   "Radiology, Nuclear Medicine and Imaging",
+   "Internal Medicine",
+   "Psychiatry and Mental health",
+   "Nursing",
+   "Biomedical Engineering",
+   "Human-Computer Interaction",
+   "Signal Processing",
+   "Computer Vision and Pattern Recognition"
+  ],
+  "patterns": [
+   "digital health|ehealth|mhealth",
+   "telemedicine|telehealth|teleconsult",
+   "wearable|smartwatch|activity tracker",
+   "mobile (health )?app|smartphone",
+   "machine learning|deep learning|artificial intelligence",
+   "clinical decision support",
+   "electronic health record",
+   "predictive model|risk prediction",
+   "medical imaging.{0,20}(ai|deep|machine)",
+   "remote (patient )?monitoring",
+   "digital therapeut",
+   "health informatics",
+   "clinical natural language",
+   "large language model"
+  ],
+  "exclude": [
+   "\\bplant|\\bcrop\\b|agricultur|manufactur|robot(ic)? (arm|welding)",
+   "autonomous driving|vehicle|traffic",
+   "finance|market|stock",
+   "wireless (sensor )?network protocol|antenna|spectrum allocation"
+  ]
+ },
+ "id": "digital-health",
+ "topics": [
+  "T12157",
+  "T13650",
+  "T12797",
+  "T13275",
+  "T10320",
+  "T13398",
+  "T14186",
+  "T13734",
+  "T11349",
+  "T10378",
+  "T11636",
+  "T12422",
+  "T10682",
+  "T10338",
+  "T10627",
+  "T10860",
+  "T10392",
+  "T10198",
+  "T11122",
+  "T13690",
+  "T10598",
+  "T10688",
+  "T10052",
+  "T10764",
+  "T10350",
+  "T10862",
+  "T11309",
+  "T13559",
+  "T10331",
+  "T11446",
+  "T11396",
+  "T11512",
+  "T10824",
+  "T11975",
+  "T11241",
+  "T10388",
+  "T10444",
+  "T11363",
+  "T11714",
+  "T11438",
+  "T10664",
+  "T10901",
+  "T11021",
+  "T11689",
+  "T10462",
+  "T10456",
+  "T10775",
+  "T10912",
+  "T11196",
+  "T11273",
+  "T11448",
+  "T10820",
+  "T13018",
+  "T12026",
+  "T10803",
+  "T11574",
+  "T11775",
+  "T11398",
+  "T10737",
+  "T10812",
+  "T10470",
+  "T11819",
+  "T12205",
+  "T12260",
+  "T11019",
+  "T12790",
+  "T12262",
+  "T13702",
+  "T14510",
+  "T12535",
+  "T11105",
+  "T14384",
+  "T12611",
+  "T12072",
+  "T11550",
+  "T13243",
+  "T13851",
+  "T11165",
+  "T12874",
+  "T12419",
+  "T11612",
+  "T12380",
+  "T14512",
+  "T11605",
+  "T13898",
+  "T14351",
+  "T12357",
+  "T12484",
+  "T12814",
+  "T13904",
+  "T13629",
+  "T12131",
+  "T12740",
+  "T14319",
+  "T12676",
+  "T14100",
+  "T14413",
+  "T13935",
+  "T14189",
+  "T13945",
+  "T14447",
+  "T13567"
+ ]
+}

@@ -1,0 +1,768 @@
+{
+ "name": "Public health, epidemiology and health disparities",
+ "description": "Population health, epidemiological methods, health policy and inequities in health.",
+ "signals": [
+  "public health",
+  "epidemiolog",
+  "population health",
+  "incidence",
+  "prevalence",
+  "cohort",
+  "surveillance",
+  "risk factor",
+  "disparit",
+  "inequit",
+  "inequalit",
+  "social determinant",
+  "screening programme",
+  "screening program",
+  "vaccination",
+  "health policy",
+  "mortality",
+  "morbidity",
+  "burden of disease",
+  "socioeconomic",
+  "community health",
+  "health equity"
+ ],
+ "methods": [
+  [
+   "prospective cohort",
+   "prospective cohort study"
+  ],
+  [
+   "retrospective cohort",
+   "retrospective cohort study"
+  ],
+  [
+   "case control",
+   "case control study"
+  ],
+  [
+   "cross sectional",
+   "cross sectional survey"
+  ],
+  [
+   "randomised controlled trial",
+   "randomised controlled trial"
+  ],
+  [
+   "randomized controlled trial",
+   "randomized controlled trial"
+  ],
+  [
+   "cluster randomi",
+   "cluster randomised trial"
+  ],
+  [
+   "stepped wedge",
+   "stepped wedge trial"
+  ],
+  [
+   "difference in differences",
+   "difference in differences"
+  ],
+  [
+   "interrupted time series",
+   "interrupted time series"
+  ],
+  [
+   "instrumental variable",
+   "instrumental variable analysis"
+  ],
+  [
+   "propensity score",
+   "propensity score matching"
+  ],
+  [
+   "mendelian randomi",
+   "mendelian randomisation"
+  ],
+  [
+   "target trial",
+   "target trial emulation"
+  ],
+  [
+   "directed acyclic graph",
+   "causal directed acyclic graph"
+  ],
+  [
+   "mediation analysis",
+   "mediation analysis"
+  ],
+  [
+   "multilevel model",
+   "multilevel modelling"
+  ],
+  [
+   "mixed effects",
+   "mixed effects model"
+  ],
+  [
+   "poisson regression",
+   "poisson regression"
+  ],
+  [
+   "cox proportional",
+   "cox proportional hazards"
+  ],
+  [
+   "survival analysis",
+   "survival analysis"
+  ],
+  [
+   "competing risk",
+   "competing risks"
+  ],
+  [
+   "meta analysis",
+   "meta analysis"
+  ],
+  [
+   "systematic review",
+   "systematic review"
+  ],
+  [
+   "scoping review",
+   "scoping review"
+  ],
+  [
+   "umbrella review",
+   "umbrella review"
+  ],
+  [
+   "microsimulation",
+   "microsimulation model"
+  ],
+  [
+   "agent based model",
+   "agent based modelling"
+  ],
+  [
+   "compartmental model",
+   "compartmental epidemic model"
+  ],
+  [
+   "seir",
+   "seir model"
+  ],
+  [
+   "wastewater surveillance",
+   "wastewater surveillance"
+  ],
+  [
+   "genomic surveillance",
+   "genomic surveillance"
+  ],
+  [
+   "geospatial",
+   "geospatial analysis"
+  ],
+  [
+   "small area estimation",
+   "small area estimation"
+  ],
+  [
+   "record linkage",
+   "administrative data linkage"
+  ],
+  [
+   "electronic health record",
+   "electronic health records"
+  ],
+  [
+   "claims data",
+   "insurance claims data"
+  ],
+  [
+   "national survey",
+   "national health survey"
+  ],
+  [
+   "nhanes",
+   "nhanes"
+  ],
+  [
+   "decomposition analysis",
+   "inequality decomposition"
+  ],
+  [
+   "concentration index",
+   "concentration index inequality"
+  ],
+  [
+   "life table",
+   "life table analysis"
+  ],
+  [
+   "disability adjusted",
+   "disability adjusted life years"
+  ],
+  [
+   "cost effectiveness",
+   "cost effectiveness analysis"
+  ],
+  [
+   "qualitative interview",
+   "qualitative interviews"
+  ],
+  [
+   "community based participatory",
+   "community based participatory research"
+  ],
+  [
+   "implementation",
+   "implementation outcomes"
+  ]
+ ],
+ "populations": [
+  [
+   "health disparit",
+   "health disparities"
+  ],
+  [
+   "racial disparit",
+   "racial disparities"
+  ],
+  [
+   "ethnic disparit",
+   "ethnic disparities"
+  ],
+  [
+   "socioeconomic status",
+   "socioeconomic status"
+  ],
+  [
+   "social determinant",
+   "social determinants of health"
+  ],
+  [
+   "health equity",
+   "health equity"
+  ],
+  [
+   "low and middle income",
+   "low and middle income countries"
+  ],
+  [
+   "rural",
+   "rural health"
+  ],
+  [
+   "urban",
+   "urban health"
+  ],
+  [
+   "food insecurity",
+   "food insecurity"
+  ],
+  [
+   "housing",
+   "housing and health"
+  ],
+  [
+   "neighbourhood",
+   "neighbourhood effects"
+  ],
+  [
+   "neighborhood",
+   "neighborhood effects"
+  ],
+  [
+   "immigrant",
+   "immigrant health"
+  ],
+  [
+   "indigenous",
+   "indigenous health"
+  ],
+  [
+   "lgbtq",
+   "sexual and gender minority health"
+  ],
+  [
+   "incarcerated",
+   "incarcerated populations"
+  ],
+  [
+   "homeless",
+   "homelessness"
+  ],
+  [
+   "uninsured",
+   "health insurance coverage"
+  ],
+  [
+   "medicaid",
+   "medicaid"
+  ],
+  [
+   "access to care",
+   "access to care"
+  ],
+  [
+   "infectious disease",
+   "infectious disease epidemiology"
+  ],
+  [
+   "covid",
+   "covid 19"
+  ],
+  [
+   "influenza",
+   "influenza"
+  ],
+  [
+   "tuberculosis",
+   "tuberculosis"
+  ],
+  [
+   "hiv",
+   "hiv"
+  ],
+  [
+   "malaria",
+   "malaria"
+  ],
+  [
+   "antimicrobial resistance",
+   "antimicrobial resistance"
+  ],
+  [
+   "vaccine hesitanc",
+   "vaccine hesitancy"
+  ],
+  [
+   "immunisation",
+   "immunisation coverage"
+  ],
+  [
+   "maternal mortality",
+   "maternal mortality"
+  ],
+  [
+   "infant mortality",
+   "infant mortality"
+  ],
+  [
+   "child health",
+   "child health"
+  ],
+  [
+   "adolescent health",
+   "adolescent health"
+  ],
+  [
+   "smoking",
+   "tobacco use"
+  ],
+  [
+   "vaping",
+   "e cigarette use"
+  ],
+  [
+   "alcohol",
+   "alcohol use"
+  ],
+  [
+   "opioid",
+   "opioid epidemic"
+  ],
+  [
+   "obesity",
+   "obesity"
+  ],
+  [
+   "physical activity",
+   "physical activity"
+  ],
+  [
+   "air pollution",
+   "air pollution"
+  ],
+  [
+   "climate",
+   "climate and health"
+  ],
+  [
+   "occupational",
+   "occupational health"
+  ],
+  [
+   "injury",
+   "injury prevention"
+  ],
+  [
+   "firearm",
+   "firearm injury"
+  ],
+  [
+   "cancer screening",
+   "cancer screening"
+  ],
+  [
+   "chronic disease",
+   "chronic disease prevention"
+  ],
+  [
+   "diabetes",
+   "diabetes"
+  ],
+  [
+   "hypertension",
+   "hypertension"
+  ],
+  [
+   "mental health",
+   "population mental health"
+  ]
+ ],
+ "topic_rules": {
+  "subfields": [
+   "Public Health, Environmental and Occupational Health",
+   "Epidemiology",
+   "Health Policy"
+  ],
+  "gated_subfields": [
+   "Internal Medicine",
+   "Infectious Diseases",
+   "Pediatrics, Perinatology and Child Health",
+   "Sociology and Political Science",
+   "Health Informatics",
+   "Nursing",
+   "Oncology",
+   "Statistics and Probability",
+   "Economics and Econometrics",
+   "Nutrition and Dietetics"
+  ],
+  "patterns": [
+   "epidemiolog",
+   "public health",
+   "population health",
+   "disparit|inequit|inequalit",
+   "social determinant",
+   "health polic",
+   "surveillance",
+   "screening program",
+   "vaccin|immunis|immuniz",
+   "burden of disease",
+   "global health",
+   "mortality|morbidity",
+   "health services",
+   "tobacco|smoking|alcohol|opioid",
+   "air pollution|environmental exposure",
+   "occupational health",
+   "health equity",
+   "access to (health)?care"
+  ],
+  "exclude": [
+   "\\bplant|\\bcrop\\b|veterinar|livestock|aquacultur",
+   "dental|oral health",
+   "engineering education"
+  ]
+ },
+ "id": "public-health",
+ "topics": [
+  "T10290",
+  "T13275",
+  "T13099",
+  "T10351",
+  "T10038",
+  "T14495",
+  "T10153",
+  "T10605",
+  "T13656",
+  "T11930",
+  "T10166",
+  "T13022",
+  "T14293",
+  "T14186",
+  "T10051",
+  "T11290",
+  "T10091",
+  "T13883",
+  "T10209",
+  "T10596",
+  "T10177",
+  "T10254",
+  "T10809",
+  "T10340",
+  "T10129",
+  "T13597",
+  "T10082",
+  "T10146",
+  "T10364",
+  "T10084",
+  "T11636",
+  "T10167",
+  "T10312",
+  "T10151",
+  "T10300",
+  "T10227",
+  "T11430",
+  "T10318",
+  "T10010",
+  "T13360",
+  "T13147",
+  "T11959",
+  "T10554",
+  "T10118",
+  "T13751",
+  "T11316",
+  "T10537",
+  "T11156",
+  "T10418",
+  "T12168",
+  "T10060",
+  "T10195",
+  "T13888",
+  "T10308",
+  "T10043",
+  "T10150",
+  "T10658",
+  "T14316",
+  "T10625",
+  "T10706",
+  "T10760",
+  "T10234",
+  "T11464",
+  "T10291",
+  "T12413",
+  "T12664",
+  "T13091",
+  "T13315",
+  "T12935",
+  "T11610",
+  "T10218",
+  "T11990",
+  "T10041",
+  "T10392",
+  "T10198",
+  "T12781",
+  "T11815",
+  "T11153",
+  "T10890",
+  "T10866",
+  "T12741",
+  "T11243",
+  "T12811",
+  "T10976",
+  "T11246",
+  "T10979",
+  "T10823",
+  "T10754",
+  "T11253",
+  "T10327",
+  "T10654",
+  "T10552",
+  "T10352",
+  "T10562",
+  "T10416",
+  "T10208",
+  "T11350",
+  "T14090",
+  "T11467",
+  "T11692",
+  "T10981",
+  "T11855",
+  "T10619",
+  "T11660",
+  "T10786",
+  "T11112",
+  "T10600",
+  "T11135",
+  "T10671",
+  "T10877",
+  "T10381",
+  "T10935",
+  "T10446",
+  "T10606",
+  "T11635",
+  "T10556",
+  "T12041",
+  "T13035",
+  "T11227",
+  "T11232",
+  "T11097",
+  "T10455",
+  "T14020",
+  "T13491",
+  "T11037",
+  "T11163",
+  "T10722",
+  "T10528",
+  "T12847",
+  "T11288",
+  "T13233",
+  "T11060",
+  "T10997",
+  "T12492",
+  "T11787",
+  "T11045",
+  "T14051",
+  "T11095",
+  "T10634",
+  "T10950",
+  "T11271",
+  "T10989",
+  "T10482",
+  "T12047",
+  "T11934",
+  "T10852",
+  "T10576",
+  "T11509",
+  "T11033",
+  "T14404",
+  "T11154",
+  "T11207",
+  "T11730",
+  "T13534",
+  "T11824",
+  "T14199",
+  "T10587",
+  "T11194",
+  "T10582",
+  "T11364",
+  "T13915",
+  "T13533",
+  "T11282",
+  "T11964",
+  "T10912",
+  "T11551",
+  "T13112",
+  "T11389",
+  "T11011",
+  "T12317",
+  "T14143",
+  "T11296",
+  "T11695",
+  "T14288",
+  "T11867",
+  "T12107",
+  "T11453",
+  "T12871",
+  "T11251",
+  "T11639",
+  "T13389",
+  "T12151",
+  "T11199",
+  "T12066",
+  "T11306",
+  "T10629",
+  "T11422",
+  "T12681",
+  "T14212",
+  "T11987",
+  "T12602",
+  "T10925",
+  "T13953",
+  "T12246",
+  "T11562",
+  "T12518",
+  "T11581",
+  "T12587",
+  "T11623",
+  "T14396",
+  "T14463",
+  "T12947",
+  "T14129",
+  "T11539",
+  "T11731",
+  "T12109",
+  "T11819",
+  "T12494",
+  "T13605",
+  "T12969",
+  "T11553",
+  "T11555",
+  "T12411",
+  "T12057",
+  "T14034",
+  "T11573",
+  "T12369",
+  "T11724",
+  "T11860",
+  "T12402",
+  "T12538",
+  "T12096",
+  "T12463",
+  "T12823",
+  "T12154",
+  "T13111",
+  "T11378",
+  "T13340",
+  "T11899",
+  "T13896",
+  "T12920",
+  "T12609",
+  "T11961",
+  "T11633",
+  "T11866",
+  "T12328",
+  "T12116",
+  "T12634",
+  "T11834",
+  "T13522",
+  "T11239",
+  "T13544",
+  "T12716",
+  "T12869",
+  "T13252",
+  "T12054",
+  "T14078",
+  "T12025",
+  "T12138",
+  "T12715",
+  "T12208",
+  "T13822",
+  "T11895",
+  "T11833",
+  "T11754",
+  "T12297",
+  "T12194",
+  "T12595",
+  "T10652",
+  "T12075",
+  "T13055",
+  "T11384",
+  "T12259",
+  "T13423",
+  "T13569",
+  "T12352",
+  "T12625",
+  "T11015",
+  "T11892",
+  "T12655",
+  "T14512",
+  "T13847",
+  "T14093",
+  "T13048",
+  "T12272",
+  "T12088",
+  "T14126",
+  "T13416",
+  "T13313",
+  "T12878",
+  "T14043",
+  "T13707",
+  "T14501",
+  "T12951",
+  "T12569",
+  "T13097",
+  "T13687",
+  "T14504",
+  "T12747",
+  "T13314",
+  "T14374",
+  "T13617",
+  "T13381",
+  "T13503",
+  "T13945",
+  "T14511",
+  "T14354",
+  "T14073",
+  "T14077",
+  "T13017",
+  "T13387"
+ ]
+}

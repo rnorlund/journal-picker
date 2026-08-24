@@ -1,9 +1,20 @@
 {
  "fields": [
+  "aging",
   "brain-imaging",
   "cardiovascular",
   "dental-oral",
+  "digital-health",
   "genetics",
-  "llm-language"
+  "global-health",
+  "implementation-science",
+  "llm-language",
+  "medical-education",
+  "microbiome",
+  "nutrition",
+  "oncology",
+  "psychiatry-mental-health",
+  "public-health",
+  "rehabilitation"
  ]
 }

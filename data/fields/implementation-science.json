@@ -1,0 +1,656 @@
+{
+ "name": "Implementation science and health services research",
+ "description": "Getting evidence into practice: implementation strategies, quality improvement, health services delivery and policy.",
+ "signals": [
+  "implementation",
+  "implementation science",
+  "dissemination",
+  "quality improvement",
+  "health services",
+  "care delivery",
+  "de-implementation",
+  "deimplementation",
+  "fidelity",
+  "adoption",
+  "scale up",
+  "scale-up",
+  "sustainability",
+  "knowledge translation",
+  "evidence based practice",
+  "guideline adherence",
+  "care pathway",
+  "workflow",
+  "stakeholder",
+  "barriers and facilitators",
+  "context",
+  "normalisation",
+  "normalization"
+ ],
+ "methods": [
+  [
+   "cfir",
+   "consolidated framework for implementation research"
+  ],
+  [
+   "consolidated framework",
+   "consolidated framework for implementation research"
+  ],
+  [
+   "re aim",
+   "re aim framework"
+  ],
+  [
+   "reaim",
+   "re aim framework"
+  ],
+  [
+   "normalisation process theory",
+   "normalisation process theory"
+  ],
+  [
+   "normalization process theory",
+   "normalization process theory"
+  ],
+  [
+   "theoretical domains framework",
+   "theoretical domains framework"
+  ],
+  [
+   "behaviour change wheel",
+   "behaviour change wheel"
+  ],
+  [
+   "com b",
+   "com b model"
+  ],
+  [
+   "proctor",
+   "implementation outcomes framework"
+  ],
+  [
+   "hybrid effectiveness implementation",
+   "hybrid effectiveness implementation trial"
+  ],
+  [
+   "stepped wedge",
+   "stepped wedge trial"
+  ],
+  [
+   "cluster randomi",
+   "cluster randomised trial"
+  ],
+  [
+   "pragmatic trial",
+   "pragmatic clinical trial"
+  ],
+  [
+   "quality improvement collaborative",
+   "quality improvement collaborative"
+  ],
+  [
+   "plan do study act",
+   "plan do study act cycle"
+  ],
+  [
+   "pdsa",
+   "plan do study act cycle"
+  ],
+  [
+   "audit and feedback",
+   "audit and feedback"
+  ],
+  [
+   "clinical decision support",
+   "clinical decision support"
+  ],
+  [
+   "process mapping",
+   "process mapping"
+  ],
+  [
+   "time and motion",
+   "time and motion study"
+  ],
+  [
+   "mixed methods",
+   "mixed methods study"
+  ],
+  [
+   "qualitative interview",
+   "qualitative interviews"
+  ],
+  [
+   "focus group",
+   "focus groups"
+  ],
+  [
+   "thematic analysis",
+   "thematic analysis"
+  ],
+  [
+   "framework analysis",
+   "framework analysis"
+  ],
+  [
+   "rapid qualitative",
+   "rapid qualitative analysis"
+  ],
+  [
+   "delphi",
+   "delphi consensus"
+  ],
+  [
+   "nominal group",
+   "nominal group technique"
+  ],
+  [
+   "discrete choice experiment",
+   "discrete choice experiment"
+  ],
+  [
+   "realist evaluation",
+   "realist evaluation"
+  ],
+  [
+   "process evaluation",
+   "process evaluation"
+  ],
+  [
+   "logic model",
+   "logic model"
+  ],
+  [
+   "interrupted time series",
+   "interrupted time series"
+  ],
+  [
+   "difference in differences",
+   "difference in differences"
+  ],
+  [
+   "cost effectiveness",
+   "cost effectiveness analysis"
+  ],
+  [
+   "budget impact",
+   "budget impact analysis"
+  ],
+  [
+   "economic evaluation",
+   "economic evaluation"
+  ],
+  [
+   "survey instrument",
+   "survey instrument validation"
+  ],
+  [
+   "psychometric",
+   "psychometric validation"
+  ],
+  [
+   "fidelity assessment",
+   "intervention fidelity"
+  ],
+  [
+   "dose delivered",
+   "implementation dose"
+  ],
+  [
+   "social network analysis",
+   "social network analysis"
+  ],
+  [
+   "learning health system",
+   "learning health system"
+  ],
+  [
+   "registry",
+   "clinical registry"
+  ]
+ ],
+ "populations": [
+  [
+   "primary care",
+   "primary care"
+  ],
+  [
+   "general practice",
+   "general practice"
+  ],
+  [
+   "community health worker",
+   "community health workers"
+  ],
+  [
+   "nurse",
+   "nursing workforce"
+  ],
+  [
+   "physician",
+   "physician practice"
+  ],
+  [
+   "pharmacist",
+   "pharmacist led care"
+  ],
+  [
+   "hospital",
+   "hospital care"
+  ],
+  [
+   "emergency department",
+   "emergency department"
+  ],
+  [
+   "intensive care",
+   "intensive care unit"
+  ],
+  [
+   "surgical",
+   "surgical care"
+  ],
+  [
+   "nursing home",
+   "nursing home care"
+  ],
+  [
+   "long term care",
+   "long term care"
+  ],
+  [
+   "home care",
+   "home based care"
+  ],
+  [
+   "telehealth",
+   "telehealth"
+  ],
+  [
+   "telemedicine",
+   "telemedicine"
+  ],
+  [
+   "low and middle income",
+   "low and middle income countries"
+  ],
+  [
+   "rural",
+   "rural health services"
+  ],
+  [
+   "safety net",
+   "safety net clinics"
+  ],
+  [
+   "veterans",
+   "veterans health administration"
+  ],
+  [
+   "medicaid",
+   "medicaid"
+  ],
+  [
+   "mental health service",
+   "mental health services"
+  ],
+  [
+   "substance use treatment",
+   "substance use treatment"
+  ],
+  [
+   "opioid use disorder",
+   "opioid use disorder treatment"
+  ],
+  [
+   "cancer care",
+   "cancer care delivery"
+  ],
+  [
+   "screening uptake",
+   "screening uptake"
+  ],
+  [
+   "vaccination uptake",
+   "vaccination uptake"
+  ],
+  [
+   "hiv care",
+   "hiv care continuum"
+  ],
+  [
+   "maternal care",
+   "maternal health services"
+  ],
+  [
+   "paediatric",
+   "paediatric services"
+  ],
+  [
+   "pediatric",
+   "pediatric services"
+  ],
+  [
+   "chronic care",
+   "chronic care management"
+  ],
+  [
+   "diabetes care",
+   "diabetes care"
+  ],
+  [
+   "hypertension control",
+   "hypertension control"
+  ],
+  [
+   "guideline",
+   "clinical guideline implementation"
+  ],
+  [
+   "patient safety",
+   "patient safety"
+  ],
+  [
+   "readmission",
+   "hospital readmission"
+  ],
+  [
+   "length of stay",
+   "length of stay"
+  ],
+  [
+   "care coordination",
+   "care coordination"
+  ],
+  [
+   "shared decision making",
+   "shared decision making"
+  ],
+  [
+   "patient reported outcome",
+   "patient reported outcomes"
+  ],
+  [
+   "health literacy",
+   "health literacy"
+  ],
+  [
+   "equity",
+   "implementation equity"
+  ],
+  [
+   "workforce",
+   "health workforce"
+  ],
+  [
+   "burnout",
+   "clinician burnout"
+  ],
+  [
+   "cost",
+   "healthcare costs"
+  ],
+  [
+   "value based",
+   "value based care"
+  ],
+  [
+   "digital health",
+   "digital health implementation"
+  ],
+  [
+   "electronic health record",
+   "electronic health record implementation"
+  ]
+ ],
+ "topic_rules": {
+  "subfields": [
+   "Health Policy",
+   "Public Health, Environmental and Occupational Health"
+  ],
+  "gated_subfields": [
+   "Nursing",
+   "Health Informatics",
+   "Internal Medicine",
+   "Sociology and Political Science",
+   "Education",
+   "Business and International Management",
+   "Economics and Econometrics",
+   "Psychiatry and Mental health",
+   "Oncology",
+   "Emergency Medicine",
+   "Anesthesiology and Pain Medicine",
+   "Leadership and Management",
+   "Strategy and Management",
+   "Organizational Behavior and Human Resource Management"
+  ],
+  "patterns": [
+   "implementation",
+   "quality improvement",
+   "health service",
+   "care delivery",
+   "knowledge translation",
+   "evidence.based practice",
+   "guideline",
+   "patient safety",
+   "health polic",
+   "health system",
+   "primary care",
+   "shared decision",
+   "patient reported outcome",
+   "health literacy",
+   "telemedicine|telehealth",
+   "care coordination",
+   "clinical decision support",
+   "workforce|burnout",
+   "organi[sz]ational change"
+  ],
+  "exclude": [
+   "\\bplant|\\bcrop\\b|veterinar|manufacturing|supply chain logistics",
+   "software engineering|construction|civil engineering"
+  ]
+ },
+ "id": "implementation-science",
+ "topics": [
+  "T13532",
+  "T13275",
+  "T10391",
+  "T13099",
+  "T14495",
+  "T11930",
+  "T10166",
+  "T14293",
+  "T14186",
+  "T10804",
+  "T10091",
+  "T10172",
+  "T13883",
+  "T10209",
+  "T11590",
+  "T10285",
+  "T10177",
+  "T10254",
+  "T10364",
+  "T10065",
+  "T11636",
+  "T11537",
+  "T12339",
+  "T10312",
+  "T10300",
+  "T10227",
+  "T10144",
+  "T10010",
+  "T10417",
+  "T13147",
+  "T10073",
+  "T13751",
+  "T10124",
+  "T10253",
+  "T12168",
+  "T10458",
+  "T14316",
+  "T10401",
+  "T11744",
+  "T10518",
+  "T12413",
+  "T12664",
+  "T10696",
+  "T11990",
+  "T10926",
+  "T14118",
+  "T10329",
+  "T10198",
+  "T11153",
+  "T11376",
+  "T10866",
+  "T12816",
+  "T10277",
+  "T12376",
+  "T10728",
+  "T12811",
+  "T10823",
+  "T10754",
+  "T10654",
+  "T10552",
+  "T10344",
+  "T10449",
+  "T11350",
+  "T11467",
+  "T10641",
+  "T10335",
+  "T11221",
+  "T10786",
+  "T10600",
+  "T10671",
+  "T10292",
+  "T13123",
+  "T10668",
+  "T10350",
+  "T13417",
+  "T12041",
+  "T11232",
+  "T10984",
+  "T11163",
+  "T12847",
+  "T14437",
+  "T11381",
+  "T11288",
+  "T13946",
+  "T11759",
+  "T10997",
+  "T12492",
+  "T11095",
+  "T10950",
+  "T10793",
+  "T10482",
+  "T10576",
+  "T10795",
+  "T11497",
+  "T12281",
+  "T11894",
+  "T11021",
+  "T11824",
+  "T11473",
+  "T14199",
+  "T11950",
+  "T10854",
+  "T10582",
+  "T11071",
+  "T12918",
+  "T13915",
+  "T11314",
+  "T11816",
+  "T13901",
+  "T11267",
+  "T11964",
+  "T10912",
+  "T11551",
+  "T12244",
+  "T13112",
+  "T10508",
+  "T11453",
+  "T12871",
+  "T11639",
+  "T11951",
+  "T12066",
+  "T10629",
+  "T14212",
+  "T12602",
+  "T13953",
+  "T12246",
+  "T10737",
+  "T12587",
+  "T14396",
+  "T11238",
+  "T11731",
+  "T11763",
+  "T11722",
+  "T12443",
+  "T12057",
+  "T13869",
+  "T12790",
+  "T12402",
+  "T11616",
+  "T12538",
+  "T12096",
+  "T11681",
+  "T12823",
+  "T13555",
+  "T13340",
+  "T13896",
+  "T12920",
+  "T13408",
+  "T11961",
+  "T11000",
+  "T13544",
+  "T12869",
+  "T14384",
+  "T12574",
+  "T11024",
+  "T13226",
+  "T13252",
+  "T12054",
+  "T11080",
+  "T12715",
+  "T12208",
+  "T12172",
+  "T13243",
+  "T12367",
+  "T11833",
+  "T11785",
+  "T13423",
+  "T12198",
+  "T12531",
+  "T13449",
+  "T11015",
+  "T11892",
+  "T12655",
+  "T14512",
+  "T13242",
+  "T13467",
+  "T13048",
+  "T12284",
+  "T12174",
+  "T12484",
+  "T13812",
+  "T14060",
+  "T12878",
+  "T13709",
+  "T14038",
+  "T13761",
+  "T13149",
+  "T14264",
+  "T13431",
+  "T12905",
+  "T13279",
+  "T14450",
+  "T13097",
+  "T13642",
+  "T13945",
+  "T14407",
+  "T13580",
+  "T14447",
+  "T14283",
+  "T14161",
+  "T13017"
+ ]
+}

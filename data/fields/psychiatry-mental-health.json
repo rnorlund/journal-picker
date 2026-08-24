@@ -1,0 +1,604 @@
+{
+ "name": "Psychiatry and mental health",
+ "description": "Psychiatric disorders, clinical psychology, psychotherapy and mental health services.",
+ "signals": [
+  "psychiatr",
+  "mental health",
+  "depression",
+  "depressive",
+  "anxiety",
+  "schizophrenia",
+  "psychosis",
+  "bipolar",
+  "ptsd",
+  "ocd",
+  "suicid",
+  "self harm",
+  "substance use",
+  "addiction",
+  "psychotherapy",
+  "antidepressant",
+  "antipsychotic",
+  "symptom severity",
+  "comorbid",
+  "psychopatholog",
+  "wellbeing",
+  "emotion regulation",
+  "clinical trial"
+ ],
+ "methods": [
+  [
+   "randomised controlled trial",
+   "randomised controlled trial"
+  ],
+  [
+   "randomized controlled trial",
+   "randomized controlled trial"
+  ],
+  [
+   "cognitive behavioural therapy",
+   "cognitive behavioural therapy"
+  ],
+  [
+   "cbt",
+   "cognitive behavioural therapy"
+  ],
+  [
+   "cognitive behavioral therapy",
+   "cognitive behavioral therapy"
+  ],
+  [
+   "dialectical behaviour",
+   "dialectical behaviour therapy"
+  ],
+  [
+   "mindfulness based",
+   "mindfulness based intervention"
+  ],
+  [
+   "interpersonal psychotherapy",
+   "interpersonal psychotherapy"
+  ],
+  [
+   "exposure therapy",
+   "exposure therapy"
+  ],
+  [
+   "behavioural activation",
+   "behavioural activation"
+  ],
+  [
+   "psychodynamic",
+   "psychodynamic psychotherapy"
+  ],
+  [
+   "internet delivered",
+   "internet delivered therapy"
+  ],
+  [
+   "ecological momentary",
+   "ecological momentary assessment"
+  ],
+  [
+   "experience sampling",
+   "experience sampling"
+  ],
+  [
+   "network analysis",
+   "symptom network analysis"
+  ],
+  [
+   "latent class",
+   "latent class analysis"
+  ],
+  [
+   "factor analysis",
+   "factor analysis"
+  ],
+  [
+   "structural equation",
+   "structural equation modelling"
+  ],
+  [
+   "item response theory",
+   "item response theory"
+  ],
+  [
+   "psychometric",
+   "psychometric validation"
+  ],
+  [
+   "meta analysis",
+   "meta analysis"
+  ],
+  [
+   "network meta analysis",
+   "network meta analysis"
+  ],
+  [
+   "systematic review",
+   "systematic review"
+  ],
+  [
+   "mendelian randomi",
+   "mendelian randomisation"
+  ],
+  [
+   "polygenic risk score",
+   "polygenic risk score psychiatric"
+  ],
+  [
+   "genome wide association",
+   "genome wide association study psychiatric"
+  ],
+  [
+   "resting state",
+   "resting state functional connectivity"
+  ],
+  [
+   "fmri",
+   "functional mri psychiatry"
+  ],
+  [
+   "structural mri",
+   "structural mri psychiatry"
+  ],
+  [
+   "eeg",
+   "electroencephalography psychiatry"
+  ],
+  [
+   "transcranial magnetic",
+   "transcranial magnetic stimulation"
+  ],
+  [
+   "electroconvulsive",
+   "electroconvulsive therapy"
+  ],
+  [
+   "ketamine",
+   "ketamine treatment"
+  ],
+  [
+   "psilocybin",
+   "psilocybin therapy"
+  ],
+  [
+   "psychedelic",
+   "psychedelic assisted therapy"
+  ],
+  [
+   "pharmacotherapy",
+   "pharmacotherapy trial"
+  ],
+  [
+   "placebo",
+   "placebo response"
+  ],
+  [
+   "dose response",
+   "dose response"
+  ],
+  [
+   "adherence",
+   "treatment adherence"
+  ],
+  [
+   "machine learning",
+   "machine learning psychiatry"
+  ],
+  [
+   "digital phenotyping",
+   "digital phenotyping"
+  ],
+  [
+   "registry",
+   "national registry psychiatric"
+  ],
+  [
+   "cohort study",
+   "prospective cohort study"
+  ],
+  [
+   "qualitative interview",
+   "qualitative interviews"
+  ],
+  [
+   "cost effectiveness",
+   "cost effectiveness analysis"
+  ],
+  [
+   "measurement based care",
+   "measurement based care"
+  ]
+ ],
+ "populations": [
+  [
+   "major depressive",
+   "major depressive disorder"
+  ],
+  [
+   "treatment resistant",
+   "treatment resistant depression"
+  ],
+  [
+   "bipolar disorder",
+   "bipolar disorder"
+  ],
+  [
+   "schizophrenia",
+   "schizophrenia"
+  ],
+  [
+   "first episode psychosis",
+   "first episode psychosis"
+  ],
+  [
+   "clinical high risk",
+   "clinical high risk psychosis"
+  ],
+  [
+   "generalised anxiety",
+   "generalised anxiety disorder"
+  ],
+  [
+   "panic disorder",
+   "panic disorder"
+  ],
+  [
+   "social anxiety",
+   "social anxiety disorder"
+  ],
+  [
+   "ptsd",
+   "post traumatic stress disorder"
+  ],
+  [
+   "obsessive compulsive",
+   "obsessive compulsive disorder"
+  ],
+  [
+   "eating disorder",
+   "eating disorders"
+  ],
+  [
+   "anorexia",
+   "anorexia nervosa"
+  ],
+  [
+   "borderline personality",
+   "borderline personality disorder"
+  ],
+  [
+   "adhd",
+   "attention deficit hyperactivity disorder"
+  ],
+  [
+   "autism",
+   "autism spectrum disorder"
+  ],
+  [
+   "substance use disorder",
+   "substance use disorder"
+  ],
+  [
+   "alcohol use disorder",
+   "alcohol use disorder"
+  ],
+  [
+   "opioid use disorder",
+   "opioid use disorder"
+  ],
+  [
+   "cannabis",
+   "cannabis use"
+  ],
+  [
+   "gambling",
+   "gambling disorder"
+  ],
+  [
+   "internet addiction",
+   "problematic internet use"
+  ],
+  [
+   "suicide",
+   "suicide"
+  ],
+  [
+   "self harm",
+   "self harm"
+  ],
+  [
+   "suicidal ideation",
+   "suicidal ideation"
+  ],
+  [
+   "insomnia",
+   "insomnia"
+  ],
+  [
+   "sleep disturbance",
+   "sleep disturbance"
+  ],
+  [
+   "perinatal",
+   "perinatal mental health"
+  ],
+  [
+   "postpartum depression",
+   "postpartum depression"
+  ],
+  [
+   "child and adolescent",
+   "child and adolescent mental health"
+  ],
+  [
+   "adolescent",
+   "adolescent mental health"
+  ],
+  [
+   "young people",
+   "youth mental health"
+  ],
+  [
+   "older adults",
+   "late life mental health"
+  ],
+  [
+   "late life depression",
+   "late life depression"
+  ],
+  [
+   "dementia",
+   "behavioural symptoms of dementia"
+  ],
+  [
+   "caregiver",
+   "caregiver mental health"
+  ],
+  [
+   "veterans",
+   "veteran mental health"
+  ],
+  [
+   "refugee",
+   "refugee mental health"
+  ],
+  [
+   "homeless",
+   "homelessness mental health"
+  ],
+  [
+   "incarcerated",
+   "forensic mental health"
+  ],
+  [
+   "lgbtq",
+   "sexual and gender minority mental health"
+  ],
+  [
+   "stigma",
+   "mental illness stigma"
+  ],
+  [
+   "loneliness",
+   "loneliness"
+  ],
+  [
+   "burnout",
+   "occupational burnout"
+  ],
+  [
+   "workplace",
+   "workplace mental health"
+  ],
+  [
+   "low and middle income",
+   "global mental health"
+  ],
+  [
+   "covid",
+   "covid 19 mental health"
+  ],
+  [
+   "climate anxiety",
+   "climate distress"
+  ],
+  [
+   "comorbid physical",
+   "physical mental comorbidity"
+  ]
+ ],
+ "topic_rules": {
+  "subfields": [
+   "Psychiatry and Mental health",
+   "Clinical Psychology",
+   "Biological Psychiatry"
+  ],
+  "gated_subfields": [
+   "Experimental and Cognitive Psychology",
+   "Cognitive Neuroscience",
+   "Neurology",
+   "Public Health, Environmental and Occupational Health",
+   "Health Policy",
+   "Nursing",
+   "Pharmacology",
+   "Genetics",
+   "Social Psychology",
+   "Developmental and Educational Psychology",
+   "Applied Psychology",
+   "Epidemiology",
+   "Pediatrics, Perinatology and Child Health"
+  ],
+  "patterns": [
+   "psychiatr",
+   "mental health|mental illness|mental disorder",
+   "depress",
+   "anxiet",
+   "schizophren|psychosis|psychotic",
+   "bipolar",
+   "post.?traumatic stress|\\bptsd\\b",
+   "obsessive.compulsive",
+   "eating disorder|anorexia|bulimia",
+   "personality disorder",
+   "substance (use|abuse)|addict|alcohol use|opioid use",
+   "suicid|self.harm",
+   "psychotherap|counsel(l)?ing",
+   "antidepressant|antipsychotic|mood stabil",
+   "psychopatholog",
+   "attention deficit|\\badhd\\b",
+   "autism",
+   "wellbeing|well.being"
+  ],
+  "exclude": [
+   "\\bplant|veterinar|animal model.{0,10}(agricultur)",
+   "organi[sz]ational psychology.{0,20}(marketing|consumer)"
+  ]
+ },
+ "id": "psychiatry-mental-health",
+ "topics": [
+  "T11132",
+  "T13099",
+  "T10182",
+  "T14313",
+  "T10214",
+  "T10094",
+  "T10106",
+  "T10009",
+  "T10023",
+  "T10168",
+  "T13861",
+  "T13224",
+  "T11761",
+  "T12229",
+  "T10417",
+  "T11959",
+  "T10263",
+  "T10537",
+  "T10060",
+  "T10510",
+  "T10043",
+  "T11632",
+  "T14434",
+  "T11464",
+  "T11388",
+  "T13091",
+  "T10376",
+  "T12844",
+  "T10762",
+  "T11610",
+  "T10156",
+  "T12831",
+  "T10498",
+  "T10453",
+  "T12811",
+  "T10414",
+  "T10426",
+  "T13944",
+  "T10352",
+  "T11999",
+  "T10178",
+  "T10786",
+  "T10272",
+  "T10475",
+  "T10919",
+  "T11295",
+  "T12480",
+  "T13283",
+  "T11541",
+  "T10459",
+  "T11141",
+  "T10708",
+  "T11097",
+  "T11083",
+  "T11334",
+  "T12993",
+  "T13118",
+  "T11759",
+  "T12704",
+  "T13143",
+  "T13189",
+  "T11213",
+  "T14295",
+  "T10485",
+  "T10793",
+  "T12245",
+  "T11519",
+  "T10576",
+  "T10795",
+  "T11084",
+  "T11337",
+  "T10854",
+  "T11071",
+  "T14514",
+  "T10853",
+  "T10242",
+  "T11400",
+  "T13393",
+  "T11327",
+  "T11282",
+  "T11368",
+  "T10912",
+  "T11768",
+  "T10565",
+  "T11772",
+  "T11639",
+  "T11093",
+  "T11199",
+  "T12066",
+  "T12666",
+  "T11123",
+  "T12335",
+  "T12947",
+  "T10694",
+  "T11040",
+  "T11705",
+  "T12145",
+  "T10547",
+  "T11860",
+  "T11678",
+  "T12823",
+  "T11795",
+  "T14085",
+  "T11633",
+  "T11921",
+  "T12869",
+  "T12663",
+  "T12258",
+  "T11793",
+  "T12626",
+  "T12117",
+  "T12621",
+  "T12553",
+  "T12313",
+  "T13243",
+  "T11983",
+  "T13319",
+  "T12488",
+  "T11997",
+  "T12485",
+  "T14040",
+  "T11015",
+  "T11832",
+  "T13542",
+  "T13048",
+  "T12980",
+  "T12684",
+  "T12521",
+  "T13419",
+  "T13805",
+  "T12889",
+  "T12551",
+  "T12464",
+  "T13353",
+  "T13272",
+  "T13536",
+  "T14308",
+  "T13782",
+  "T13262",
+  "T13510",
+  "T14220",
+  "T14511"
+ ]
+}

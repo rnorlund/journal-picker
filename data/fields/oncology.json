@@ -1,0 +1,783 @@
+{
+ "name": "Oncology and cancer research",
+ "description": "Cancer biology, clinical oncology, radiotherapy, immuno-oncology and cancer outcomes.",
+ "signals": [
+  "cancer",
+  "tumour",
+  "tumor",
+  "oncolog",
+  "carcinoma",
+  "malignan",
+  "metastas",
+  "chemotherapy",
+  "radiotherapy",
+  "immunotherapy",
+  "survival",
+  "progression free",
+  "overall survival",
+  "biopsy",
+  "staging",
+  "neoadjuvant",
+  "adjuvant",
+  "targeted therapy",
+  "checkpoint",
+  "resection",
+  "recurrence"
+ ],
+ "methods": [
+  [
+   "phase i",
+   "phase i trial"
+  ],
+  [
+   "phase ii",
+   "phase ii trial"
+  ],
+  [
+   "phase iii",
+   "phase iii trial"
+  ],
+  [
+   "randomised controlled trial",
+   "randomised controlled trial"
+  ],
+  [
+   "randomized controlled trial",
+   "randomized controlled trial"
+  ],
+  [
+   "basket trial",
+   "basket trial"
+  ],
+  [
+   "umbrella trial",
+   "umbrella trial"
+  ],
+  [
+   "progression free survival",
+   "progression free survival"
+  ],
+  [
+   "overall survival",
+   "overall survival"
+  ],
+  [
+   "recist",
+   "recist response criteria"
+  ],
+  [
+   "objective response rate",
+   "objective response rate"
+  ],
+  [
+   "kaplan meier",
+   "kaplan meier survival"
+  ],
+  [
+   "cox proportional",
+   "cox proportional hazards"
+  ],
+  [
+   "propensity score",
+   "propensity score matching"
+  ],
+  [
+   "seer",
+   "seer registry"
+  ],
+  [
+   "national cancer database",
+   "national cancer database"
+  ],
+  [
+   "immunohistochemistry",
+   "immunohistochemistry"
+  ],
+  [
+   "flow cytometry",
+   "flow cytometry"
+  ],
+  [
+   "next generation sequencing",
+   "next generation sequencing tumour"
+  ],
+  [
+   "whole exome sequencing",
+   "whole exome sequencing tumour"
+  ],
+  [
+   "single cell rna",
+   "single cell rna sequencing tumour"
+  ],
+  [
+   "spatial transcriptom",
+   "spatial transcriptomics tumour"
+  ],
+  [
+   "liquid biopsy",
+   "liquid biopsy"
+  ],
+  [
+   "circulating tumour dna",
+   "circulating tumour dna"
+  ],
+  [
+   "ctdna",
+   "circulating tumour dna"
+  ],
+  [
+   "minimal residual disease",
+   "minimal residual disease"
+  ],
+  [
+   "organoid",
+   "patient derived organoid"
+  ],
+  [
+   "xenograft",
+   "patient derived xenograft"
+  ],
+  [
+   "crispr screen",
+   "crispr screen"
+  ],
+  [
+   "proteomic",
+   "tumour proteomics"
+  ],
+  [
+   "radiomics",
+   "radiomics"
+  ],
+  [
+   "digital pathology",
+   "digital pathology"
+  ],
+  [
+   "pet ct",
+   "pet ct staging"
+  ],
+  [
+   "mri staging",
+   "mri staging"
+  ],
+  [
+   "stereotactic",
+   "stereotactic body radiotherapy"
+  ],
+  [
+   "intensity modulated",
+   "intensity modulated radiotherapy"
+  ],
+  [
+   "proton therapy",
+   "proton therapy"
+  ],
+  [
+   "brachytherapy",
+   "brachytherapy"
+  ],
+  [
+   "car t",
+   "car t cell therapy"
+  ],
+  [
+   "checkpoint inhibitor",
+   "immune checkpoint inhibitor"
+  ],
+  [
+   "antibody drug conjugate",
+   "antibody drug conjugate"
+  ],
+  [
+   "tyrosine kinase inhibitor",
+   "tyrosine kinase inhibitor"
+  ],
+  [
+   "biomarker",
+   "predictive biomarker"
+  ],
+  [
+   "tumour mutational burden",
+   "tumour mutational burden"
+  ],
+  [
+   "microsatellite",
+   "microsatellite instability"
+  ],
+  [
+   "patient reported outcome",
+   "patient reported outcomes oncology"
+  ],
+  [
+   "quality of life",
+   "quality of life cancer"
+  ],
+  [
+   "cost effectiveness",
+   "cost effectiveness oncology"
+  ],
+  [
+   "meta analysis",
+   "meta analysis"
+  ]
+ ],
+ "populations": [
+  [
+   "breast cancer",
+   "breast cancer"
+  ],
+  [
+   "lung cancer",
+   "lung cancer"
+  ],
+  [
+   "non small cell",
+   "non small cell lung cancer"
+  ],
+  [
+   "colorectal cancer",
+   "colorectal cancer"
+  ],
+  [
+   "prostate cancer",
+   "prostate cancer"
+  ],
+  [
+   "pancreatic cancer",
+   "pancreatic cancer"
+  ],
+  [
+   "gastric cancer",
+   "gastric cancer"
+  ],
+  [
+   "oesophageal",
+   "oesophageal cancer"
+  ],
+  [
+   "hepatocellular",
+   "hepatocellular carcinoma"
+  ],
+  [
+   "ovarian cancer",
+   "ovarian cancer"
+  ],
+  [
+   "cervical cancer",
+   "cervical cancer"
+  ],
+  [
+   "endometrial",
+   "endometrial cancer"
+  ],
+  [
+   "melanoma",
+   "melanoma"
+  ],
+  [
+   "glioma",
+   "glioma"
+  ],
+  [
+   "glioblastoma",
+   "glioblastoma"
+  ],
+  [
+   "brain metastas",
+   "brain metastases"
+  ],
+  [
+   "head and neck",
+   "head and neck cancer"
+  ],
+  [
+   "thyroid cancer",
+   "thyroid cancer"
+  ],
+  [
+   "renal cell",
+   "renal cell carcinoma"
+  ],
+  [
+   "bladder cancer",
+   "bladder cancer"
+  ],
+  [
+   "sarcoma",
+   "sarcoma"
+  ],
+  [
+   "leukaemia",
+   "leukaemia"
+  ],
+  [
+   "leukemia",
+   "leukemia"
+  ],
+  [
+   "lymphoma",
+   "lymphoma"
+  ],
+  [
+   "myeloma",
+   "multiple myeloma"
+  ],
+  [
+   "myelodysplastic",
+   "myelodysplastic syndrome"
+  ],
+  [
+   "paediatric oncology",
+   "paediatric oncology"
+  ],
+  [
+   "pediatric oncology",
+   "pediatric oncology"
+  ],
+  [
+   "adolescent and young adult",
+   "adolescent and young adult cancer"
+  ],
+  [
+   "older adults",
+   "geriatric oncology"
+  ],
+  [
+   "survivorship",
+   "cancer survivorship"
+  ],
+  [
+   "palliative",
+   "palliative care oncology"
+  ],
+  [
+   "end of life",
+   "end of life cancer care"
+  ],
+  [
+   "cachexia",
+   "cancer cachexia"
+  ],
+  [
+   "fatigue",
+   "cancer related fatigue"
+  ],
+  [
+   "cognitive impairment",
+   "cancer related cognitive impairment"
+  ],
+  [
+   "cardiotoxicity",
+   "cardiotoxicity"
+  ],
+  [
+   "immune related adverse",
+   "immune related adverse events"
+  ],
+  [
+   "screening",
+   "cancer screening"
+  ],
+  [
+   "early detection",
+   "early cancer detection"
+  ],
+  [
+   "hereditary",
+   "hereditary cancer syndrome"
+  ],
+  [
+   "brca",
+   "brca1 brca2"
+  ],
+  [
+   "disparit",
+   "cancer disparities"
+  ],
+  [
+   "low and middle income",
+   "cancer care low resource settings"
+  ],
+  [
+   "smoking",
+   "tobacco and cancer"
+  ],
+  [
+   "obesity",
+   "obesity and cancer"
+  ],
+  [
+   "hpv",
+   "human papillomavirus"
+  ],
+  [
+   "tumour microenvironment",
+   "tumour microenvironment"
+  ],
+  [
+   "drug resistance",
+   "therapy resistance"
+  ]
+ ],
+ "topic_rules": {
+  "subfields": [
+   "Oncology",
+   "Cancer Research",
+   "Hematology",
+   "Radiology, Nuclear Medicine and Imaging"
+  ],
+  "gated_subfields": [
+   "Molecular Biology",
+   "Cell Biology",
+   "Immunology",
+   "Genetics",
+   "Pharmacology",
+   "Surgery",
+   "Internal Medicine",
+   "Public Health, Environmental and Occupational Health",
+   "Epidemiology",
+   "Gastroenterology",
+   "Urology",
+   "Obstetrics and Gynecology",
+   "Pathology and Forensic Medicine",
+   "Pediatrics, Perinatology and Child Health",
+   "Endocrinology"
+  ],
+  "patterns": [
+   "cancer|carcinom|tumou?r|oncolog|malignan|neoplas",
+   "metasta",
+   "chemotherap|radiotherap|immunotherap",
+   "leukaem|leukem|lymphom|myelom",
+   "melanoma|sarcoma|glioma|glioblastoma",
+   "checkpoint inhibitor|car t",
+   "cancer screening|early detection",
+   "survivorship",
+   "tumou?r microenvironment"
+  ],
+  "exclude": [
+   "\\bplant|\\bcrop\\b|veterinar.{0,20}(cattle|poultry)",
+   "benign prostatic hyperplasia only"
+  ]
+ },
+ "id": "oncology",
+ "topics": [
+  "T12930",
+  "T10885",
+  "T10351",
+  "T13656",
+  "T13444",
+  "T12267",
+  "T10522",
+  "T11016",
+  "T10285",
+  "T10372",
+  "T10340",
+  "T10129",
+  "T10276",
+  "T10146",
+  "T11020",
+  "T11752",
+  "T10602",
+  "T10231",
+  "T10207",
+  "T10378",
+  "T10268",
+  "T10062",
+  "T10163",
+  "T10158",
+  "T10631",
+  "T12505",
+  "T10580",
+  "T10543",
+  "T10269",
+  "T10185",
+  "T10397",
+  "T10202",
+  "T10417",
+  "T10073",
+  "T12422",
+  "T10831",
+  "T10124",
+  "T10515",
+  "T10253",
+  "T10060",
+  "T10031",
+  "T10307",
+  "T10756",
+  "T10123",
+  "T10458",
+  "T10183",
+  "T10309",
+  "T10550",
+  "T11085",
+  "T10492",
+  "T10518",
+  "T11482",
+  "T10844",
+  "T10696",
+  "T10748",
+  "T10329",
+  "T10392",
+  "T10832",
+  "T10890",
+  "T10866",
+  "T11287",
+  "T11157",
+  "T10277",
+  "T13759",
+  "T11171",
+  "T10678",
+  "T10035",
+  "T10649",
+  "T10754",
+  "T10433",
+  "T10552",
+  "T10902",
+  "T11395",
+  "T10449",
+  "T10178",
+  "T10570",
+  "T10452",
+  "T10335",
+  "T10619",
+  "T11660",
+  "T11221",
+  "T11658",
+  "T10336",
+  "T10877",
+  "T10583",
+  "T13123",
+  "T10668",
+  "T11491",
+  "T10556",
+  "T10563",
+  "T11141",
+  "T11361",
+  "T10773",
+  "T12379",
+  "T14028",
+  "T10422",
+  "T10746",
+  "T11041",
+  "T11369",
+  "T10345",
+  "T11356",
+  "T11385",
+  "T10975",
+  "T13374",
+  "T10620",
+  "T12817",
+  "T12257",
+  "T11026",
+  "T10445",
+  "T11035",
+  "T12465",
+  "T10379",
+  "T11787",
+  "T11213",
+  "T10294",
+  "T10634",
+  "T10950",
+  "T11271",
+  "T11438",
+  "T11013",
+  "T10989",
+  "T11452",
+  "T11069",
+  "T13199",
+  "T11359",
+  "T10755",
+  "T10685",
+  "T11207",
+  "T11215",
+  "T11713",
+  "T11894",
+  "T11669",
+  "T10934",
+  "T10587",
+  "T10946",
+  "T11297",
+  "T10769",
+  "T11364",
+  "T10881",
+  "T11304",
+  "T11521",
+  "T11559",
+  "T11054",
+  "T11503",
+  "T10169",
+  "T12159",
+  "T11327",
+  "T11067",
+  "T11339",
+  "T11355",
+  "T11313",
+  "T11011",
+  "T10954",
+  "T11296",
+  "T11107",
+  "T11566",
+  "T11485",
+  "T12554",
+  "T11328",
+  "T11377",
+  "T11251",
+  "T12994",
+  "T11868",
+  "T12477",
+  "T11199",
+  "T10642",
+  "T11306",
+  "T11775",
+  "T11845",
+  "T12103",
+  "T11134",
+  "T11533",
+  "T12140",
+  "T11173",
+  "T10977",
+  "T11092",
+  "T12226",
+  "T12587",
+  "T10937",
+  "T11628",
+  "T10957",
+  "T11280",
+  "T12030",
+  "T10694",
+  "T13023",
+  "T10952",
+  "T11219",
+  "T14275",
+  "T10827",
+  "T11318",
+  "T11411",
+  "T11638",
+  "T11828",
+  "T11991",
+  "T11724",
+  "T11885",
+  "T11616",
+  "T12296",
+  "T11332",
+  "T11827",
+  "T11258",
+  "T12610",
+  "T11811",
+  "T13340",
+  "T11149",
+  "T11600",
+  "T11501",
+  "T12287",
+  "T10929",
+  "T11929",
+  "T11921",
+  "T13544",
+  "T11914",
+  "T11469",
+  "T12937",
+  "T12412",
+  "T12110",
+  "T12104",
+  "T11736",
+  "T14078",
+  "T13157",
+  "T12626",
+  "T11910",
+  "T12138",
+  "T12620",
+  "T10727",
+  "T12172",
+  "T12334",
+  "T11765",
+  "T13383",
+  "T12059",
+  "T11532",
+  "T12055",
+  "T12829",
+  "T12009",
+  "T11580",
+  "T12187",
+  "T11535",
+  "T12108",
+  "T12347",
+  "T11591",
+  "T11962",
+  "T11308",
+  "T12745",
+  "T13454",
+  "T12866",
+  "T11534",
+  "T12064",
+  "T11785",
+  "T13385",
+  "T12672",
+  "T13110",
+  "T11576",
+  "T12992",
+  "T12198",
+  "T11889",
+  "T12065",
+  "T12800",
+  "T12278",
+  "T13221",
+  "T11627",
+  "T12689",
+  "T11909",
+  "T12769",
+  "T13037",
+  "T13242",
+  "T12631",
+  "T12695",
+  "T13526",
+  "T12212",
+  "T12387",
+  "T12272",
+  "T13479",
+  "T12183",
+  "T12484",
+  "T13047",
+  "T13813",
+  "T13971",
+  "T13725",
+  "T13779",
+  "T13313",
+  "T12793",
+  "T13878",
+  "T12548",
+  "T12820",
+  "T13254",
+  "T12523",
+  "T12638",
+  "T13943",
+  "T14326",
+  "T14245",
+  "T13798",
+  "T13426",
+  "T13434",
+  "T13792",
+  "T12429",
+  "T12835",
+  "T13921",
+  "T14333",
+  "T13279",
+  "T14065",
+  "T12750",
+  "T13077",
+  "T13437",
+  "T13097",
+  "T12845",
+  "T12731",
+  "T13223",
+  "T13637",
+  "T13350",
+  "T13026",
+  "T13363",
+  "T13188",
+  "T13677",
+  "T14478",
+  "T13281",
+  "T14364"
+ ]
+}

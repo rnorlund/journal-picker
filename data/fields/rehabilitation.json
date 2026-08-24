@@ -1,0 +1,528 @@
+{
+ "name": "Rehabilitation and communication sciences",
+ "description": "Physical, occupational and speech-language rehabilitation, disability and functional recovery.",
+ "signals": [
+  "rehabilitation",
+  "physiotherapy",
+  "physical therapy",
+  "occupational therapy",
+  "speech therapy",
+  "speech language patholog",
+  "aphasia",
+  "dysphagia",
+  "disability",
+  "functional outcome",
+  "motor recovery",
+  "gait",
+  "balance",
+  "exercise therapy",
+  "assistive",
+  "prosthes",
+  "orthos",
+  "activities of daily living",
+  "participation",
+  "impairment",
+  "mobility"
+ ],
+ "methods": [
+  [
+   "randomised controlled trial",
+   "randomised controlled trial rehabilitation"
+  ],
+  [
+   "randomized controlled trial",
+   "randomized controlled trial rehabilitation"
+  ],
+  [
+   "single case experimental",
+   "single case experimental design"
+  ],
+  [
+   "n of 1",
+   "n of 1 trial"
+  ],
+  [
+   "crossover",
+   "crossover trial"
+  ],
+  [
+   "gait analysis",
+   "three dimensional gait analysis"
+  ],
+  [
+   "motion capture",
+   "motion capture"
+  ],
+  [
+   "force plate",
+   "force platform"
+  ],
+  [
+   "electromyograph",
+   "surface electromyography"
+  ],
+  [
+   "emg",
+   "surface electromyography"
+  ],
+  [
+   "accelerometer",
+   "accelerometry"
+  ],
+  [
+   "inertial measurement",
+   "inertial measurement unit"
+  ],
+  [
+   "robot assisted",
+   "robot assisted therapy"
+  ],
+  [
+   "exoskeleton",
+   "exoskeleton"
+  ],
+  [
+   "virtual reality",
+   "virtual reality rehabilitation"
+  ],
+  [
+   "constraint induced",
+   "constraint induced movement therapy"
+  ],
+  [
+   "task specific training",
+   "task specific training"
+  ],
+  [
+   "treadmill training",
+   "treadmill training"
+  ],
+  [
+   "aerobic exercise",
+   "aerobic exercise training"
+  ],
+  [
+   "resistance training",
+   "resistance training"
+  ],
+  [
+   "transcranial direct current",
+   "transcranial direct current stimulation"
+  ],
+  [
+   "tdcs",
+   "transcranial direct current stimulation"
+  ],
+  [
+   "transcranial magnetic",
+   "transcranial magnetic stimulation"
+  ],
+  [
+   "functional electrical stimulation",
+   "functional electrical stimulation"
+  ],
+  [
+   "biofeedback",
+   "biofeedback"
+  ],
+  [
+   "telerehabilitation",
+   "telerehabilitation"
+  ],
+  [
+   "intensive therapy",
+   "intensive therapy dose"
+  ],
+  [
+   "dose response",
+   "therapy dose response"
+  ],
+  [
+   "naming therapy",
+   "naming treatment aphasia"
+  ],
+  [
+   "semantic feature analysis",
+   "semantic feature analysis"
+  ],
+  [
+   "constraint induced language",
+   "constraint induced language therapy"
+  ],
+  [
+   "melodic intonation",
+   "melodic intonation therapy"
+  ],
+  [
+   "videofluoroscop",
+   "videofluoroscopic swallow study"
+  ],
+  [
+   "fibreoptic endoscopic",
+   "fibreoptic endoscopic evaluation of swallowing"
+  ],
+  [
+   "acoustic analysis",
+   "acoustic voice analysis"
+  ],
+  [
+   "standardised assessment",
+   "standardised outcome measure"
+  ],
+  [
+   "minimal clinically important",
+   "minimal clinically important difference"
+  ],
+  [
+   "patient reported outcome",
+   "patient reported outcome measure"
+  ],
+  [
+   "icf",
+   "international classification of functioning"
+  ],
+  [
+   "goal attainment",
+   "goal attainment scaling"
+  ],
+  [
+   "systematic review",
+   "systematic review rehabilitation"
+  ],
+  [
+   "meta analysis",
+   "meta analysis rehabilitation"
+  ],
+  [
+   "qualitative interview",
+   "qualitative interviews rehabilitation"
+  ],
+  [
+   "cost effectiveness",
+   "cost effectiveness rehabilitation"
+  ],
+  [
+   "mri",
+   "structural mri rehabilitation"
+  ],
+  [
+   "lesion",
+   "lesion outcome mapping"
+  ]
+ ],
+ "populations": [
+  [
+   "stroke",
+   "stroke rehabilitation"
+  ],
+  [
+   "aphasia",
+   "aphasia"
+  ],
+  [
+   "anomia",
+   "anomia naming"
+  ],
+  [
+   "apraxia of speech",
+   "apraxia of speech"
+  ],
+  [
+   "dysarthria",
+   "dysarthria"
+  ],
+  [
+   "dysphagia",
+   "dysphagia"
+  ],
+  [
+   "traumatic brain injury",
+   "traumatic brain injury rehabilitation"
+  ],
+  [
+   "spinal cord injury",
+   "spinal cord injury"
+  ],
+  [
+   "cerebral palsy",
+   "cerebral palsy"
+  ],
+  [
+   "multiple sclerosis",
+   "multiple sclerosis rehabilitation"
+  ],
+  [
+   "parkinson",
+   "parkinsons disease rehabilitation"
+  ],
+  [
+   "amputation",
+   "limb amputation"
+  ],
+  [
+   "prosthesis",
+   "prosthetic limb"
+  ],
+  [
+   "osteoarthritis",
+   "osteoarthritis"
+  ],
+  [
+   "low back pain",
+   "low back pain"
+  ],
+  [
+   "shoulder pain",
+   "shoulder pain"
+  ],
+  [
+   "knee",
+   "knee injury rehabilitation"
+  ],
+  [
+   "anterior cruciate",
+   "anterior cruciate ligament rehabilitation"
+  ],
+  [
+   "hip fracture",
+   "hip fracture rehabilitation"
+  ],
+  [
+   "frailty",
+   "frailty rehabilitation"
+  ],
+  [
+   "falls",
+   "falls prevention"
+  ],
+  [
+   "balance",
+   "balance training"
+  ],
+  [
+   "cardiac rehabilitation",
+   "cardiac rehabilitation"
+  ],
+  [
+   "pulmonary rehabilitation",
+   "pulmonary rehabilitation"
+  ],
+  [
+   "cancer rehabilitation",
+   "cancer rehabilitation"
+  ],
+  [
+   "lymphoedema",
+   "lymphoedema"
+  ],
+  [
+   "critical illness",
+   "post intensive care syndrome"
+  ],
+  [
+   "long covid",
+   "long covid rehabilitation"
+  ],
+  [
+   "developmental language disorder",
+   "developmental language disorder"
+  ],
+  [
+   "stuttering",
+   "stuttering"
+  ],
+  [
+   "voice disorder",
+   "voice disorders"
+  ],
+  [
+   "hearing loss",
+   "hearing rehabilitation"
+  ],
+  [
+   "cochlear implant",
+   "cochlear implant"
+  ],
+  [
+   "autism",
+   "autism intervention"
+  ],
+  [
+   "intellectual disability",
+   "intellectual disability"
+  ],
+  [
+   "dementia",
+   "dementia rehabilitation"
+  ],
+  [
+   "older adults",
+   "older adults rehabilitation"
+  ],
+  [
+   "paediatric",
+   "paediatric rehabilitation"
+  ],
+  [
+   "pediatric",
+   "pediatric rehabilitation"
+  ],
+  [
+   "return to work",
+   "return to work"
+  ],
+  [
+   "return to sport",
+   "return to sport"
+  ],
+  [
+   "caregiver",
+   "caregiver training"
+  ],
+  [
+   "quality of life",
+   "quality of life"
+  ],
+  [
+   "participation",
+   "social participation"
+  ],
+  [
+   "wheelchair",
+   "wheelchair mobility"
+  ],
+  [
+   "assistive technology",
+   "assistive technology"
+  ],
+  [
+   "community reintegration",
+   "community reintegration"
+  ],
+  [
+   "low and middle income",
+   "rehabilitation low resource settings"
+  ]
+ ],
+ "topic_rules": {
+  "subfields": [
+   "Rehabilitation",
+   "Physical Therapy, Sports Therapy and Rehabilitation",
+   "Speech and Hearing",
+   "Occupational Therapy"
+  ],
+  "gated_subfields": [
+   "Neurology",
+   "Orthopedics and Sports Medicine",
+   "Public Health, Environmental and Occupational Health",
+   "Nursing",
+   "Biomedical Engineering",
+   "Geriatrics and Gerontology",
+   "Cognitive Neuroscience",
+   "Experimental and Cognitive Psychology",
+   "Otorhinolaryngology",
+   "Pediatrics, Perinatology and Child Health"
+  ],
+  "patterns": [
+   "rehabilitat",
+   "physiotherap|physical therap",
+   "occupational therap",
+   "speech.language|speech therap",
+   "\\baphasia\\b",
+   "dysphagia|swallow",
+   "\\bgait\\b|\\bbalance\\b|\\bmobility\\b",
+   "disabilit",
+   "assistive technolog",
+   "prosthe(sis|tic)|orthotic",
+   "motor (recovery|learning|control)",
+   "exercise (therapy|training|intervention)",
+   "functional outcome",
+   "stuttering|voice disorder",
+   "cochlear implant|hearing aid",
+   "activities of daily living|participation"
+  ],
+  "exclude": [
+   "\\bplant|\\bcrop\\b|veterinar|animal husbandry",
+   "ecological restoration|habitat restoration|land rehabilitation|mine rehabilitation",
+   "building|structural retrofit"
+  ]
+ },
+ "id": "rehabilitation",
+ "topics": [
+  "T10172",
+  "T10630",
+  "T10429",
+  "T10084",
+  "T10280",
+  "T13224",
+  "T10418",
+  "T13986",
+  "T10510",
+  "T14316",
+  "T13315",
+  "T10283",
+  "T10542",
+  "T10784",
+  "T10442",
+  "T12811",
+  "T10771",
+  "T11692",
+  "T10465",
+  "T10114",
+  "T10863",
+  "T11097",
+  "T10455",
+  "T11083",
+  "T13233",
+  "T13946",
+  "T11759",
+  "T11718",
+  "T10867",
+  "T10961",
+  "T13189",
+  "T12840",
+  "T14507",
+  "T10852",
+  "T11509",
+  "T10795",
+  "T11293",
+  "T10582",
+  "T11358",
+  "T10614",
+  "T11585",
+  "T11018",
+  "T11422",
+  "T10982",
+  "T12681",
+  "T11030",
+  "T13071",
+  "T10879",
+  "T11023",
+  "T10827",
+  "T11828",
+  "T14034",
+  "T13206",
+  "T12823",
+  "T11518",
+  "T12207",
+  "T11427",
+  "T12869",
+  "T12459",
+  "T11670",
+  "T12301",
+  "T12138",
+  "T14040",
+  "T11015",
+  "T12315",
+  "T12608",
+  "T13813",
+  "T12269",
+  "T12740",
+  "T13397",
+  "T12453",
+  "T13279",
+  "T13738",
+  "T13677",
+  "T14407"
+ ]
+}

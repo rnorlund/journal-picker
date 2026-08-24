@@ -1,0 +1,579 @@
+{
+ "id": "aging",
+ "name": "Aging and the aging brain",
+ "description": "Biology and epidemiology of ageing, geriatric medicine, and cognitive ageing including the ageing brain and neurodegeneration.",
+ "signals": [
+  "aging",
+  "ageing",
+  "older adult",
+  "older adults",
+  "elderly",
+  "geriatric",
+  "senescence",
+  "longevity",
+  "lifespan",
+  "healthspan",
+  "age related",
+  "age-related",
+  "frailty",
+  "sarcopenia",
+  "centenarian",
+  "late life",
+  "cognitive decline",
+  "dementia",
+  "neurodegener",
+  "brain age",
+  "gerontolog",
+  "retirement",
+  "multimorbidity",
+  "polypharmacy",
+  "caregiver",
+  "nursing home"
+ ],
+ "methods": [
+  [
+   "epigenetic clock",
+   "epigenetic clock"
+  ],
+  [
+   "dna methylation age",
+   "epigenetic age"
+  ],
+  [
+   "telomere",
+   "telomere length"
+  ],
+  [
+   "biological age",
+   "biological age estimation"
+  ],
+  [
+   "brain age",
+   "brain age prediction"
+  ],
+  [
+   "proteomic",
+   "plasma proteomics ageing"
+  ],
+  [
+   "metabolomic",
+   "metabolomics ageing"
+  ],
+  [
+   "senolytic",
+   "senolytics"
+  ],
+  [
+   "cellular senescence",
+   "cellular senescence"
+  ],
+  [
+   "caloric restriction",
+   "caloric restriction"
+  ],
+  [
+   "rapamycin",
+   "rapamycin lifespan"
+  ],
+  [
+   "metformin",
+   "metformin ageing"
+  ],
+  [
+   "mitochondrial",
+   "mitochondrial dysfunction ageing"
+  ],
+  [
+   "inflammaging",
+   "inflammaging"
+  ],
+  [
+   "inflammatory marker",
+   "inflammatory markers ageing"
+  ],
+  [
+   "frailty index",
+   "frailty index"
+  ],
+  [
+   "gait speed",
+   "gait speed"
+  ],
+  [
+   "grip strength",
+   "grip strength"
+  ],
+  [
+   "physical performance",
+   "physical performance battery"
+  ],
+  [
+   "dual energy x ray",
+   "dual energy x ray absorptiometry"
+  ],
+  [
+   "accelerometer",
+   "accelerometry physical activity"
+  ],
+  [
+   "longitudinal cohort",
+   "longitudinal cohort study"
+  ],
+  [
+   "prospective cohort",
+   "prospective cohort study"
+  ],
+  [
+   "mixed effects",
+   "linear mixed effects model"
+  ],
+  [
+   "latent class",
+   "latent class analysis"
+  ],
+  [
+   "trajectory analysis",
+   "trajectory modelling"
+  ],
+  [
+   "survival analysis",
+   "survival analysis"
+  ],
+  [
+   "competing risk",
+   "competing risks"
+  ],
+  [
+   "mendelian randomi",
+   "mendelian randomisation"
+  ],
+  [
+   "genome wide association",
+   "genome wide association study"
+  ],
+  [
+   "polygenic risk score",
+   "polygenic risk score"
+  ],
+  [
+   "structural mri",
+   "structural mri"
+  ],
+  [
+   "cortical thickness",
+   "cortical thickness"
+  ],
+  [
+   "hippocampal volume",
+   "hippocampal volume"
+  ],
+  [
+   "white matter hyperintensit",
+   "white matter hyperintensities"
+  ],
+  [
+   "diffusion tensor",
+   "diffusion tensor imaging"
+  ],
+  [
+   "resting state",
+   "resting state functional connectivity"
+  ],
+  [
+   "amyloid pet",
+   "amyloid pet imaging"
+  ],
+  [
+   "tau pet",
+   "tau pet imaging"
+  ],
+  [
+   "plasma biomarker",
+   "plasma biomarkers neurodegeneration"
+  ],
+  [
+   "neurofilament",
+   "neurofilament light"
+  ],
+  [
+   "cerebrospinal fluid",
+   "cerebrospinal fluid biomarkers"
+  ],
+  [
+   "neuropsychological",
+   "neuropsychological assessment"
+  ],
+  [
+   "mini mental",
+   "mini mental state examination"
+  ],
+  [
+   "montreal cognitive",
+   "montreal cognitive assessment"
+  ],
+  [
+   "randomised controlled trial",
+   "randomised controlled trial"
+  ],
+  [
+   "randomized controlled trial",
+   "randomized controlled trial"
+  ],
+  [
+   "cognitive training",
+   "cognitive training intervention"
+  ],
+  [
+   "exercise intervention",
+   "exercise intervention"
+  ],
+  [
+   "deep learning",
+   "deep learning ageing"
+  ],
+  [
+   "machine learning",
+   "machine learning ageing"
+  ],
+  [
+   "single cell rna",
+   "single cell rna sequencing ageing"
+  ],
+  [
+   "model organism",
+   "model organism ageing"
+  ],
+  [
+   "caenorhabditis",
+   "c elegans lifespan"
+  ],
+  [
+   "drosophila",
+   "drosophila lifespan"
+  ]
+ ],
+ "populations": [
+  [
+   "older adults",
+   "older adults"
+  ],
+  [
+   "oldest old",
+   "oldest old"
+  ],
+  [
+   "centenarian",
+   "centenarians"
+  ],
+  [
+   "frailty",
+   "frailty"
+  ],
+  [
+   "sarcopenia",
+   "sarcopenia"
+  ],
+  [
+   "falls",
+   "falls in older adults"
+  ],
+  [
+   "fracture",
+   "hip fracture"
+  ],
+  [
+   "osteoporosis",
+   "osteoporosis"
+  ],
+  [
+   "mobility limitation",
+   "mobility limitation"
+  ],
+  [
+   "disability",
+   "functional disability"
+  ],
+  [
+   "activities of daily living",
+   "activities of daily living"
+  ],
+  [
+   "multimorbidity",
+   "multimorbidity"
+  ],
+  [
+   "polypharmacy",
+   "polypharmacy"
+  ],
+  [
+   "cognitive decline",
+   "cognitive decline"
+  ],
+  [
+   "cognitive ageing",
+   "cognitive ageing"
+  ],
+  [
+   "mild cognitive impairment",
+   "mild cognitive impairment"
+  ],
+  [
+   "dementia",
+   "dementia"
+  ],
+  [
+   "alzheimer",
+   "alzheimers disease"
+  ],
+  [
+   "vascular dementia",
+   "vascular dementia"
+  ],
+  [
+   "lewy body",
+   "lewy body dementia"
+  ],
+  [
+   "frontotemporal",
+   "frontotemporal dementia"
+  ],
+  [
+   "parkinson",
+   "parkinsons disease"
+  ],
+  [
+   "neurodegener",
+   "neurodegeneration"
+  ],
+  [
+   "small vessel disease",
+   "cerebral small vessel disease"
+  ],
+  [
+   "stroke",
+   "stroke in older adults"
+  ],
+  [
+   "delirium",
+   "delirium"
+  ],
+  [
+   "depression",
+   "late life depression"
+  ],
+  [
+   "loneliness",
+   "loneliness social isolation"
+  ],
+  [
+   "social isolation",
+   "social isolation"
+  ],
+  [
+   "quality of life",
+   "quality of life"
+  ],
+  [
+   "caregiver",
+   "caregiver burden"
+  ],
+  [
+   "nursing home",
+   "nursing home care"
+  ],
+  [
+   "long term care",
+   "long term care"
+  ],
+  [
+   "end of life",
+   "end of life care"
+  ],
+  [
+   "palliative",
+   "palliative care"
+  ],
+  [
+   "advance care planning",
+   "advance care planning"
+  ],
+  [
+   "hearing loss",
+   "age related hearing loss"
+  ],
+  [
+   "macular degeneration",
+   "age related macular degeneration"
+  ],
+  [
+   "cataract",
+   "cataract"
+  ],
+  [
+   "menopause",
+   "menopause"
+  ],
+  [
+   "sleep",
+   "sleep in older adults"
+  ],
+  [
+   "nutrition",
+   "nutrition in older adults"
+  ],
+  [
+   "malnutrition",
+   "malnutrition"
+  ],
+  [
+   "physical activity",
+   "physical activity older adults"
+  ],
+  [
+   "sedentary",
+   "sedentary behaviour"
+  ],
+  [
+   "mortality",
+   "all cause mortality"
+  ],
+  [
+   "life expectancy",
+   "life expectancy"
+  ],
+  [
+   "successful ageing",
+   "successful ageing"
+  ],
+  [
+   "healthy ageing",
+   "healthy ageing"
+  ],
+  [
+   "cognitive reserve",
+   "cognitive reserve"
+  ],
+  [
+   "retirement",
+   "retirement"
+  ],
+  [
+   "health disparit",
+   "health disparities ageing"
+  ],
+  [
+   "diabetes",
+   "diabetes in older adults"
+  ],
+  [
+   "hypertension",
+   "hypertension older adults"
+  ],
+  [
+   "chronic kidney disease",
+   "chronic kidney disease ageing"
+  ],
+  [
+   "immunosenescence",
+   "immunosenescence"
+  ],
+  [
+   "vaccination",
+   "vaccination older adults"
+  ]
+ ],
+ "topics": [
+  "T13099",
+  "T12267",
+  "T10301",
+  "T10177",
+  "T10238",
+  "T10009",
+  "T10250",
+  "T10432",
+  "T13695",
+  "T10312",
+  "T10496",
+  "T10397",
+  "T10085",
+  "T10086",
+  "T12935",
+  "T10283",
+  "T10170",
+  "T14118",
+  "T10071",
+  "T12781",
+  "T10676",
+  "T11376",
+  "T12811",
+  "T10691",
+  "T11467",
+  "T13796",
+  "T11146",
+  "T10919",
+  "T11658",
+  "T10114",
+  "T12480",
+  "T10459",
+  "T10863",
+  "T11141",
+  "T11266",
+  "T11399",
+  "T14020",
+  "T10345",
+  "T10867",
+  "T11095",
+  "T11363",
+  "T11438",
+  "T11013",
+  "T14507",
+  "T10924",
+  "T11509",
+  "T13551",
+  "T10587",
+  "T11967",
+  "T10945",
+  "T10855",
+  "T13533",
+  "T11358",
+  "T13112",
+  "T11011",
+  "T11199",
+  "T12023",
+  "T12246",
+  "T10937",
+  "T14144",
+  "T12030",
+  "T10694",
+  "T11818",
+  "T11335",
+  "T11555",
+  "T11655",
+  "T13111",
+  "T13340",
+  "T12207",
+  "T11322",
+  "T11736",
+  "T11051",
+  "T12108",
+  "T12745",
+  "T12604",
+  "T13423",
+  "T12315",
+  "T14093",
+  "T13048",
+  "T13481",
+  "T12846",
+  "T13004",
+  "T13047",
+  "T14344",
+  "T12434",
+  "T12269",
+  "T14286",
+  "T12835",
+  "T14065",
+  "T13012",
+  "T13471",
+  "T13637"
+ ]
+}
