@@ -215,7 +215,9 @@ function badgesFor(j) {
     subscription: 'Subscription',
   }[j.oaModel];
   if (oaLabel) {
-    const cls = j.oaModel === 'diamond' ? 'b-cover'
+    // b-cover is reserved for agreement coverage — it is the one badge that
+    // means "this costs you nothing", so nothing else may share its colour.
+    const cls = j.oaModel === 'diamond' ? 'b-diamond'
       : j.oaModel === 'subscription' ? 'b-plain'
       : j.oaModel === 'oa-apc-unknown' ? 'b-warn' : 'b-oa';
     b.push([cls, oaLabel]);
@@ -232,11 +234,11 @@ function badgesFor(j) {
     } else {
       // Buckets are generous: what authors care about is fast/typical/slow, and
       // the underlying medians carry real sampling noise.
-      const cls = d <= 60 ? 'b-cover' : d <= 120 ? 'b-oa' : d <= 200 ? 'b-plain' : 'b-warn';
+      const cls = d <= 60 ? 'b-fast' : d <= 120 ? 'b-oa' : d <= 200 ? 'b-plain' : 'b-slow';
       b.push([cls, `~${d}d in review (n=${j.review.n})`]);
     }
   }
-  if (j.inDoaj) b.push(['b-doaj', 'DOAJ']);
+  if (j.inDoaj) b.push(['b-plain', 'DOAJ']);
   if (j.isCore) b.push(['b-plain', 'Core venue']);
   if (j.citedness != null) b.push(['b-plain', `${j.citedness} cites/paper (2yr)`]);
   if (j.hIndex != null) b.push(['b-plain', `h-index ${j.hIndex}`]);

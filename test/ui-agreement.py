@@ -10,7 +10,10 @@ async def main():
         await pg.wait_for_timeout(1000)
         base=await pg.inner_text('.res-count')
         print('before upload:', base)
-        await pg.set_input_files('#agreeFile','/Users/super/Downloads/uscoo.xlsm')
+        # The panel is a collapsed <details>; hidden elements report empty text,
+        # so open it before reading status.
+        await pg.click('#agreeBox summary')
+        await pg.set_input_files('#agreeFile','/Users/super/Documents/journalPicker/USC Open Access Pub list.xlsm')
         await pg.wait_for_timeout(4000)
         print('agreement status:', (await pg.inner_text('#agreeStatus')).replace('\n',' | '))
         print('after upload:', await pg.inner_text('.res-count'))

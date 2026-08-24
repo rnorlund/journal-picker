@@ -18,7 +18,7 @@ import {
   lookupAgreement,
 } from '../src/agreements.js';
 
-const XLSM_PRIMARY = '/Users/super/Downloads/uscoo.xlsm';
+const XLSM_PRIMARY = '/Users/super/Documents/journalPicker/USC Open Access Pub list.xlsm';
 const XLSM_SECONDARY = '/Users/super/Downloads/USC Open Access Pub list.xlsm';
 
 /* -------------------------------------------------------------------------- *

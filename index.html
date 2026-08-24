@@ -119,6 +119,32 @@
     <p class="hint" id="browseCount"></p>
   </section>
 
+
+  <!-- ============ INSTITUTIONAL AGREEMENTS (always available) ============ -->
+  <section class="panel agreement-panel">
+    <details id="agreeBox">
+      <summary>
+        Does your library already pay for this?
+        <span class="ref-tag">worth checking</span>
+      </summary>
+      <p class="hint">
+        Upload your library's open-access agreement list (<code>.xlsx</code>, <code>.xlsm</code>,
+        <code>.csv</code>) and covered journals get flagged as already paid for. Most
+        universities publish one; search your library site for "transformative agreement" or
+        "open access publishing agreement". The file is read in your browser and never uploaded
+        anywhere.
+      </p>
+      <div id="dropZone" class="drop">
+        <input id="agreeFile" type="file" accept=".xlsx,.xlsm,.csv,.tsv" multiple hidden>
+        <button id="agreeBtn" class="ghost-btn" type="button">Choose file…</button>
+        <span class="drop-hint">or drop it here</span>
+      </div>
+      <div id="agreeStatus" class="agree-status"></div>
+      <label class="check" id="agreeOnlyWrap" hidden><input type="checkbox" id="agreeOnly">
+        <span>Only show journals my institution covers</span></label>
+    </details>
+  </section>
+
   <!-- ============ FILTERS ============ -->
   <section class="panel" id="filterPanel" hidden>
     <div class="panel-head">
@@ -170,22 +196,6 @@
         </div>
       </div>
 
-      <div class="filter agreement-filter">
-        <label>Your institution's agreements</label>
-        <p class="hint">
-          Upload your library's open-access agreement list (<code>.xlsx</code>, <code>.xlsm</code>,
-          <code>.csv</code>). Matching journals get flagged as already paid for. Nothing leaves your
-          browser.
-        </p>
-        <div id="dropZone" class="drop">
-          <input id="agreeFile" type="file" accept=".xlsx,.xlsm,.csv,.tsv" multiple hidden>
-          <button id="agreeBtn" class="ghost-btn" type="button">Choose file…</button>
-          <span class="drop-hint">or drop it here</span>
-        </div>
-        <div id="agreeStatus" class="agree-status"></div>
-        <label class="check" id="agreeOnlyWrap" hidden><input type="checkbox" id="agreeOnly">
-          <span>Only journals my institution covers</span></label>
-      </div>
 
     </div>
   </section>

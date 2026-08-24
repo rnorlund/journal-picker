@@ -255,7 +255,10 @@ input[type="range"] { width: 100%; accent-color: var(--accent); margin: 6px 0 2p
   font-size: 11px; font-weight: 600; padding: 2.5px 8px; border-radius: 20px;
   border: 1px solid transparent; white-space: nowrap;
 }
-.b-cover { background: var(--good-sf); color: var(--good); }
+.b-cover { background: var(--good); color: var(--panel); font-weight: 700; }
+.b-diamond { background: var(--good-sf); color: var(--good); }
+.b-fast { background: var(--good-sf); color: var(--good); }
+.b-slow { background: var(--warn-sf); color: var(--warn); }
 .b-oa    { background: var(--accent-sf); color: var(--accent); }
 .b-doaj  { background: var(--good-sf); color: var(--good); }
 .b-cost  { background: var(--cost-sf); color: var(--cost); }
@@ -381,3 +384,12 @@ a { color: var(--accent); }
 .caveat { font-size: 12.5px; color: var(--warn); background: var(--warn-sf);
   border-radius: 8px; padding: 9px 12px; margin: 0 0 14px; line-height: 1.5; }
 .caveat b { font-weight: 650; }
+
+/* ---------- institutional agreements panel ---------- */
+.agreement-panel { padding: 16px 22px; }
+.agreement-panel summary { cursor: pointer; font-size: 14px; font-weight: 650;
+  list-style: none; display: inline-flex; align-items: center; gap: 9px; }
+.agreement-panel summary::-webkit-details-marker { display: none; }
+.agreement-panel summary::before { content: "▸"; font-size: 10px; transition: .15s; color: var(--ink-3); }
+.agreement-panel details[open] summary::before { transform: rotate(90deg); }
+.agreement-panel .drop { margin-top: 11px; }

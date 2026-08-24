@@ -88,7 +88,14 @@ export async function listCatalogs(base = 'data') {
  * @param {string}   base    data directory, relative to the page
  */
 export async function loadCatalogs(fields, base = 'data') {
-  const wanted = (fields && fields.length) ? [...fields] : await listCatalogs(base);
+  // A field can have a lexicon before anyone has built its catalog, so only ask
+  // for catalogs the manifest says exist. Without this, detecting a field like
+  // rehabilitation fires a request that 404s on every search.
+  const available = new Set(await listCatalogs(base));
+  const wanted = (fields && fields.length)
+    ? fields.filter((f) => available.has(f))
+    : [...available];
+  if (!wanted.length) return null;
   const key = [...wanted].sort().join('|');
   if (mergedCache.has(key)) return mergedCache.get(key);
 
