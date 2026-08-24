@@ -19,8 +19,8 @@ Ask **"progress"** any time and this gets refreshed.
 | # | Item | Status | Notes |
 |---|---|---|---|
 | 1.1 | Retrieval engine (Europe PMC, unmetered) | ✅ | Boolean queries, 1,000 results/call, ~2,000 papers / ~630 venues |
-| 1.2 | Journal scoring (similarity + topic volume + breadth) | ✅ | Verified: NeuroImage ranks #1 on an fMRI-methods abstract |
-| 1.3 | "Similar papers they published" evidence | ✅ | Ranked by cross-probe agreement, not single-probe relevance |
+| 1.2 | Journal scoring (similarity + volume + breadth + specialisation) | ✅ | Verified on a stroke/aphasia abstract: Frontiers in Neurology, Brain Communications, NeuroImage: Clinical, Neurobiology of Language |
+| 1.3 | "Similar papers they published" evidence | ✅ | Ranked by cross-query agreement, not one query's top hit |
 | 1.4 | DOAJ-verified APC prices | ✅ | Precomputed into the catalog; source labelled on every card |
 | 1.4b | Specialisation signal | ✅ | Share of a journal's output in your field — demotes megajournals (Cureus dropped off page 1) |
 | 1.5 | Four publishing routes (any / OA / free / free+OA) | ✅ | "Free" ≠ "open access" modelled properly |
@@ -75,7 +75,7 @@ and a curated topic set. The engine itself does not change.
 
 | # | Item | Status | Notes |
 |---|---|---|---|
-| 5.1 | Acceptance rates | 🔴 | **No open dataset exists.** Hardest gap. See Q4 |
+| 5.1 | Acceptance rates | 🔴 | **No open dataset exists.** Hardest gap; checking USC's licensed access |
 | 5.2 | Time-to-first-decision / review speed | 🔴 | Same problem |
 | 5.3 | Aims & scope text per journal | ⬜ | Needs scraping ~500 journal pages; 1–2 weeks |
 | 5.4 | Embedding-based semantic matching | ⬜ | Quality upgrade; 3× L40S idle and available |
