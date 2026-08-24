@@ -1,0 +1,601 @@
+{
+ "id": "brain-imaging",
+ "name": "Brain imaging / neuroimaging",
+ "description": "Structural and functional neuroimaging, electrophysiology, and imaging biomarkers.",
+ "signals": [
+  "mri",
+  "fmri",
+  "neuroimaging",
+  "brain",
+  "cortical",
+  "cortex",
+  "white matter",
+  "eeg",
+  "meg",
+  "pet",
+  "connectivity",
+  "connectome",
+  "lesion",
+  "tractography",
+  "voxel",
+  "hippocamp",
+  "gray matter",
+  "grey matter",
+  "diffusion",
+  "bold",
+  "neural",
+  "tesla"
+ ],
+ "methods": [
+  [
+   "fmri",
+   "functional mri"
+  ],
+  [
+   "functional magnetic resonance",
+   "fmri"
+  ],
+  [
+   "resting state",
+   "resting state fmri"
+  ],
+  [
+   "resting-state",
+   "resting state fmri"
+  ],
+  [
+   "dti",
+   "diffusion tensor imaging"
+  ],
+  [
+   "diffusion tensor",
+   "diffusion tensor imaging"
+  ],
+  [
+   "diffusion weighted",
+   "diffusion weighted imaging"
+  ],
+  [
+   "tractography",
+   "tractography"
+  ],
+  [
+   "fractional anisotropy",
+   "fractional anisotropy"
+  ],
+  [
+   "dwi",
+   "diffusion weighted imaging"
+  ],
+  [
+   "noddi",
+   "diffusion microstructure"
+  ],
+  [
+   "free water",
+   "diffusion microstructure"
+  ],
+  [
+   "cortical thickness",
+   "cortical thickness"
+  ],
+  [
+   "voxel based morphometry",
+   "voxel based morphometry"
+  ],
+  [
+   "vbm",
+   "voxel based morphometry"
+  ],
+  [
+   "gray matter volume",
+   "gray matter volume"
+  ],
+  [
+   "grey matter volume",
+   "gray matter volume"
+  ],
+  [
+   "surface based",
+   "surface based morphometry"
+  ],
+  [
+   "freesurfer",
+   "freesurfer cortical surface"
+  ],
+  [
+   "fsl",
+   "fsl neuroimaging software"
+  ],
+  [
+   "spm",
+   "statistical parametric mapping"
+  ],
+  [
+   "afni",
+   "afni neuroimaging software"
+  ],
+  [
+   "fmriprep",
+   "fmriprep preprocessing"
+  ],
+  [
+   "bids",
+   "brain imaging data structure"
+  ],
+  [
+   "eeg",
+   "electroencephalography"
+  ],
+  [
+   "meg",
+   "magnetoencephalography"
+  ],
+  [
+   "erp",
+   "event related potentials"
+  ],
+  [
+   "event related potential",
+   "event related potentials"
+  ],
+  [
+   "pet",
+   "positron emission tomography"
+  ],
+  [
+   "positron emission",
+   "positron emission tomography"
+  ],
+  [
+   "tau pet",
+   "tau pet imaging"
+  ],
+  [
+   "amyloid",
+   "amyloid pet imaging"
+  ],
+  [
+   "spect",
+   "spect imaging"
+  ],
+  [
+   "fnirs",
+   "functional near infrared spectroscopy"
+  ],
+  [
+   "near infrared",
+   "functional near infrared spectroscopy"
+  ],
+  [
+   "spectroscopy",
+   "magnetic resonance spectroscopy"
+  ],
+  [
+   "mrs",
+   "magnetic resonance spectroscopy"
+  ],
+  [
+   "asl",
+   "arterial spin labeling"
+  ],
+  [
+   "arterial spin",
+   "arterial spin labeling"
+  ],
+  [
+   "perfusion",
+   "cerebral perfusion imaging"
+  ],
+  [
+   "qsm",
+   "quantitative susceptibility mapping"
+  ],
+  [
+   "susceptibility",
+   "quantitative susceptibility mapping"
+  ],
+  [
+   "functional connectivity",
+   "functional connectivity"
+  ],
+  [
+   "structural connectivity",
+   "structural connectivity"
+  ],
+  [
+   "connectome",
+   "connectome"
+  ],
+  [
+   "graph theory",
+   "brain network graph theory"
+  ],
+  [
+   "default mode",
+   "default mode network"
+  ],
+  [
+   "network analysis",
+   "brain network analysis"
+  ],
+  [
+   "lesion symptom mapping",
+   "lesion symptom mapping"
+  ],
+  [
+   "voxel based lesion",
+   "lesion symptom mapping"
+  ],
+  [
+   "vlsm",
+   "lesion symptom mapping"
+  ],
+  [
+   "lesion load",
+   "lesion load"
+  ],
+  [
+   "lesion volume",
+   "lesion volume"
+  ],
+  [
+   "machine learning",
+   "machine learning neuroimaging"
+  ],
+  [
+   "deep learning",
+   "deep learning neuroimaging"
+  ],
+  [
+   "convolutional neural network",
+   "deep learning neuroimaging"
+  ],
+  [
+   "brain age",
+   "brain age prediction"
+  ],
+  [
+   "predictive model",
+   "predictive modeling"
+  ],
+  [
+   "multivariate pattern",
+   "multivariate pattern analysis"
+  ],
+  [
+   "mvpa",
+   "multivariate pattern analysis"
+  ],
+  [
+   "representational similarity",
+   "representational similarity analysis"
+  ],
+  [
+   "tms",
+   "transcranial magnetic stimulation"
+  ],
+  [
+   "transcranial magnetic",
+   "transcranial magnetic stimulation"
+  ],
+  [
+   "tdcs",
+   "transcranial direct current stimulation"
+  ],
+  [
+   "transcranial direct current",
+   "transcranial direct current stimulation"
+  ],
+  [
+   "deep brain stimulation",
+   "deep brain stimulation"
+  ],
+  [
+   "7t",
+   "ultra high field mri"
+  ],
+  [
+   "ultra high field",
+   "ultra high field mri"
+  ],
+  [
+   "diffusion mri",
+   "diffusion mri"
+  ],
+  [
+   "structural mri",
+   "structural mri"
+  ],
+  [
+   "neuroimaging",
+   "neuroimaging"
+  ],
+  [
+   "mri",
+   "magnetic resonance imaging"
+  ]
+ ],
+ "populations": [
+  [
+   "aphasia",
+   "aphasia"
+  ],
+  [
+   "anomia",
+   "anomia naming"
+  ],
+  [
+   "stroke",
+   "stroke"
+  ],
+  [
+   "alzheimer",
+   "alzheimers disease"
+  ],
+  [
+   "dementia",
+   "dementia"
+  ],
+  [
+   "mild cognitive impairment",
+   "mild cognitive impairment"
+  ],
+  [
+   "mci",
+   "mild cognitive impairment"
+  ],
+  [
+   "parkinson",
+   "parkinsons disease"
+  ],
+  [
+   "epilepsy",
+   "epilepsy"
+  ],
+  [
+   "multiple sclerosis",
+   "multiple sclerosis"
+  ],
+  [
+   "traumatic brain injury",
+   "traumatic brain injury"
+  ],
+  [
+   "tbi",
+   "traumatic brain injury"
+  ],
+  [
+   "concussion",
+   "concussion"
+  ],
+  [
+   "schizophrenia",
+   "schizophrenia"
+  ],
+  [
+   "psychosis",
+   "psychosis"
+  ],
+  [
+   "bipolar",
+   "bipolar disorder"
+  ],
+  [
+   "depression",
+   "major depressive disorder"
+  ],
+  [
+   "anxiety",
+   "anxiety disorder"
+  ],
+  [
+   "ptsd",
+   "post traumatic stress disorder"
+  ],
+  [
+   "ocd",
+   "obsessive compulsive disorder"
+  ],
+  [
+   "autism",
+   "autism spectrum disorder"
+  ],
+  [
+   "adhd",
+   "attention deficit hyperactivity disorder"
+  ],
+  [
+   "dyslexia",
+   "dyslexia"
+  ],
+  [
+   "aging",
+   "aging brain"
+  ],
+  [
+   "ageing",
+   "aging brain"
+  ],
+  [
+   "development",
+   "brain development"
+  ],
+  [
+   "adolescent",
+   "adolescent brain development"
+  ],
+  [
+   "infant",
+   "infant brain development"
+  ],
+  [
+   "neonatal",
+   "neonatal brain imaging"
+  ],
+  [
+   "pediatric",
+   "pediatric neuroimaging"
+  ],
+  [
+   "glioma",
+   "glioma"
+  ],
+  [
+   "tumor",
+   "brain tumor"
+  ],
+  [
+   "chronic pain",
+   "chronic pain"
+  ],
+  [
+   "addiction",
+   "addiction"
+  ],
+  [
+   "substance use",
+   "substance use disorder"
+  ],
+  [
+   "language",
+   "language"
+  ],
+  [
+   "bilingual",
+   "bilingualism"
+  ],
+  [
+   "memory",
+   "memory"
+  ],
+  [
+   "attention",
+   "attention"
+  ],
+  [
+   "executive function",
+   "executive function"
+  ],
+  [
+   "reward",
+   "reward processing"
+  ],
+  [
+   "emotion",
+   "emotion"
+  ],
+  [
+   "sleep",
+   "sleep"
+  ],
+  [
+   "motor",
+   "motor control"
+  ],
+  [
+   "rehabilitation",
+   "neurorehabilitation"
+  ],
+  [
+   "recovery",
+   "recovery"
+  ],
+  [
+   "biomarker",
+   "imaging biomarker"
+  ],
+  [
+   "prognosis",
+   "prognosis"
+  ],
+  [
+   "small vessel disease",
+   "cerebral small vessel disease"
+  ],
+  [
+   "white matter hyperintensit",
+   "white matter hyperintensities"
+  ]
+ ],
+ "topics": [
+  "T12552",
+  "T10522",
+  "T10429",
+  "T10094",
+  "T10106",
+  "T10129",
+  "T10009",
+  "T10378",
+  "T10023",
+  "T10581",
+  "T10227",
+  "T10537",
+  "T10085",
+  "T12422",
+  "T10427",
+  "T10241",
+  "T10510",
+  "T10706",
+  "T10137",
+  "T10283",
+  "T10542",
+  "T10498",
+  "T10416",
+  "T11395",
+  "T10420",
+  "T10042",
+  "T10465",
+  "T10919",
+  "T10985",
+  "T10949",
+  "T10052",
+  "T11266",
+  "T11097",
+  "T10730",
+  "T10448",
+  "T14104",
+  "T11184",
+  "T11601",
+  "T10914",
+  "T11406",
+  "T10788",
+  "T10608",
+  "T10854",
+  "T11304",
+  "T10855",
+  "T10614",
+  "T12035",
+  "T10982",
+  "T11173",
+  "T10925",
+  "T12520",
+  "T10977",
+  "T11094",
+  "T14144",
+  "T12702",
+  "T10918",
+  "T11763",
+  "T12494",
+  "T11402",
+  "T11953",
+  "T11885",
+  "T14510",
+  "T11600",
+  "T11929",
+  "T11921",
+  "T12621",
+  "T11627",
+  "T12622",
+  "T12331",
+  "T13481",
+  "T12212",
+  "T12608",
+  "T12580",
+  "T13219",
+  "T13397",
+  "T14286",
+  "T13648",
+  "T13471"
+ ]
+}

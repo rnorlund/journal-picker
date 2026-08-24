@@ -5,7 +5,7 @@
  * without re-querying the API.
  */
 
-import { recommend, config, quota } from './engine.js';
+import { recommend, config } from './engine.js';
 
 const $ = (id) => document.getElementById(id);
 const el = {
@@ -17,8 +17,6 @@ const el = {
   agreeFile: $('agreeFile'), agreeBtn: $('agreeBtn'), agreeStatus: $('agreeStatus'),
   agreeOnly: $('agreeOnly'), agreeOnlyWrap: $('agreeOnlyWrap'), dropZone: $('dropZone'),
   themeBtn: $('themeBtn'), cardTpl: $('cardTpl'),
-  apiKey: $('apiKey'), keySave: $('keySave'), keyClear: $('keyClear'),
-  keyState: $('keyState'), keyBox: $('keyBox'), quota: $('quota'),
 };
 
 let lastRun = null;        // full engine output
@@ -45,6 +43,20 @@ function costModel(j) {
     };
   }
   const attribution = j.apcSource ? ` (per ${j.apcSource})` : '';
+  const money = (n) => `$${Number(n).toLocaleString()}`;
+
+  // A journal can be flagged open access with no price on record. That is
+  // "unknown", never "free" — budgeting around an unverified number is exactly
+  // the mistake this tool exists to prevent.
+  if ((j.oaModel === 'gold' || j.oaModel === 'hybrid') && apc == null) {
+    return { oaCost: null, minCost: j.oaModel === 'hybrid' ? 0 : null,
+      oaPossible: true, oaFree: false,
+      amount: 'APC n/a', label: 'open access, price not published', cls: 'unknown' };
+  }
+  if (j.oaModel === 'unknown' || !j.inCatalog) {
+    return { oaCost: null, minCost: null, oaPossible: false, oaFree: false,
+      amount: '—', label: 'not in our journal catalog', cls: 'unknown' };
+  }
 
   switch (j.oaModel) {
     case 'diamond':
@@ -52,7 +64,7 @@ function costModel(j) {
         amount: '$0', label: `diamond OA — no charge${attribution}`, cls: 'free' };
     case 'gold':
       return { oaCost: apc, minCost: apc, oaPossible: true, oaFree: apc === 0,
-        amount: `$${apc.toLocaleString()}`, label: `APC — open access${attribution}`, cls: '' };
+        amount: money(apc), label: `APC — open access${attribution}`, cls: '' };
     case 'oa-apc-unknown':
       // Unknown is not free. Treat it as unaffordable under a cap so nobody
       // budgets around a price we could not actually verify.
@@ -60,7 +72,7 @@ function costModel(j) {
         amount: 'APC n/a', label: 'open access, price not published', cls: 'unknown' };
     case 'hybrid':
       return { oaCost: apc, minCost: 0, oaPossible: true, oaFree: false,
-        amount: `$${apc.toLocaleString()}`, label: `optional OA fee · $0 paywalled`, cls: '' };
+        amount: money(apc), label: 'optional OA fee · $0 paywalled', cls: '' };
     default:
       return { oaCost: null, minCost: 0, oaPossible: false, oaFree: false,
         amount: '$0', label: 'free to publish · paywalled', cls: 'free' };
@@ -134,8 +146,7 @@ const esc = (s) => String(s ?? '').replace(/[&<>"']/g,
   (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 
 function renderEvidence(run) {
-  const kw = run.keywords;
-  el.evidence.hidden = false;
+    el.evidence.hidden = false;
   el.evidence.innerHTML = `
     <div class="panel-head"><h2>How these were found</h2></div>
     <div class="ev-grid">
@@ -145,12 +156,14 @@ function renderEvidence(run) {
           `<span class="chip q" title="${esc(p.total.toLocaleString())} indexed matches">${esc(p.query)}</span>`).join('')}</div>
       </div>
       <div class="ev-block">
-        <h4>Detected research topics</h4>
-        <div class="chips">${run.topics.map((t) => `<span class="chip">${esc(t.name)}</span>`).join('')}</div>
+        <h4>Detected field</h4>
+        <div class="chips">${run.topics.map((t) => `<span class="chip">${esc(t.name)}</span>`).join('')
+          || '<span class="chip">no field lexicon matched</span>'}</div>
       </div>
       <div class="ev-block">
         <h4>Methods &amp; population detected</h4>
-        <div class="chips">${[...kw.modalities.slice(0, 5), ...kw.populations.slice(0, 5)]
+        <div class="chips">${[...(run.fields?.methods || []).slice(0, 5),
+                             ...(run.fields?.populations || []).slice(0, 5)]
           .map((m) => `<span class="chip">${esc(m)}</span>`).join('') || '<span class="chip">none recognised</span>'}</div>
       </div>
       <div class="ev-block">
@@ -158,6 +171,7 @@ function renderEvidence(run) {
         <div class="ev-stats">
           <div class="ev-stat"><b>${run.worksExamined.toLocaleString()}</b><span>similar papers read</span></div>
           <div class="ev-stat"><b>${run.venuesConsidered.toLocaleString()}</b><span>venues seen</span></div>
+          <div class="ev-stat"><b>${(run.catalogSize || 0).toLocaleString()}</b><span>journals in catalog</span></div>
         </div>
       </div>
     </div>`;
@@ -173,6 +187,7 @@ function badgesFor(j) {
     diamond: '◆ Diamond OA — free to publish, free to read',
     gold: 'Fully open access',
     'oa-apc-unknown': 'Open access · price unverified',
+    unknown: 'Not in catalog',
     hybrid: 'Hybrid — OA optional',
     subscription: 'Subscription',
   }[j.oaModel];
@@ -200,6 +215,11 @@ function whyText(j) {
   }
   if (j.probesMatched.length > 2) {
     bits.push(`matched <b>${j.probesMatched.length}</b> different facets of your abstract`);
+  }
+  if (j.fieldShare != null && j.fieldShare >= 0.15) {
+    bits.push(`<b>${Math.round(j.fieldShare * 100)}%</b> of what it publishes is in your field`);
+  } else if (j.fieldShare != null && j.fieldShare < 0.04 && j.worksCount > 50000) {
+    bits.push(`a general-interest megajournal — only <b>${(j.fieldShare * 100).toFixed(1)}%</b> in your field`);
   }
   return bits.length ? bits.join(' · ') : 'Publishes in your topic area.';
 }
@@ -248,7 +268,9 @@ function renderCards(list) {
     // why
     node.querySelector('.why-bars').innerHTML = `
       <span class="wb">similarity <i><b style="width:${Math.round(j.simNorm * 100)}%"></b></i></span>
-      <span class="wb">topic volume <i><b style="width:${Math.round(Math.min(j.topicWorks / 2500, 1) * 100)}%"></b></i></span>`;
+      <span class="wb">topic volume <i><b style="width:${Math.round(Math.min(j.topicWorks / 2500, 1) * 100)}%"></b></i></span>
+      ${j.fieldShare != null ? `<span class="wb">specialisation <i><b style="width:${
+        Math.round(Math.min(j.fieldShare / 0.25, 1) * 100)}%"></b></i></span>` : ''}`;
     node.querySelector('.why-text').innerHTML = whyText(j);
 
     // sample papers
@@ -346,50 +368,6 @@ async function loadAgreementFiles(files) {
 }
 
 /* ================================================================== *
- * OpenAlex credits and API key
- * ================================================================== */
-
-function renderQuota() {
-  if (quota.remaining == null) { el.quota.hidden = true; return; }
-  el.quota.hidden = false;
-  const searches = Math.floor(quota.remaining / 80); // ~80 credits per search
-  el.quota.textContent = `${quota.remaining.toLocaleString()} credits · ~${searches} search${searches === 1 ? '' : 'es'} left`;
-  el.quota.classList.toggle('out', quota.remaining <= 0);
-  el.quota.classList.toggle('low', quota.remaining > 0 && searches < 3);
-  el.quota.title = quota.limit ? `Limit ${quota.limit.toLocaleString()} credits` : '';
-}
-
-function setKeyState() {
-  const has = !!config.apiKey;
-  el.keyState.textContent = has ? 'active' : 'recommended';
-  el.keyState.classList.toggle('set', has);
-}
-
-try {
-  const savedKey = localStorage.getItem('jp-openalex-key');
-  if (savedKey) { config.apiKey = savedKey; el.apiKey.value = savedKey; }
-} catch {}
-setKeyState();
-
-el.keySave.addEventListener('click', () => {
-  const v = el.apiKey.value.trim();
-  config.apiKey = v || null;
-  try {
-    if (v) localStorage.setItem('jp-openalex-key', v);
-    else localStorage.removeItem('jp-openalex-key');
-  } catch {}
-  setKeyState();
-  el.status.classList.remove('err');
-  el.status.textContent = v ? 'API key saved in this browser.' : 'API key cleared.';
-});
-el.keyClear.addEventListener('click', () => {
-  el.apiKey.value = '';
-  config.apiKey = null;
-  try { localStorage.removeItem('jp-openalex-key'); } catch {}
-  setKeyState();
-});
-
-/* ================================================================== *
  * Run
  * ================================================================== */
 
@@ -412,8 +390,7 @@ async function run() {
           probes: 'Building search probes…',
           retrieved: `Found ${d.works ?? ''} similar papers…`,
           topics: 'Measuring what each journal publishes…',
-          enriched: 'Fetching journal metadata…',
-          apc: 'Verifying open-access charges against DOAJ…',
+          fields: 'Detecting research field…',
         }[stage];
         if (msg) el.status.innerHTML = `<span class="spin"></span>${msg}`;
       },
@@ -422,16 +399,12 @@ async function run() {
     el.filterPanel.hidden = false;
     renderEvidence(out);
     render();
-    renderQuota();
     el.status.textContent = `Done — ${out.journals.length} candidate venues ranked.`;
     el.results.scrollIntoView({ behavior: 'smooth', block: 'start' });
   } catch (err) {
     console.error(err);
-    renderQuota();
     el.status.textContent = err.message || 'Something went wrong.';
     el.status.classList.add('err');
-    // Out of credits and no key set: put the fix directly in front of them.
-    if (err.quotaExhausted && !config.apiKey) el.keyBox.open = true;
   } finally {
     el.goBtn.disabled = false;
   }

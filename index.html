@@ -16,8 +16,7 @@
       <span class="brand-text">Journal&nbsp;Picker<span class="brand-sub">neuroimaging</span></span>
     </div>
     <div class="topbar-actions">
-      <span id="quota" class="quota" hidden></span>
-      <span class="src-note">data: <a href="https://openalex.org" target="_blank" rel="noopener">OpenAlex</a> · live</span>
+      <span class="src-note">no account needed · <a href="https://europepmc.org" target="_blank" rel="noopener">Europe PMC</a> + <a href="https://doaj.org" target="_blank" rel="noopener">DOAJ</a></span>
       <button id="themeBtn" class="ghost-btn" type="button" title="Toggle colour scheme">◐</button>
     </div>
   </div>
@@ -29,9 +28,9 @@
   <section class="panel intro">
     <h1>Where should this manuscript go?</h1>
     <p class="lede">
-      Paste your title and abstract. We search ~270&nbsp;million indexed works for papers that
-      look like yours, find the journals that actually publish them, then show you what each one
-      costs and whether your institution already covers it.
+      Paste your title and abstract. We search the biomedical literature for papers that look
+      like yours, find the journals that actually publish them, then show you what each one
+      costs and whether your institution already covers it. No sign-up, no API key.
     </p>
   </section>
 
@@ -57,22 +56,6 @@
       <span id="status" class="status" role="status" aria-live="polite"></span>
     </div>
 
-    <details class="keybox" id="keyBox">
-      <summary>OpenAlex API key <span class="key-state" id="keyState">recommended</span></summary>
-      <p class="hint">
-        OpenAlex meters its API by credits, and each search spends about 80. Anonymous use runs
-        out after a few searches and then locks out for ~20&nbsp;minutes. A key raises the
-        allowance substantially — get one at
-        <a href="https://openalex.org/pricing" target="_blank" rel="noopener">openalex.org/pricing</a>.
-        It is stored only in this browser and sent only to OpenAlex.
-      </p>
-      <div class="keyrow">
-        <input id="apiKey" type="password" autocomplete="off" spellcheck="false"
-               placeholder="paste your OpenAlex API key">
-        <button id="keySave" class="ghost-btn" type="button">Save</button>
-        <button id="keyClear" class="ghost-btn" type="button">Clear</button>
-      </div>
-    </details>
   </section>
 
   <!-- ============ FILTERS ============ -->
