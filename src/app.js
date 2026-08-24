@@ -220,10 +220,16 @@ function badgesFor(j) {
   }
   if (j.review) {
     const d = j.review.median;
-    // Buckets are generous: what authors care about is fast/typical/slow, and
-    // the underlying medians carry real sampling noise.
-    const cls = d <= 60 ? 'b-cover' : d <= 120 ? 'b-oa' : d <= 200 ? 'b-plain' : 'b-warn';
-    b.push([cls, `~${d}d in review (n=${j.review.n})`]);
+    if (j.review.suspect) {
+      // Implausibly fast: commissioned content, or a publisher depositing the
+      // revision date as "received". Say that rather than print the number.
+      b.push(['b-warn', 'review dates look unreliable']);
+    } else {
+      // Buckets are generous: what authors care about is fast/typical/slow, and
+      // the underlying medians carry real sampling noise.
+      const cls = d <= 60 ? 'b-cover' : d <= 120 ? 'b-oa' : d <= 200 ? 'b-plain' : 'b-warn';
+      b.push([cls, `~${d}d in review (n=${j.review.n})`]);
+    }
   }
   if (j.inDoaj) b.push(['b-doaj', 'DOAJ']);
   if (j.isCore) b.push(['b-plain', 'Core venue']);
@@ -251,7 +257,7 @@ function whyText(j) {
   if (j.probesMatched.length > 2) {
     bits.push(`matched <b>${j.probesMatched.length}</b> different facets of your abstract`);
   }
-  if (j.review && j.review.median <= 60) {
+  if (j.review && !j.review.suspect && j.review.median <= 60) {
     bits.push(`fast review — median <b>${j.review.median}</b> days`);
   }
   if (j.citedCount >= 2) {
@@ -337,7 +343,12 @@ function renderCards(list) {
         const r = j.review;
         const li = document.createElement('li');
         li.className = 'review-detail';
-        li.innerHTML = `<b>Peer review:</b> median ${r.median} days from submission to acceptance ` +
+        li.innerHTML = r.suspect
+          ? `<b>Peer review:</b> the deposited dates give a median of only ${r.median} days ` +
+            `(n=${r.n}), which is too fast for external review of a research paper. This journal ` +
+            `likely publishes commissioned content, or records the revision date as submission. ` +
+            `<span class="src">Treat as unknown.</span>`
+          : `<b>Peer review:</b> median ${r.median} days from submission to acceptance ` +
           `(middle half ${r.p25}–${r.p75} days, n=${r.n} research articles)` +
           (r.to_pub ? `, then ~${r.to_pub} days to appear` : '') +
           `. <span class="src">From publisher-deposited dates in PubMed.</span>`;

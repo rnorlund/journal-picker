@@ -653,6 +653,22 @@ def classify_oa(row, doaj, apc_known, apc_amount):
     return "subscription"
 
 
+# Approximate, and only ever used to put a non-USD price on a common scale.
+# The original amount and currency are preserved alongside it.
+USD_PER = {"USD": 1.0, "EUR": 1.08, "GBP": 1.27, "CHF": 1.12, "JPY": 0.0065,
+           "CAD": 0.73, "AUD": 0.66, "SEK": 0.095, "DKK": 0.145, "NOK": 0.093,
+           "BRL": 0.18, "INR": 0.012, "CNY": 0.14, "PLN": 0.25, "TRY": 0.03,
+           "ZAR": 0.055, "MXN": 0.058, "KRW": 0.00072, "TWD": 0.031}
+
+
+def to_usd(amount, currency):
+    """Best-effort USD figure, or None when we cannot honestly produce one."""
+    if amount is None:
+        return None
+    rate = USD_PER.get((currency or "USD").upper())
+    return int(round(amount * rate)) if rate else None
+
+
 def build_records(sources, volume, doaj_by_issn, topics_per_journal,
                   keep_counts_by_year):
     counts = volume["counts"]
@@ -704,7 +720,12 @@ def build_records(sources, volume, doaj_by_issn, topics_per_journal,
             "is_in_doaj": row.get("is_in_doaj"),
             "is_core": row.get("is_core"),
             "is_preprint_repository": row.get("is_preprint_repository"),
-            "apc_usd": row.get("apc_usd"),
+            # The resolved figure, not OpenAlex's raw value: OpenAlex reports
+            # null both for "no charge" and "not recorded", and DOAJ often has
+            # the real price. Reading the raw field here left Imaging
+            # Neuroscience and Aperture Neuro priced as "not published" when
+            # DOAJ had $1,600 and $1,000.
+            "apc_usd": to_usd(apc_amount, apc_currency),
             "apc_prices": row.get("apc_prices") or [],
             "apc_known": apc_known,
             "apc_amount": apc_amount,

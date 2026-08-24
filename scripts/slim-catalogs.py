@@ -61,8 +61,55 @@ def load_timing():
     return by
 
 
+# Approximate, only for putting non-USD prices on one scale for filtering.
+USD_PER = {"USD": 1.0, "EUR": 1.08, "GBP": 1.27, "CHF": 1.12, "JPY": 0.0065,
+           "CAD": 0.73, "AUD": 0.66, "SEK": 0.095, "DKK": 0.145, "NOK": 0.093,
+           "BRL": 0.18, "INR": 0.012, "CNY": 0.14, "PLN": 0.25, "TRY": 0.03,
+           "ZAR": 0.055, "MXN": 0.058, "KRW": 0.00072, "TWD": 0.031}
+
+
+def to_usd(amount, currency):
+    if amount is None:
+        return None
+    rate = USD_PER.get((currency or "USD").upper())
+    return int(round(amount * rate)) if rate else None
+
+
+def repair_apc(j):
+    """Recompute apc_usd from the best available source.
+
+    Older catalogs stored OpenAlex's raw apc_usd, which is null both for "no
+    charge" and "not recorded". Where DOAJ recorded an explicit answer, use it.
+    """
+    if j.get("doaj_has_apc") is False:
+        return 0
+    price = j.get("doaj_apc_price")
+    if price is not None:
+        usd = to_usd(price, j.get("doaj_apc_currency"))
+        if usd is not None:
+            return usd
+    usd = to_usd(j.get("apc_amount"), j.get("apc_currency"))
+    if usd is not None:
+        return usd
+    return j.get("apc_usd")
+
+
 def slim_record(j, timing):
     out = {k: j[k] for k in KEEP if k in j and j[k] is not None}
+
+    apc = repair_apc(j)
+    if apc is not None:
+        out["apc_usd"] = apc
+        out["apc_known"] = True
+    else:
+        out.pop("apc_usd", None)
+        out["apc_known"] = False
+
+    # oa_model must agree with the repaired price.
+    if out.get("oa_model") == "oa-apc-unknown" and apc is not None:
+        out["oa_model"] = "diamond" if apc == 0 else ("gold" if j.get("is_oa") else "hybrid")
+    elif out.get("oa_model") in ("gold", "hybrid") and apc == 0:
+        out["oa_model"] = "diamond"
 
     alts = [a for a in (j.get("alternate_titles") or []) if a][:MAX_ALT_TITLES]
     if alts:
@@ -75,6 +122,16 @@ def slim_record(j, timing):
                          for t in topics[:MAX_TOPICS]]
 
     # Attach review timing by any of the journal's ISSNs.
+    #
+    # Guard against a real artefact: some venues report medians of a few days.
+    # Physics of Life Reviews reads as 3 days over 150 articles, Trends in
+    # Neurosciences as 10. Those are commissioned reviews, or publishers that
+    # deposit the revision date as "received" -- PubMed does not always type
+    # such content as Review, so the article-type filter cannot catch it. No
+    # genuine external peer review of a research paper completes in under three
+    # weeks, so anything faster is flagged rather than shown as a headline
+    # number: better to say the dates look unreliable than to send someone to a
+    # journal expecting a two-day decision.
     for issn in [j.get("issn_l")] + list(j.get("issn") or []):
         k = norm_issn(issn)
         if k and k in timing:
@@ -85,6 +142,8 @@ def slim_record(j, timing):
                 "p25": t["review_p25"],
                 "p75": t["review_p75"],
             }
+            if t["review_median"] < 21:
+                out["review"]["suspect"] = True
             if t.get("to_pub_median") is not None:
                 out["review"]["to_pub"] = t["to_pub_median"]
             break
