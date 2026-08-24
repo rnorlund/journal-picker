@@ -1,190 +1,160 @@
 # Journal Picker
 
-Paste a manuscript title and abstract; get a ranked list of journals that actually publish
-work like yours, with real prices, open-access status, and whether your institution has
-already paid for it.
+Paste your title and abstract. Get a ranked list of journals that actually publish work like
+yours — with real prices, open-access status, how long peer review takes, and whether your
+institution has already paid for it.
 
-Built for brain-imaging manuscripts first. Nothing in the architecture is neuroimaging-specific
-except two keyword lexicons, so widening it to another field is a data change, not a rewrite.
+**Live: https://journal-picker.netlify.app** — no sign-up, no API key, nothing to install.
+
+```
+Cortical thickness and white matter integrity predict naming recovery after stroke
+→ 82%  Brain Communications        $4,024   ~222d review   you cite this journal 1×
+  79%  NeuroImage: Clinical        $3,490   ~117d review   you cite this journal 1×
+  74%  Frontiers in Neurology      $3,801    ~80d review
+  66%  Brain and Language          $3,170   ~180d review   you cite this journal 2×
+```
+
+## Why this exists
+
+Publisher-owned journal finders only show you that publisher's journals. Elsevier's finder will
+never recommend a Wiley title. Tools built on abstract similarity alone can tell you a journal
+publishes similar work but not what it will cost you, how long you will wait, or whether your
+library already covers the fee.
+
+This answers the questions authors actually ask:
+
+- **Where does this belong?** Similar papers, journal specialisation, and — if you paste your
+  reference list — the journals you already cite.
+- **What will it cost me?** DOAJ-verified article processing charges, and an honest distinction
+  between *free* and *open access*, which are not the same thing.
+- **How long will review take?** Median submission-to-acceptance in days, computed from
+  publisher-deposited PubMed dates.
+- **Is it already paid for?** Upload your library's open-access agreement list.
+
+## What makes the ranking work
+
+Four signals, and the weights shift when you supply a reference list:
+
+| Signal | What it measures |
+|---|---|
+| **Similarity** | Rank-decayed matches across several boolean queries against Europe PMC |
+| **Field volume** | How much the journal publishes in your field, precomputed per discipline |
+| **Specialisation** | What *share* of its output is in your field — this is what keeps pay-to-publish megajournals off page one. Cureus publishes ~6,000 in-field neuroimaging papers, but they are 5% of its output; Brain Communications is 54% in-field. |
+| **Citation affinity** | Which journals your reference list cites. Only you have this information, and no database can infer it from a title and abstract. |
+
+**Reference-list matching is the strongest signal and almost nothing else uses it.** Editors
+check whether a submission engages with what they have published, and reviewers are drawn from
+the same venues. It is implemented as a gazetteer lookup against the journal catalog rather than
+by parsing reference strings, so it works in any citation style with no network calls.
+
+## Honest limits
+
+Read this section before trusting a number.
+
+- **Review times cover about half of journals.** The figures come from `received` → `accepted`
+  dates that publishers deposit with PubMed. Elsevier and MDPI deposit them; many societies do
+  not. Every figure ships with its sample size, and journals with fewer than 8 usable articles
+  show nothing rather than a noisy median.
+- **Some deposited dates are not review times.** A handful of venues report medians of a few
+  days, because they publish commissioned content or record the revision date as submission.
+  No external peer review of a research paper finishes in under three weeks, so anything faster
+  is flagged as unreliable instead of printed.
+- **APCs are list prices** and change often. Confirm on the publisher's site before submitting.
+  Non-USD prices are converted with approximate rates; the original amount and currency are kept.
+- **Agreement coverage depends entirely on the file you upload** and on your eligibility as
+  corresponding author. It is not a guarantee your library will pay.
+- **Retrieval is biomedical.** Europe PMC indexes biomedical literature well. Fields with heavy
+  computer-science or social-science components are under-covered — the language-models field
+  says so on screen, because ACL, EMNLP and arXiv are largely absent.
+- **No acceptance rates.** They are not in any open dataset, and unlike review times there is no
+  proxy hiding in the data. We would rather omit them than invent them.
+- **Nothing here is fabricated.** Every number traces to OpenAlex, DOAJ, PubMed, or Europe PMC.
+
+## Fields
+
+Field-specific knowledge lives entirely in `data/fields/*.json` — a methods lexicon, a
+populations lexicon, and a topic set. Adding a discipline is a data change, not a rewrite. The
+field is auto-detected from your abstract, and a manuscript can match several: a cardiac-genetics
+paper matches both, and their catalogs are merged.
+
+Brain imaging · aging · cardiovascular · dental & oral · genetics · language models and human
+language · oncology · public health · implementation science · digital health & clinical AI ·
+rehabilitation & communication sciences · psychiatry & mental health · microbiome · nutrition ·
+global & planetary health · health professions education
 
 ## Running it
 
-It is a static site with no build step and no backend.
+A static site. No build step, no backend, no API key.
 
 ```bash
-cd /Users/super/Documents/journalPicker
-python3 -m http.server 8899
-# open http://localhost:8899
+python3 -m http.server 8899   # then open http://localhost:8899
 ```
 
-Deploy by copying the directory to any static host (Netlify, GitHub Pages, S3, a campus web
-server). There is no build step and no server-side component — but read the API key section
-below before you put it in front of other people.
+Deploy by copying the directory to any static host. Optionally set `config.email` in
+[src/engine.js](src/engine.js) so Europe PMC can identify your traffic.
 
-**Before deploying, set your contact address** in [src/engine.js](src/engine.js) —
-`config.mailto`. OpenAlex uses it to put you in their faster "polite pool".
+## Data sources
 
-### You will need an OpenAlex API key
-
-This is the single biggest operational constraint, and it bit us during development.
-
-OpenAlex is now **credit-metered**, not just rate-limited. Every response carries
-`x-ratelimit-*` headers, and a *search* query costs **10 credits**. This app spends about
-**80 credits per manuscript** (8 relevance probes, plus cheap list queries for topic volume
-and journal metadata).
-
-Anonymous use is metered tightly — we exhausted it during testing and got
-`retry-after: 1367`, a ~23 minute lockout. That is fine for a demo and useless for a shared
-tool. A key raises the allowance by orders of magnitude.
-
-The app therefore asks each user for **their own key**, stored in `localStorage` and sent only
-to OpenAlex. A static site cannot hold a shared secret, and per-user keys mean per-user
-allowances. The header-derived credit balance is shown in the top bar, and running out
-produces an explicit message with the reset time — never a silent hang or a half-empty
-result list.
-
-If you want a single shared key instead, you need a small backend proxy that holds the key and
-caches responses. That is the main reason to add a server; nothing else here needs one.
-
-Cost control levers, in order of effect:
-
-| lever | effect |
-|---|---|
-| `config.maxProbes` (default 8) | each probe removed saves ~10 credits/search |
-| cache repeat queries client-side | identical abstracts cost nothing |
-| precompute journal metadata + topic volumes offline | saves a few credits/search |
-
-DOAJ, which supplies the APC prices, has no key requirement and no comparable metering.
-
-## How the recommendation works
-
-### 1. Multi-probe retrieval
-
-OpenAlex's `search` ANDs every term, so one long query built from a whole abstract returns
-almost nothing (a real 24-term query returned 20 papers). Instead the engine builds up to
-eight short probes, each aimed at a different facet of the manuscript:
-
-| probe | what it asks |
-|---|---|
-| `core` | the strongest content terms overall |
-| `title-phrase` | the manuscript's own framing |
-| `method`, `method-2` | the imaging modality, detected from a lexicon |
-| `population`, `population-2` | the clinical population or cognitive domain |
-| `broad` | high-recall backstop, down-weighted |
-| `phrase-2` | second recurring phrase |
-
-Their union examines ~600 similar papers across ~260 venues per query, in about 3 seconds.
-
-### 2. Two independent signals
-
-- **Similarity** — rank-decayed, recency-weighted counts of matching papers per journal.
-  Answers "has this journal published papers like mine?"
-- **Topic volume** — a `group_by` aggregation over the dominant OpenAlex topics.
-  Answers "does this journal publish this *at volume*, or was that one paper a fluke?"
-
-Plus a **breadth bonus** for journals matching several different probes, which favours venues
-that fit the whole manuscript over ones that match a single keyword.
-
-```
-fit = 0.55 × similarity + 0.30 × log(topic volume) + 0.15 × breadth
-```
-
-### 3. Honest cost modelling
-
-This is where most tools mislead people. "Free" and "open access" are different axes:
-
-| route | you pay | readers pay |
+| Source | Used for | Metered? |
 |---|---|---|
-| Subscription | nothing | paywall |
-| Hybrid (paywalled option) | nothing | paywall |
-| Hybrid (OA option) | APC | nothing |
-| Gold OA | APC | nothing |
-| Diamond OA | nothing | nothing |
-| Covered by your agreement | nothing | nothing |
+| [Europe PMC](https://europepmc.org) | Finding similar papers, at query time | No — free, keyless, CORS-open, 1,000 results per call |
+| [OpenAlex](https://openalex.org) | Journal metadata and field volume, offline only | Yes, which is why it is not in the request path |
+| [DOAJ](https://doaj.org) | APC prices and open-access status | No |
+| [PubMed](https://pubmed.ncbi.nlm.nih.gov) | Peer-review durations, offline only | Rate-limited, not credit-metered |
 
-So the four publishing routes in the UI are genuinely different questions, and
-"free **and** open access" is a much smaller set than either alone.
+Version 1 used OpenAlex for retrieval and locked anonymous visitors out after a handful of
+searches. Europe PMC replaced it: unmetered, and it supports real boolean queries, so one call
+returns 1,000 results where OpenAlex needed eight AND-only probes for 600.
 
-**APC prices come from DOAJ, not OpenAlex.** OpenAlex reports `apc_usd: null` both for
-journals that charge nothing and for journals whose price nobody recorded — the two cases that
-matter most here are indistinguishable. DOAJ records an explicit `has_apc` boolean, so the
-engine cross-checks every journal with an ISSN against the DOAJ API and labels the price with
-its source. This corrects real errors: OpenAlex lists Frontiers in Neurology at $3,801 where
-DOAJ has CHF 3,150 (~$3,528), and Aperture Neuro looks free in OpenAlex but actually charges
-$1,000.
+## Rebuilding the data
 
-Where the price genuinely cannot be verified, the journal is labelled
-*"open access, price not published"* and treated as **not** affordable under a spending cap —
-never silently as free.
+The app ships precomputed catalogs. To regenerate them:
 
-### 4. Institutional agreements
+```bash
+python3 scripts/dump-taxonomy.py               # OpenAlex topic taxonomy, once
+python3 scripts/derive-field-topics.py         # per-field topic sets, no API calls
+FIELD=oncology python3 scripts/build-catalog.py    # one field's catalog
+python3 scripts/build-timing.py                # peer-review durations from PubMed
+python3 scripts/slim-catalogs.py               # write the served files
+```
 
-Upload your library's read-and-publish list (`.xlsx`, `.xlsm`, `.csv`, `.tsv`). Matching
-journals are flagged as already paid for and can be filtered to exclusively.
-
-[src/agreements.js](src/agreements.js) parses real-world library spreadsheets with no
-dependencies — it walks the ZIP central directory and inflates entries with the browser's
-native `DecompressionStream`, so there is no SheetJS payload. It auto-detects the header row
-and title/ISSN columns per sheet, treats each sheet as a publisher, validates ISSN checksums,
-and merges multiple files.
-
-Verified against USC's 16-sheet workbook: **8,588 journals, 8,113 with a valid ISSN, ~130 ms.**
-Everything happens in the browser; the file is never uploaded anywhere.
+Every stage is throttled, checkpointed and resumable. `SHARD=2/3` splits work across machines;
+`scripts/build-queue.sh` runs several fields in sequence on one machine.
 
 ## Tests
 
 ```bash
-node test/test-agreements.mjs   # 125 assertions against the real workbook
-node test/test-engine.mjs       # live retrieval quality on two abstracts
-node test/test-samples.mjs      # checks the "similar papers" are actually similar
-python3 test/ui-test.py         # drives the real page in Chromium
-python3 test/ui-agreement.py    # end-to-end agreement upload
+node test/test-agreements.mjs   # 125 assertions against a real institutional spreadsheet
+node test/test-fields.mjs       # field auto-detection, including cross-field abstracts
+node test/test-citations.mjs    # reference-list matching, plus noise and overlap guards
+python3 test/ui-test.py         # end-to-end in a real browser
+python3 test/ui-browse.py       # browse mode and its filters
+python3 test/ui-agreement.py    # agreement upload
+python3 test/ui-citations.py    # reference list changes the ranking
 ```
 
-The UI tests need the local server running and Playwright's Chromium.
+## Layout
 
-## Data files
+```
+index.html            single page
+src/engine.js         retrieval, field detection, scoring
+src/citations.js      reference-list matching
+src/catalog.js        per-field catalogs, merged
+src/fields.js         field definitions and auto-detection
+src/agreements.js     XLSX/CSV parser — no dependencies, native DecompressionStream
+src/app.js            UI
+data/fields/*.json    per-field lexicons and topic rules
+data/catalogs/*.json  precomputed journal catalogs
+scripts/              data builders
+status/               status board (grid.html → progress.png)
+```
 
-- [data/topics.json](data/topics.json) — 78 curated OpenAlex topic IDs covering brain imaging
-  (fMRI, structural MRI, diffusion, EEG/MEG, PET, lesion-symptom mapping, imaging in stroke /
-  dementia / psychiatry, methods and software). Used to widen topic detection beyond whatever
-  a single abstract happens to surface.
-- [scripts/build-catalog.py](scripts/build-catalog.py) — resumable builder for a precomputed
-  journal catalog (`data/journals.json`). **Unfinished**: it completed topic selection but only
-  2 of 78 topic-volume batches before we stopped it, because it was consuming the same OpenAlex
-  credit pool the app needs. Finish this with an API key. The app does not require it — the live
-  engine works without a catalog — but it would cut per-search credit cost and enable an offline
-  "browse all free neuroimaging journals" mode.
+`src/agreements.js` parses `.xlsx`/`.xlsm` with no third-party library: it reads the ZIP central
+directory and inflates entries with the browser's own `DecompressionStream`. 8,588 journals from
+a real 16-sheet university workbook in about 130 ms.
 
-## Files
+## Licence
 
-| file | role |
-|---|---|
-| [index.html](index.html) | markup and the result-card template |
-| [src/engine.js](src/engine.js) | retrieval, scoring, OpenAlex + DOAJ access, rate limiting |
-| [src/app.js](src/app.js) | cost model, filtering, rendering |
-| [src/agreements.js](src/agreements.js) | dependency-free XLSX/CSV agreement parser |
-| [src/style.css](src/style.css) | styles, light and dark |
+MIT. See [LICENSE](LICENSE).
 
-## Known limitations
-
-- **APCs are list prices.** Waivers, society discounts, membership rates, and page/colour
-  charges are not modelled. Confirm with the publisher before submitting.
-- **Agreement coverage is a claim about the journal, not about you.** Most read-and-publish
-  deals require you to be the corresponding author, and many have annual caps.
-- **No acceptance rates or review times.** No open dataset covers these reliably; anything
-  shown would be invented. This is the single biggest gap versus what authors actually want.
-- **Recommendations reflect what a journal published, not what it will accept.** High fit for
-  *Nature Neuroscience* means your topic is in scope, not that it will be accepted.
-- **English-language bias**, inherited from the index.
-- Preprint servers and repositories are detected and hidden by default rather than silently
-  dropped, since the classification is heuristic.
-- **Journal name text comes from OpenAlex**, which strips apostrophes ("Alzheimer s &
-  Dementia"). Common cases are repaired for display only.
-
-## Extending beyond neuroimaging
-
-Two lexicons in [src/engine.js](src/engine.js) — `MODALITY_LEXICON` (methods) and
-`POPULATION_LEXICON` (populations/domains) — are the only field-specific code. Add the
-equivalent method and population vocabulary for a new field and the rest carries over
-unchanged, because topic detection comes from OpenAlex rather than from anything hardcoded.
+Not affiliated with any publisher. Built because choosing a journal should not require guessing.
