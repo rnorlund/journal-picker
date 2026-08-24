@@ -67,6 +67,14 @@ SHARD_INDEX, SHARD_COUNT = _parse_shard(os.environ.get("SHARD", "").strip())
 # data/fields/<FIELD>.json, output goes to data/catalogs/<FIELD>.json, and every
 # cache file is namespaced so fields never clobber each other.
 FIELD = os.environ.get("FIELD", "brain-imaging").strip() or "brain-imaging"
+
+# Where per-journal field volume comes from.
+#   openalex - one metered group_by call per topic (original path)
+#   epmc     - read scripts/build-volume-epmc.py output; unmetered
+# The epmc path still uses OpenAlex to enrich the journals it finds, but
+# enrichment is batched 50 ISSNs per call, roughly a tenth the credit cost of
+# the topic sweep it replaces.
+VOLUME_SOURCE = os.environ.get("VOLUME_SOURCE", "openalex").strip().lower()
 def _ns(name):
     """Namespace a cache filename by field, keeping the historical
     brain-imaging filenames so its existing cache is still picked up."""
@@ -503,6 +511,77 @@ SOURCE_SELECT = ("id,display_name,alternate_titles,abbreviated_title,issn,issn_l
                  "summary_stats,topics,counts_by_year")
 
 
+def step2_volume_epmc():
+    """Field volume per journal from Europe PMC, keyed by OpenAlex source id.
+
+    build-volume-epmc.py counts articles per ISSN. OpenAlex is keyed by its own
+    source ids, so we resolve ISSN -> source in the same batched call that
+    fetches the metadata, rather than paying for a separate lookup.
+    """
+    path = os.path.join(CACHE, "volume-epmc--%s.json" % FIELD)
+    if not os.path.exists(path):
+        raise SystemExit(
+            "no Europe PMC volume file at %s\n"
+            "run: FIELD=%s python3 scripts/build-volume-epmc.py" % (path, FIELD))
+    with open(path) as fh:
+        payload = json.load(fh)
+
+    rows = [r for r in payload["journals"] if r.get("issn")]
+    log("STEP 2  [%s] Europe PMC volume: %d journals with an ISSN "
+        "(from %s articles sampled)"
+        % (FIELD, len(rows), f"{payload['articles_sampled']:,}"))
+
+    by_issn = {r["issn"].upper(): r for r in rows}
+    have = {}
+    for rec in load_jsonl(SOURCES_CACHE):
+        for issn in (rec.get("issn") or []) + [rec.get("issn_l")]:
+            if issn:
+                have[issn.strip().upper()] = rec
+
+    todo = [i for i in by_issn if i not in have]
+    log("  resolving %d ISSNs against OpenAlex (%d already cached)"
+        % (len(todo), len(by_issn) - len(todo)))
+
+    select = SOURCE_SELECT
+    for i, batch in enumerate(chunks(todo, SOURCE_BATCH), 1):
+        path_q = ("sources?filter=issn:%s&select=%s&per-page=%d"
+                  % ("|".join(batch), select, SOURCE_BATCH))
+        try:
+            data = openalex(path_q, label="issn batch %d" % i)
+        except urllib.error.HTTPError as err:
+            if err.code == 400 and "is_core" in select:
+                select = select.replace("is_core,", "")
+                data = openalex(
+                    "sources?filter=issn:%s&select=%s&per-page=%d"
+                    % ("|".join(batch), select, SOURCE_BATCH),
+                    label="issn batch %d retry" % i)
+            else:
+                raise
+        found = data.get("results", [])
+        append_jsonl(SOURCES_CACHE, found)
+        for rec in found:
+            for issn in (rec.get("issn") or []) + [rec.get("issn_l")]:
+                if issn:
+                    have[issn.strip().upper()] = rec
+        log("  [%3d/%3d] +%d resolved" % (i, (len(todo) + SOURCE_BATCH - 1) // SOURCE_BATCH,
+                                          len(found)))
+
+    counts, names = {}, {}
+    unresolved = 0
+    for issn, row in by_issn.items():
+        rec = have.get(issn)
+        if not rec:
+            unresolved += 1
+            continue
+        sid = bare(rec["id"])
+        # A journal can carry several ISSNs; keep the largest count seen.
+        counts[sid] = max(counts.get(sid, 0), row["articles"])
+        names[sid] = rec.get("display_name") or row["title"]
+    log("  mapped to %d OpenAlex sources (%d ISSNs had no OpenAlex record)"
+        % (len(counts), unresolved))
+    return {"counts": counts, "names": names}
+
+
 def step3_sources(candidate_ids):
     have = {bare(r["id"]): r for r in load_jsonl(SOURCES_CACHE)}
     todo = [s for s in candidate_ids if s not in have]
@@ -885,13 +964,15 @@ def main():
         if "--continue" not in sys.argv:
             return
 
-    topics = step1_topics()
-    with open(os.path.join(DATA, "topics.json"), "w") as fh:
-        json.dump(topics, fh, indent=1)
-    log("  wrote topics.json (%d topics, %d total works across them)"
-        % (len(topics), sum(t["works_count"] or 0 for t in topics)))
-
-    volume = step2_volume(topics)
+    if VOLUME_SOURCE == "epmc":
+        volume = step2_volume_epmc()
+    else:
+        topics = step1_topics()
+        with open(os.path.join(DATA, "topics.json"), "w") as fh:
+            json.dump(topics, fh, indent=1)
+        log("  wrote topics.json (%d topics, %d total works across them)"
+            % (len(topics), sum(t["works_count"] or 0 for t in topics)))
+        volume = step2_volume(topics)
     candidates = sorted(
         (sid for sid, n in volume["counts"].items() if n >= MIN_NEURO_WORKS),
         key=lambda s: -volume["counts"][s])

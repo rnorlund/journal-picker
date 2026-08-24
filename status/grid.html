@@ -41,12 +41,12 @@ h1{font-size:24px;letter-spacing:-.02em;display:flex;align-items:center;gap:11px
 <div class="head">
  <div>
   <h1><span class="mark"></span>Journal Picker — status</h1>
-  <div class="sub">LIVE → <a>journal-picker.netlify.app</a> · no sign-up, no API key · 2,384-journal catalog · <b>no blockers</b></div>
+  <div class="sub">LIVE → <a>journal-picker.netlify.app</a> · repo: github.com/rnorlund/journal-picker (private) · <b>22,685 journals across 7 fields</b> · 3,771 with real review times</div>
  </div>
  <div class="tally">
-  <div class="t ok"><b>32</b><span>done</span></div>
-  <div class="t wip"><b>5</b><span>in progress</span></div>
-  <div class="t"><b>9</b><span>to do</span></div>
+  <div class="t ok"><b>41</b><span>done</span></div>
+  <div class="t wip"><b>3</b><span>in progress</span></div>
+  <div class="t"><b>6</b><span>to do</span></div>
   <div class="t blk"><b>1</b><span>blocked</span></div>
  </div>
 </div>
@@ -59,7 +59,11 @@ h1{font-size:24px;letter-spacing:-.02em;display:flex;align-items:center;gap:11px
 <div class="row"><span class="pill p-ok">done</span><div class="txt"><b>"Similar papers they published" evidence</b><i>ranked by cross-query agreement, not one query's top hit</i></div></div>
 <div class="row"><span class="pill p-ok">done</span><div class="txt"><b>DOAJ-verified APC prices</b><i>precomputed; price source labelled on every card</i></div></div>
 <div class="row"><span class="pill p-ok">done</span><div class="txt"><b>Specialisation signal</b><i>demoted Cureus off page 1 (5% in-field vs Brain Comms 54%)</i></div></div>
-<div class="row"><span class="pill p-ok">NEW</span><div class="txt"><b>Reference-list matching</b><i>paste your bibliography — the strongest signal, and nothing else uses it. 7 of top 10 become journals you cite</i></div></div>
+<div class="row"><span class="pill p-ok">done</span><div class="txt"><b>Reference-list matching</b><i>paste your bibliography — the strongest signal, and nothing else uses it. 7 of top 10 become journals you cite</i></div></div>
+<div class="row"><span class="pill p-ok">NEW</span><div class="txt"><b>Sorting + multisort, both modes</b><i>cheapest · fastest review · highest impact · my university covers it · "then by" secondary key</i></div></div>
+<div class="row"><span class="pill p-ok">NEW</span><div class="txt"><b>Active-filter chips + count flash</b><i>a filter that legitimately changes nothing no longer looks broken</i></div></div>
+<div class="row"><span class="pill p-ok">NEW</span><div class="txt"><b>Impact metric surfaced</b><i>OpenAlex 2yr citedness, never called "JIF" — h-index tooltip explains they correlate only r=0.56</i></div></div>
+<div class="row"><span class="pill p-ok">NEW</span><div class="txt"><b>Agreement upload promoted</b><i>own panel, works before searching · JAHA flags $0 via Wiley OA</i></div></div>
 <div class="row"><span class="pill p-ok">done</span><div class="txt"><b>Four publishing routes</b><i>"free" ≠ "open access", modelled properly</i></div></div>
 <div class="row"><span class="pill p-ok">done</span><div class="txt"><b>Cost ceiling slider</b><i>over-budget greyed, not hidden</i></div></div>
 <div class="row"><span class="pill p-ok">done</span><div class="txt"><b>Quality filters</b><i>DOAJ · core venue · citedness · hide preprints</i></div></div>
@@ -73,7 +77,7 @@ h1{font-size:24px;letter-spacing:-.02em;display:flex;align-items:center;gap:11px
 <div class="sec"><h2>2 · Getting it in front of people</h2>
 <div class="row"><span class="pill p-ok">done</span><div class="txt"><b>Deployed public URL</b><i>journal-picker.netlify.app</i></div></div>
 <div class="row"><span class="pill p-ok">done</span><div class="txt"><b>Git repo + MIT licence</b><i>4 commits</i></div></div>
-<div class="row"><span class="pill p-todo">to do</span><div class="txt"><b>Push to public GitHub</b><i>one command — say the word</i></div></div>
+<div class="row"><span class="pill p-ok">done</span><div class="txt"><b>GitHub repo + Sriya invited</b><i>private for now; one command to flip public. USC agreement list kept out of the repo</i></div></div>
 <div class="row"><span class="pill p-todo">to do</span><div class="txt"><b>Landing copy: what it does &amp; doesn't do</b></div></div>
 <div class="row"><span class="pill p-skip">n/a</span><div class="txt"><b>Backend proxy</b><i>not needed — retrieval is unmetered</i></div></div>
 </div>
@@ -96,13 +100,14 @@ h1{font-size:24px;letter-spacing:-.02em;display:flex;align-items:center;gap:11px
 <div class="row"><span class="pill p-wip">lexicon</span><div class="txt"><b>Dental / oral &amp; craniofacial</b><i>46 methods · 50 populations · 35 topics — detection verified</i></div></div>
 <div class="row"><span class="pill p-wip">lexicon</span><div class="txt"><b>Cardiovascular</b><i>47 methods · 53 populations · 142 topics — detection verified</i></div></div>
 <div class="row"><span class="pill p-wip">lexicon</span><div class="txt"><b>Genetics</b><i>58 methods · 65 populations · 294 topics — detection verified</i></div></div>
-<div class="row"><span class="pill p-wip">building</span><div class="txt"><b>Per-field journal catalogs</b><i>builder generalised (FIELD=&lt;id&gt;) · all three running on axon now</i></div></div>
+<div class="row"><span class="pill p-wip">building</span><div class="txt"><b>9 remaining catalogs</b><i>OpenAlex credits ran out mid-build; switched the volume sweep to Europe PMC (unmetered) — validating on dental now</i></div></div>
+<div class="row"><span class="pill p-ok">NEW</span><div class="txt"><b>Europe PMC volume builder</b><i>removes ~80% of the metered calls; OpenAlex now only enriches, batched 50 ISSNs/call</i></div></div>
 <div class="row"><span class="pill p-ok">done</span><div class="txt"><b>OpenAlex taxonomy cached offline</b><i>4,516 topics — new fields now cost zero API calls</i></div></div>
 </div>
 
 <div class="sec"><h2>5 · Known gaps</h2>
 <div class="row"><span class="pill p-blk">blocked</span><div class="txt"><b>Accept / reject rates per journal per subject area</b><i>requested. Genuinely absent from open data — publisher self-reports + hand-curation is the only route</i></div></div>
-<div class="row"><span class="pill p-wip">building</span><div class="txt"><b>Review speed — SOLVED with real data</b><i>PubMed deposits received→accepted dates. Brain Sci 38d · Front Neurol 80d · NeuroImage 138d · Brain Comms 222d. Sweeping 2,313 journals now</i></div></div>
+<div class="row"><span class="pill p-ok">done</span><div class="txt"><b>Review speed — solved with real data</b><i>3,771 journals · median 112d · 47 flagged unreliable · Brain Sci 38d, NeuroImage 138d, Brain Comms 227d</i></div></div>
 <div class="row"><span class="pill p-todo">to do</span><div class="txt"><b>Author ratings of journals</b><i>needs first backend + moderation policy · decide ORCID vs open</i></div></div>
 <div class="row"><span class="pill p-todo">to do</span><div class="txt"><b>Aims &amp; scope text per journal</b><i>~500 pages to scrape · 1–2 weeks</i></div></div>
 <div class="row"><span class="pill p-todo">to do</span><div class="txt"><b>Embedding-based semantic matching</b><i>3× L40S sitting idle</i></div></div>
@@ -115,7 +120,7 @@ h1{font-size:24px;letter-spacing:-.02em;display:flex;align-items:center;gap:11px
 <div class="row"><span class="pill p-wip">decide</span><div class="txt"><b>Ratings sign-in: ORCID or open?</b><i>ORCID proves a real publication record; open needs heavy moderation</i></div></div>
 <div class="row"><span class="pill p-wip">mine</span><div class="txt"><b>I owe you the USC licence check</b><i>JCR / Cabell's terms before anything goes into a public tool</i></div></div>
 <div class="row"><span class="pill p-wip">say go</span><div class="txt"><b>Push the repo public</b></div></div>
-<div class="note"><b>Review speed is no longer blocked.</b> PubMed carries publisher-deposited received→accepted dates per article, so median time in review is computable from primary data. It was on this board as "no open dataset exists" — there is one, it just is not advertised as one. Coverage varies by publisher, so every figure ships with its sample size.<br><br><b>Still genuinely blocked:</b> accept/reject rates. No open source has them, and unlike review times there is no proxy hiding in the data. Publisher self-reports plus hand-curation, labelled per subject area, is the only honest route.</div>
+<div class="note"><b>Review speed is no longer blocked.</b> PubMed carries publisher-deposited received→accepted dates per article, so median time in review is computable from primary data. It was on this board as "no open dataset exists" — there is one, it just is not advertised as one. Coverage varies by publisher, so every figure ships with its sample size.<br><br><b>Still genuinely blocked:</b> accept/reject rates. No open source has them, and unlike review times there is no proxy hiding in the data. Publisher self-reports plus hand-curation, labelled per subject area, is the only honest route.<br><br><b>Netlify production deploys are refused</b> (drafts still work), almost certainly free-tier bandwidth — my own test runs pulled multi-MB catalogs over the CDN on every invocation. Tests are local-only now; one deploy at the end.</div>
 </div>
 
 </div>
@@ -126,6 +131,6 @@ h1{font-size:24px;letter-spacing:-.02em;display:flex;align-items:center;gap:11px
  <span class="k"><i class="dot" style="background:#8b95a6"></i>not started</span>
  <span class="k"><i class="dot" style="background:#ff8a80"></i>blocked by missing data</span>
  <span class="k"><i class="dot" style="background:#9a86c9"></i>deliberately not doing</span>
- <span>· axon×3 busy: 3 field catalogs + 2,313-journal timing sweep · 2026-08-23</span>
+ <span>· axon×3: Europe PMC volume sweeps · Netlify prod deploys blocked (bandwidth) · 2026-08-24</span>
 </div>
 </body></html>
