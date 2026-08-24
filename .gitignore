@@ -6,3 +6,8 @@ build-shard*.log
 .netlify/
 data/openalex-topics.json
 data/catalogs-full/
+
+# Institutional agreement lists are licensed to the subscribing institution and
+# are not ours to redistribute. Users upload their own; nothing leaves the browser.
+*.xlsm
+*.xlsx

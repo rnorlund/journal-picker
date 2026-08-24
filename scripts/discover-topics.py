@@ -9,7 +9,9 @@ Usage:  python3 scripts/discover-topics.py dental-oral
 """
 import json, os, sys, time, urllib.parse, urllib.request, random
 
-MAILTO = "rnorlund@mailbox.sc.edu"
+# Both OpenAlex and NCBI ask callers to identify themselves, and doing so
+# gets you better rate limits. Set JOURNALPICKER_EMAIL to your own address.
+MAILTO = os.environ.get("JOURNALPICKER_EMAIL", "").strip() or "journal-picker@example.org"
 API_KEY = os.environ.get("OPENALEX_API_KEY", "").strip() or None
 THROTTLE = 2.0
 

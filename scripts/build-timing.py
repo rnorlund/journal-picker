@@ -42,7 +42,9 @@ import urllib.request
 from datetime import date
 
 EUTILS = "https://eutils.ncbi.nlm.nih.gov/entrez/eutils/"
-MAILTO = "rnorlund@mailbox.sc.edu"
+# Both OpenAlex and NCBI ask callers to identify themselves, and doing so
+# gets you better rate limits. Set JOURNALPICKER_EMAIL to your own address.
+MAILTO = os.environ.get("JOURNALPICKER_EMAIL", "").strip() or "journal-picker@example.org"
 TOOL = "journalPicker"
 API_KEY = os.environ.get("NCBI_API_KEY", "").strip() or None
 

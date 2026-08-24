@@ -39,7 +39,9 @@ from collections import defaultdict
 
 # ---------------------------------------------------------------- configuration
 
-MAILTO = "rnorlund@mailbox.sc.edu"
+# Both OpenAlex and NCBI ask callers to identify themselves, and doing so
+# gets you better rate limits. Set JOURNALPICKER_EMAIL to your own address.
+MAILTO = os.environ.get("JOURNALPICKER_EMAIL", "").strip() or "journal-picker@example.org"
 # OpenAlex is credit-metered; a search costs 10 credits and the anonymous
 # allowance is small. Set OPENALEX_API_KEY to raise it substantially.
 API_KEY = os.environ.get("OPENALEX_API_KEY", "").strip() or None

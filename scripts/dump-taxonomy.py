@@ -8,7 +8,9 @@ of dentistry.
 """
 import json, os, time, urllib.request, urllib.error, random
 
-MAILTO = "rnorlund@mailbox.sc.edu"
+# Both OpenAlex and NCBI ask callers to identify themselves, and doing so
+# gets you better rate limits. Set JOURNALPICKER_EMAIL to your own address.
+MAILTO = os.environ.get("JOURNALPICKER_EMAIL", "").strip() or "journal-picker@example.org"
 API_KEY = os.environ.get("OPENALEX_API_KEY", "").strip() or None
 OUT = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
                    "data", "openalex-topics.json")
