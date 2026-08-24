@@ -12,11 +12,17 @@ Europe PMC has no aggregation endpoint, so we page articles and count journals
 ourselves. That sounds worse and is actually better here: pageSize is 1,000,
 cursorMark pages indefinitely, and none of it is metered.
 
-We sample rather than page a field exhaustively. Ranking journals by in-field
-output converges long before the tail does — 3,000 articles already surfaced
-389 distinct dental journals — so SAMPLE_TARGET articles is plenty to rank
-venues, and paging all 470,000 dental articles would take ~105 minutes to
-slightly reorder the bottom of the list.
+We sample rather than page a field exhaustively, but the sample has to be large
+enough for the tail. At 40,000 of 1.4 million dental articles (3%) this found
+509 journals where the OpenAlex-built catalog had 1,122: the two agreed on the
+leaders — BMC Oral Health first, Cureus second in both — but a journal needs
+substantial output to clear the threshold in a 3% sample, so half the tail was
+missing. 120,000 with a lower threshold recovers much more of it and still
+costs nothing but time.
+
+Even so, expect a Europe PMC catalog to be somewhat thinner and more
+PubMed-centric than an OpenAlex one; venues poorly indexed in PubMed are
+under-represented. Catalogs record which source built them.
 
 What this does NOT produce: h-index, citedness, and "core venue" status exist
 only in OpenAlex. build-catalog.py still enriches from there, but enrichment is
@@ -52,8 +58,8 @@ FIELD = os.environ.get("FIELD", "").strip()
 YEAR_FROM = int(os.environ.get("YEAR_FROM", "2020"))
 YEAR_TO = int(os.environ.get("YEAR_TO", "2026"))
 PAGE_SIZE = 1000
-SAMPLE_TARGET = int(os.environ.get("SAMPLE_TARGET", "40000"))
-MIN_ARTICLES = 5          # ignore journals with a trivial presence in the field
+SAMPLE_TARGET = int(os.environ.get("SAMPLE_TARGET", "120000"))
+MIN_ARTICLES = 3          # ignore journals with a trivial presence in the field
 THROTTLE = 0.25
 MAX_TRIES = 5
 
