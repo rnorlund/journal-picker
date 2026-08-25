@@ -41,12 +41,12 @@ h1{font-size:24px;letter-spacing:-.02em;display:flex;align-items:center;gap:11px
 <div class="head">
  <div>
   <h1><span class="mark"></span>Journal Picker — status</h1>
-  <div class="sub">LIVE → <a>journal-picker.netlify.app</a> · repo: github.com/rnorlund/journal-picker (private) · <b>22,685 journals across 7 fields</b> · 3,771 with real review times</div>
+  <div class="sub">LIVE → <a>journal-picker.netlify.app</a> · repo: github.com/rnorlund/journal-picker (private) · <b>32,565 journals across all 16 fields</b> · 14,780 with real review times</div>
  </div>
  <div class="tally">
-  <div class="t ok"><b>41</b><span>done</span></div>
-  <div class="t wip"><b>3</b><span>in progress</span></div>
-  <div class="t"><b>6</b><span>to do</span></div>
+  <div class="t ok"><b>48</b><span>done</span></div>
+  <div class="t wip"><b>2</b><span>in progress</span></div>
+  <div class="t"><b>5</b><span>to do</span></div>
   <div class="t blk"><b>1</b><span>blocked</span></div>
  </div>
 </div>
@@ -100,7 +100,7 @@ h1{font-size:24px;letter-spacing:-.02em;display:flex;align-items:center;gap:11px
 <div class="row"><span class="pill p-wip">lexicon</span><div class="txt"><b>Dental / oral &amp; craniofacial</b><i>46 methods · 50 populations · 35 topics — detection verified</i></div></div>
 <div class="row"><span class="pill p-wip">lexicon</span><div class="txt"><b>Cardiovascular</b><i>47 methods · 53 populations · 142 topics — detection verified</i></div></div>
 <div class="row"><span class="pill p-wip">lexicon</span><div class="txt"><b>Genetics</b><i>58 methods · 65 populations · 294 topics — detection verified</i></div></div>
-<div class="row"><span class="pill p-wip">building</span><div class="txt"><b>9 remaining catalogs</b><i>OpenAlex credits ran out mid-build; switched the volume sweep to Europe PMC (unmetered) — validating on dental now</i></div></div>
+<div class="row"><span class="pill p-ok">DONE</span><div class="txt"><b>All 16 catalogs built</b><i>9 via Europe PMC after OpenAlex credits ran out · anchors verified: psychiatry 7/7, public health 6/6, rehab 5/5</i></div></div>
 <div class="row"><span class="pill p-ok">NEW</span><div class="txt"><b>Europe PMC volume builder</b><i>removes ~80% of the metered calls; OpenAlex now only enriches, batched 50 ISSNs/call</i></div></div>
 <div class="row"><span class="pill p-ok">done</span><div class="txt"><b>OpenAlex taxonomy cached offline</b><i>4,516 topics — new fields now cost zero API calls</i></div></div>
 </div>
@@ -111,7 +111,7 @@ h1{font-size:24px;letter-spacing:-.02em;display:flex;align-items:center;gap:11px
 <div class="row"><span class="pill p-todo">to do</span><div class="txt"><b>Author ratings of journals</b><i>needs first backend + moderation policy · decide ORCID vs open</i></div></div>
 <div class="row"><span class="pill p-todo">to do</span><div class="txt"><b>Aims &amp; scope text per journal</b><i>~500 pages to scrape · 1–2 weeks</i></div></div>
 <div class="row"><span class="pill p-todo">to do</span><div class="txt"><b>Embedding-based semantic matching</b><i>3× L40S sitting idle</i></div></div>
-<div class="row"><span class="pill p-todo">to do</span><div class="txt"><b>Predatory-journal screening</b><i>DOAJ + Scopus + PubMed indexing as proxy</i></div></div>
+<div class="row"><span class="pill p-ok">done</span><div class="txt"><b>Independent-listing badges</b><i>deliberately NOT a risk score — the obvious heuristic flags legitimate non-English journals</i></div></div>
 <div class="row"><span class="pill p-todo">to do</span><div class="txt"><b>Institution presets</b><i>pick your university instead of uploading</i></div></div>
 <div class="row"><span class="pill p-skip">never</span><div class="txt"><b>Fabricated metrics</b><i>no invented acceptance rates — deliberately excluded</i></div></div>
 </div>
@@ -131,6 +131,6 @@ h1{font-size:24px;letter-spacing:-.02em;display:flex;align-items:center;gap:11px
  <span class="k"><i class="dot" style="background:#8b95a6"></i>not started</span>
  <span class="k"><i class="dot" style="background:#ff8a80"></i>blocked by missing data</span>
  <span class="k"><i class="dot" style="background:#9a86c9"></i>deliberately not doing</span>
- <span>· axon×3: Europe PMC volume sweeps · Netlify prod deploys blocked (bandwidth) · 2026-08-24</span>
+ <span>· axon×3: review-time sweep for 2,771 new journals · Netlify prod deploys still blocked · 2026-08-25</span>
 </div>
 </body></html>

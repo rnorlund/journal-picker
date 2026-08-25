@@ -51,10 +51,11 @@ by parsing reference strings, so it works in any citation style with no network 
 
 Read this section before trusting a number.
 
-- **Review times cover about half of journals.** The figures come from `received` → `accepted`
+- **Review times cover under half of journals.** The figures come from `received` → `accepted`
   dates that publishers deposit with PubMed. Elsevier and MDPI deposit them; many societies do
-  not. Every figure ships with its sample size, and journals with fewer than 8 usable articles
-  show nothing rather than a noisy median.
+  not — the Journal of the American Heart Association was checked and has none on file. Every
+  figure ships with its sample size, and journals with fewer than 8 usable articles show nothing
+  rather than a noisy median.
 - **Some deposited dates are not review times.** A handful of venues report medians of a few
   days, because they publish commissioned content or record the revision date as submission.
   No external peer review of a research paper finishes in under three weeks, so anything faster
@@ -68,6 +69,13 @@ Read this section before trusting a number.
   says so on screen, because ACL, EMNLP and arXiv are largely absent.
 - **No acceptance rates.** They are not in any open dataset, and unlike review times there is no
   proxy hiding in the data. We would rather omit them than invent them.
+- **No predatory-journal score.** The obvious heuristic — charges an APC, absent from DOAJ, few
+  citations — overwhelmingly flags legitimate regional and non-English journals. Cards state
+  which independent listings include a journal and leave the judgement to you.
+- **Catalogs are not all built the same way.** Seven were built from OpenAlex topic data; nine
+  from Europe PMC article sampling after OpenAlex rate limits made the first path unusable. The
+  Europe PMC ones are thinner in the long tail and more PubMed-centric. Each catalog records its
+  source.
 - **Nothing here is fabricated.** Every number traces to OpenAlex, DOAJ, PubMed, or Europe PMC.
 
 ## Fields
@@ -77,10 +85,26 @@ populations lexicon, and a topic set. Adding a discipline is a data change, not 
 field is auto-detected from your abstract, and a manuscript can match several: a cardiac-genetics
 paper matches both, and their catalogs are merged.
 
-Brain imaging · aging · cardiovascular · dental & oral · genetics · language models and human
-language · oncology · public health · implementation science · digital health & clinical AI ·
-rehabilitation & communication sciences · psychiatry & mental health · microbiome · nutrition ·
-global & planetary health · health professions education
+| Field | Journals | With review times |
+|---|---|---|
+| Oncology and cancer research | 5,510 | 2,590 |
+| Genetics and genomics | 5,400 | 2,762 |
+| Health professions education | 4,256 | 595 |
+| Cardiovascular | 3,705 | 1,812 |
+| Aging and the aging brain | 3,566 | 1,552 |
+| Brain imaging / neuroimaging | 2,320 | 1,161 |
+| Dental, oral and craniofacial | 1,122 | 498 |
+| Language models and human language | 1,062 | 107 |
+| Public health, epidemiology and health disparities | 896 | 577 |
+| Rehabilitation and communication sciences | 808 | 531 |
+| Microbiome and host-microbe interaction | 751 | 577 |
+| Implementation science and health services research | 709 | 427 |
+| Digital health and clinical AI | 702 | 498 |
+| Psychiatry and mental health | 640 | 365 |
+| Global and planetary health | 599 | 348 |
+| Nutrition and metabolism | 519 | 380 |
+
+32,565 journals in total; 14,780 carry a measured median time from submission to acceptance.
 
 ## Running it
 
@@ -110,10 +134,18 @@ returns 1,000 results where OpenAlex needed eight AND-only probes for 600.
 
 The app ships precomputed catalogs. To regenerate them:
 
+There are two paths. The OpenAlex path produces a richer catalog but is credit-metered and will
+stall on a large run; the Europe PMC path is unmetered and thinner. Both end at the same builder.
+
 ```bash
-python3 scripts/dump-taxonomy.py               # OpenAlex topic taxonomy, once
+# Unmetered: Europe PMC measures field volume, OpenAlex only enriches
+FIELD=oncology python3 scripts/build-volume-epmc.py
+FIELD=oncology VOLUME_SOURCE=epmc python3 scripts/build-catalog.py
+
+# Metered: OpenAlex topic sweep, one call per topic
+python3 scripts/dump-taxonomy.py               # topic taxonomy, once
 python3 scripts/derive-field-topics.py         # per-field topic sets, no API calls
-FIELD=oncology python3 scripts/build-catalog.py    # one field's catalog
+FIELD=oncology python3 scripts/build-catalog.py
 python3 scripts/build-timing.py                # peer-review durations from PubMed
 python3 scripts/slim-catalogs.py               # write the served files
 ```
