@@ -243,8 +243,19 @@ function badgesFor(j) {
       b.push([cls, `~${d}d in review (n=${j.review.n})`]);
     }
   }
-  if (j.inDoaj) b.push(['b-plain', 'DOAJ']);
-  if (j.isCore) b.push(['b-plain', 'Core venue']);
+  // Independent listings, stated as facts.
+  //
+  // Deliberately NOT a predatory-risk score. The obvious heuristic — charges an
+  // APC, absent from DOAJ, few citations — overwhelmingly flags legitimate
+  // regional and non-English journals: Neurología Argentina, Revista Colombiana
+  // de Psiquiatría, Die Radiologie all trip it. Such a score would defame real
+  // society journals and be biased against non-English scholarship, so we show
+  // what can be verified and let the author judge.
+  if (j.inDoaj) b.push(['b-plain', '✓ listed in DOAJ']);
+  if (j.isCore) b.push(['b-plain', '✓ established venue']);
+  if (!j.inDoaj && !j.isCore && j.inCatalog) {
+    b.push(['b-warn', 'no DOAJ or established-venue listing']);
+  }
   if (!j.isJournal) b.push(['b-warn', j.isPreprint ? 'Preprint server' : 'Repository — not a journal']);
   return b;
 }
