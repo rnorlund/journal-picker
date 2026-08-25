@@ -61,7 +61,7 @@ PAGE_SIZE = 1000
 SAMPLE_TARGET = int(os.environ.get("SAMPLE_TARGET", "120000"))
 MIN_ARTICLES = 3          # ignore journals with a trivial presence in the field
 THROTTLE = 0.25
-MAX_TRIES = 5
+MAX_TRIES = 8
 
 
 def log(msg):
@@ -156,6 +156,20 @@ def main():
 
     base_terms = field_query(spec)
     query = "(%s) AND (FIRST_PDATE:[%d TO %d])" % (base_terms, YEAR_FROM, YEAR_TO)
+
+    # A completed sweep costs ~40 minutes, so never redo one. The catalog step
+    # that consumes it has failed and been rerun several times; repeating the
+    # sweep each time would have wasted hours.
+    dest_existing = os.path.join(CACHE, "volume-epmc--%s.json" % FIELD)
+    if os.path.exists(dest_existing) and not os.environ.get("FORCE"):
+        with open(dest_existing) as fh:
+            prev = json.load(fh)
+        if len(prev.get("journals") or []) >= 50:
+            log("FIELD %s: reusing existing sweep (%d journals, %s articles). "
+                "FORCE=1 to redo."
+                % (FIELD, len(prev["journals"]), f"{prev.get('articles_sampled', 0):,}"))
+            return
+
     log("FIELD %s" % FIELD)
     log("  query is %d chars, %d OR-terms" % (len(query), query.count(" OR ") + 1))
 

@@ -37,6 +37,15 @@
    "path": "catalogs/dental-oral.json"
   },
   {
+   "id": "digital-health",
+   "name": "Digital health and clinical AI",
+   "journals": 707,
+   "submittable": 702,
+   "with_review": 498,
+   "bytes": 770713,
+   "path": "catalogs/digital-health.json"
+  },
+  {
    "id": "genetics",
    "name": "Genetics and genomics",
    "journals": 5489,
@@ -44,6 +53,33 @@
    "with_review": 2762,
    "bytes": 5713128,
    "path": "catalogs/genetics.json"
+  },
+  {
+   "id": "global-health",
+   "name": "Global and planetary health",
+   "journals": 599,
+   "submittable": 599,
+   "with_review": 348,
+   "bytes": 649307,
+   "path": "catalogs/global-health.json"
+  },
+  {
+   "id": "medical-education",
+   "name": "Health professions education",
+   "journals": 4465,
+   "submittable": 4256,
+   "with_review": 595,
+   "bytes": 4349697,
+   "path": "catalogs/medical-education.json"
+  },
+  {
+   "id": "implementation-science",
+   "name": "Implementation science and health services research",
+   "journals": 710,
+   "submittable": 709,
+   "with_review": 427,
+   "bytes": 775309,
+   "path": "catalogs/implementation-science.json"
   },
   {
    "id": "llm-language",
@@ -55,6 +91,24 @@
    "path": "catalogs/llm-language.json"
   },
   {
+   "id": "microbiome",
+   "name": "Microbiome and host-microbe interaction",
+   "journals": 754,
+   "submittable": 751,
+   "with_review": 577,
+   "bytes": 818548,
+   "path": "catalogs/microbiome.json"
+  },
+  {
+   "id": "nutrition",
+   "name": "Nutrition and metabolism",
+   "journals": 519,
+   "submittable": 519,
+   "with_review": 380,
+   "bytes": 561515,
+   "path": "catalogs/nutrition.json"
+  },
+  {
    "id": "oncology",
    "name": "Oncology and cancer research",
    "journals": 5583,
@@ -62,6 +116,33 @@
    "with_review": 2590,
    "bytes": 5747891,
    "path": "catalogs/oncology.json"
+  },
+  {
+   "id": "psychiatry-mental-health",
+   "name": "Psychiatry and mental health",
+   "journals": 642,
+   "submittable": 640,
+   "with_review": 365,
+   "bytes": 694842,
+   "path": "catalogs/psychiatry-mental-health.json"
+  },
+  {
+   "id": "public-health",
+   "name": "Public health, epidemiology and health disparities",
+   "journals": 896,
+   "submittable": 896,
+   "with_review": 577,
+   "bytes": 969690,
+   "path": "catalogs/public-health.json"
+  },
+  {
+   "id": "rehabilitation",
+   "name": "Rehabilitation and communication sciences",
+   "journals": 813,
+   "submittable": 808,
+   "with_review": 531,
+   "bytes": 880227,
+   "path": "catalogs/rehabilitation.json"
   }
  ]
 }

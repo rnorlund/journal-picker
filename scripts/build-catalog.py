@@ -965,6 +965,10 @@ def main():
             return
 
     if VOLUME_SOURCE == "epmc":
+        # The Europe PMC path never resolves an OpenAlex topic list, but the
+        # payload writer reports topic_count, so give it an empty one rather
+        # than letting it reach for a name that was never bound.
+        topics = []
         volume = step2_volume_epmc()
     else:
         topics = step1_topics()
