@@ -48,7 +48,7 @@ Ask **"progress"** any time and this gets refreshed.
 |---|---|---|---|
 | 3.1 | Curated brain-imaging topic set | ✅ | 78 topics, `data/topics.json` |
 | 3.2 | Builder: throttled, checkpointed, resumable, shardable | ✅ | `SHARD=2/3`, `--merge-shards` |
-| 3.3 | Topic-volume sweep across 78 topics | ✅ | Sharded 3× across axon-server01/02/03 |
+| 3.3 | Topic-volume sweep across 78 topics | ✅ | Sharded 3× across the build servers |
 | 3.4 | Journal metadata enrichment | ✅ | 2,384 journals |
 | 3.5 | DOAJ APC sweep | ✅ | 1,467 with a known APC, 632 in DOAJ |
 | 3.6 | Merge shards → `data/journals.json` | ✅ | 3.4 MB (602 KB gzipped) |
@@ -127,9 +127,9 @@ questions to a seeded community. Roughly 1–2 weeks once we commit.
 
 | Host | Role | Specs |
 |---|---|---|
-| axon-server01 | catalog shard 1/3 + enrichment | 32 core, L40S 46 GB, 251 GB RAM |
-| axon-server02 | catalog shard 2/3 | 32 core, L40S 46 GB |
-| axon-server03 | catalog shard 3/3 | 32 core, L40S 46 GB |
+| build server 1 | catalog shard 1/3 + enrichment | 32 core, L40S 46 GB, 251 GB RAM |
+| build server 2 | catalog shard 2/3 | 32 core, L40S 46 GB |
+| build server 3 | catalog shard 3/3 | 32 core, L40S 46 GB |
 
 Launch: `cd ~/journalPicker && SHARD=i/3 python3 -u scripts/build-catalog.py`
 Logs: `~/journalPicker/build-shard<i>.log`

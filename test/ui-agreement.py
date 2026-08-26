@@ -1,4 +1,9 @@
-import asyncio
+import asyncio, os
+
+# Institutional agreement lists are licensed to the subscribing institution, so
+# none ships with the repo. Point this at your own library's list:
+#   JP_AGREEMENT=/path/to/list.xlsm python3 test/ui-agreement.py
+AGREEMENT_FILE = os.environ.get('JP_AGREEMENT', 'USC Open Access Pub list.xlsm')
 from playwright.async_api import async_playwright
 async def main():
     async with async_playwright() as p:
@@ -13,7 +18,7 @@ async def main():
         # The panel is a collapsed <details>; hidden elements report empty text,
         # so open it before reading status.
         await pg.click('#agreeBox summary')
-        await pg.set_input_files('#agreeFile','/Users/super/Documents/journalPicker/USC Open Access Pub list.xlsm')
+        await pg.set_input_files('#agreeFile',AGREEMENT_FILE)
         await pg.wait_for_timeout(4000)
         print('agreement status:', (await pg.inner_text('#agreeStatus')).replace('\n',' | '))
         print('after upload:', await pg.inner_text('.res-count'))
