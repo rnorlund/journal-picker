@@ -4,6 +4,12 @@ import asyncio, os
 # none ships with the repo. Point this at your own library's list:
 #   JP_AGREEMENT=/path/to/list.xlsm python3 test/ui-agreement.py
 AGREEMENT_FILE = os.environ.get('JP_AGREEMENT', 'USC Open Access Pub list.xlsm')
+
+if not os.path.exists(AGREEMENT_FILE):
+    print(f'skipped: no agreement list at {AGREEMENT_FILE}')
+    print("These lists are licensed to the subscribing institution, so none ships here.")
+    print('Point the test at your own list:  JP_AGREEMENT=/path/to/list.xlsm python3 test/ui-agreement.py')
+    raise SystemExit(0)
 from playwright.async_api import async_playwright
 async def main():
     async with async_playwright() as p:

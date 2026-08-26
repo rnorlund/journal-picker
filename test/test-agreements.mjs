@@ -18,8 +18,20 @@ import {
   lookupAgreement,
 } from '../src/agreements.js';
 
+// Institutional agreement lists are licensed to the subscribing institution, so
+// none ships with this repo. Point the test at your own library's list:
+//   JP_AGREEMENT=/path/to/list.xlsm node test/test-agreements.mjs
+const AGREEMENT_FILE = process.env.JP_AGREEMENT || 'USC Open Access Pub list.xlsm';
+
+if (!existsSync(AGREEMENT_FILE)) {
+  console.log(`skipped: no agreement list at ${AGREEMENT_FILE}`);
+  console.log("These lists are licensed to the subscribing institution, so none ships here.");
+  console.log('Run it against your own:  JP_AGREEMENT=/path/to/list.xlsm node test/test-agreements.mjs');
+  process.exit(0);
+}
+
 const XLSM_PRIMARY = AGREEMENT_FILE;
-const XLSM_SECONDARY = '';
+const XLSM_SECONDARY = AGREEMENT_FILE;
 
 /* -------------------------------------------------------------------------- *
  * Tiny assertion harness
