@@ -4,7 +4,7 @@ Paste your title and abstract. Get a ranked list of journals that actually publi
 yours — with real prices, open-access status, how long peer review takes, and whether your
 institution has already paid for it.
 
-**Live: https://journal-picker.netlify.app** — no sign-up, no API key, nothing to install.
+**Try it: https://rnorlund.github.io/journal-picker/** — no sign-up, no API key, nothing to install.
 
 ```
 Cortical thickness and white matter integrity predict naming recovery after stroke

@@ -156,12 +156,20 @@ const esc = (s) => String(s ?? '').replace(/[&<>"']/g,
 
 function renderEvidence(run) {
     el.evidence.hidden = false;
+  // Some queries failing is not the same as none failing: results still render,
+  // just from a narrower sweep, and the reader deserves to know.
+  const partial = (run.probeErrors && run.probeErrors.length && run.probes.length)
+    ? `<p class="caveat"><b>Partial results.</b> ${run.probeErrors.length} of ${
+        run.probeErrors.length + run.probes.length} searches were rejected by Europe PMC,
+        usually rate limiting. These rankings come from the searches that succeeded —
+        run it again in a moment for the full set.</p>`
+    : '';
   const missing = run.catalogMissing
     ? `<p class="caveat caveat-bad"><b>Journal catalog unavailable.</b> Results are ranked by
        similarity alone — prices, review times and open-access status are all missing. This
        usually means <code>data/</code> did not deploy. Do not use these figures.</p>`
     : '';
-  const caveats = missing + (run.coverageNotes || []).map((c) =>
+  const caveats = missing + partial + (run.coverageNotes || []).map((c) =>
     `<p class="caveat"><b>${esc(c.field)}:</b> ${esc(c.note)}</p>`).join('');
   el.evidence.innerHTML = `
     <div class="panel-head"><h2>How these were found</h2></div>

@@ -26,8 +26,12 @@ const EPMC = 'https://www.ebi.ac.uk/europepmc/webservices/rest/search';
 export const config = {
   /** Optional contact address, sent to Europe PMC as `email` if set. */
   email: null,
-  maxConcurrent: 3,
-  minIntervalMs: 80,
+  // Europe PMC throttles bursts, and a throttled response arrives without CORS
+  // headers, so the browser reports it as a CORS failure. Three concurrent
+  // 1,000-result queries is ~2.4 MB in flight and reliably tripped it; two,
+  // spaced further apart, does not.
+  maxConcurrent: 2,
+  minIntervalMs: 300,
   /** Results requested per query (Europe PMC allows 1000). */
   pageSize: 1000,
   /** Earliest publication year considered. */
