@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Journal Picker — neuroimaging manuscripts</title>
-<meta name="description" content="Paste a title and abstract, get ranked journal recommendations with real APC costs, open-access status, and the similar papers each journal actually published.">
+<title>Journal Picker — find the right journal for your manuscript</title>
+<meta name="description" content="Paste a title and abstract, get ranked journal recommendations across 16 research fields — with real APC costs, peer-review times, open-access status, and your library's agreement coverage.">
 <link rel="stylesheet" href="src/style.css">
 </head>
 <body>
@@ -13,7 +13,7 @@
   <div class="wrap topbar-in">
     <div class="brand">
       <span class="brand-mark" aria-hidden="true"></span>
-      <span class="brand-text">Journal&nbsp;Picker<span class="brand-sub">neuroimaging</span></span>
+      <span class="brand-text">Journal&nbsp;Picker<span class="brand-sub">16 fields</span></span>
     </div>
     <div class="topbar-actions">
       <span class="src-note">no account needed · <a href="https://europepmc.org" target="_blank" rel="noopener">Europe PMC</a> + <a href="https://doaj.org" target="_blank" rel="noopener">DOAJ</a></span>
@@ -30,7 +30,14 @@
     <p class="lede">
       Paste your title and abstract. We search the biomedical literature for papers that look
       like yours, find the journals that actually publish them, then show you what each one
-      costs and whether your institution already covers it. No sign-up, no API key.
+      costs, how long its review takes, and whether your institution already covers the fee.
+      No sign-up, no API key.
+    </p>
+    <p class="lede fields-line">
+      <b>16 research fields, 32,565 journals.</b> The field is detected from your
+      abstract — a paper can belong to several. <a href="#" id="fieldsToggle">See the list</a>
+    </p>
+    <p class="lede fields-list" id="fieldsList" hidden>Aging and the aging brain · Brain imaging / neuroimaging · Cardiovascular · Dental, oral and craniofacial · Digital health and clinical AI · Genetics and genomics · Global and planetary health · Health professions education · Implementation science and health services research · Language models and human language · Microbiome and host-microbe interaction · Nutrition and metabolism · Oncology and cancer research · Psychiatry and mental health · Public health, epidemiology and health disparities · Rehabilitation and communication sciences
     </p>
   </section>
 
